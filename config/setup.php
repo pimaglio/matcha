@@ -1,0 +1,142 @@
+<head>
+    <link rel="icon" type="image/png" href="../view/assets/images/favico.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<style>
+    h1 {
+        color: #333;
+        font-size: 40px;
+    }
+
+    body {
+        display: block;
+        width: 100%;
+        height: 100%;
+        font-family: 'Nunito', sans-serif;
+        font-size: 16px;
+        line-height: 32px;
+        color: #7d93b2;
+        background-color: #fafcff;
+        font-weight: 200;
+        margin: 0;
+    }
+
+    .lg-title, .lg {
+        float: left;
+        padding: 10px;
+        font-size: 60px;
+        padding-bottom: 15px;
+    }
+
+    .lg-title {
+        background-color: #ff5c72;
+        color: white;
+    }
+
+    .error-sql{
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 500px;
+        color: #820000;
+    }
+
+    .success-sql{
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 500px;
+        color: #2da977;
+    }
+
+</style>
+
+<div class="">
+    <a href="../index.php" target="_self">
+        <h1 class="lg-title">cama</h1>
+        <h1 class="lg">gru.</h1>
+    </a>
+</div>
+
+<div style="text-align: center !important;">
+<?php
+/**
+ * Created by PhpStorm.
+ * User: pimaglio
+ * Date: 2019-02-06
+ * Time: 14:28
+ */
+
+require_once("database.php");
+try {
+    $db = database_connect();
+    $sql_create_data_tbl = <<<EOSQL
+CREATE TABLE data (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  login varchar(25) COLLATE utf8_unicode_ci,
+  picture text COLLATE utf8_unicode_ci NOT NULL,
+  likes int(11) DEFAULT '0',
+  liker varchar(25) COLLATE utf8_unicode_ci,
+  comments text COLLATE utf8_unicode_ci,
+  author text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
+EOSQL;
+
+    $sql_create_user_db_tbl = <<<EOSQL
+CREATE TABLE user_db (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  login varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  password binary(64) NOT NULL COMMENT 'sha-256',
+  email varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  creation_date date DEFAULT NULL,
+  cle varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  notif tinyint(1) DEFAULT NULL,
+  valid tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
+EOSQL;
+
+    $sql_create_user = <<<EOSQL
+INSERT INTO user_db (login, password, email, valid)
+VALUES 
+  ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'pmaglioz@gmail.com', '1');
+EOSQL;
+
+    $msg = '';
+    $msg_err = '';
+
+    $r = $db->exec($sql_create_data_tbl);
+
+    if ($r !== false) {
+
+        $r = $db->exec($sql_create_user_db_tbl);
+        $r = $db->exec($sql_create_user);
+
+        if ($r !== false) {
+            $msg = "Tables are created successfully!." . "<br>";
+        } else {
+            $msg_err = "Error creating table." . "<br>";
+        }
+
+    } else {
+        $msg_err = "Error creating table." . "<br>";
+    }
+
+    // display the message
+    if ($msg != '') {
+        echo "<h2 class='success-sql'>$msg<br><i class=\"far fa-smile-beam fa-9x\"></i></h2>" . "\n";
+        $delai=2;
+        $url='../index.php';
+        header("Refresh: $delai;url=$url");
+    }
+    else if ($msg_err != '')
+        echo "<h2 class='error-sql'>$msg_err<br><i class=\"far fa-sad-cry fa-9x\"></i></h2>" . "\n";
+
+} catch (PDOException $e) {
+    $msg2 = $e->getMessage();
+    echo "<br>" . "<h2 class='error-sql' >$msg2<br><i class=\"far fa-sad-cry fa-7x\"></i></h2>";
+}
+?>
+</div>
