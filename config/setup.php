@@ -90,6 +90,11 @@ CREATE TABLE user_db (
   login varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   password binary(64) NOT NULL COMMENT 'sha-256',
   email varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  age int(3) NOT NULL,
+  sex int(1) NOT NULL,
+  location varchar(255) NOT NULL,
+  orientation int(1) NOT NULL,
+  bio varchar(255) NOT NULL,
   creation_date date DEFAULT NULL,
   cle varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   notif tinyint(1) DEFAULT NULL,
@@ -99,9 +104,9 @@ CREATE TABLE user_db (
 EOSQL;
 
     $sql_create_user = <<<EOSQL
-INSERT INTO user_db (login, password, email, valid)
+INSERT INTO user_db (login, password, email, valid, age, sex, location, orientation, bio)
 VALUES 
-  ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'pmaglioz@gmail.com', '1');
+  ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'pmaglioz@gmail.com', '1', '26', '1', 'Lyon', '2', 'Jeune codeur sauvage');
 EOSQL;
 
     $msg = '';
