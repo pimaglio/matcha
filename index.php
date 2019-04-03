@@ -78,7 +78,7 @@ if (isset($_SESSION['alert'])) {
     <div style="width: 80%; margin: auto" class="flex flex-resp2">
         <div style="margin-top: 210px;" class="flex px-4 py-2 m-2">
             <div style="">
-            <h1>Camagru Project</h1>
+            <h1>MATCHA Project</h1>
             <p class="my-4">Bienvenue sur la page du projet Camagru.</br>Vous pourrez au travers de ce mini-site, réaliser et partager
                 des
                 photo-montages.</p>
