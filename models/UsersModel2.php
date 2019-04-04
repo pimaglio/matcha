@@ -52,6 +52,7 @@ class infos
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($array, $data);
+        var_dump($array);
         $array = $array[0];
         return $array['id'];
     }
@@ -140,7 +141,7 @@ class account
 
     public function add()
     {
-        echo $this->nom;
+//        echo $this->nom;
         try {
             if ($this->ifLoginTaken() || $this->ifEmailTaken())
                 return 1;
@@ -305,7 +306,6 @@ class account
 
     public function Connect()
     {
-        echo $this->login;
         $stmt = $this->db_con->prepare("SELECT email, valid, password, login FROM user_db WHERE login=:login");
         $stmt->execute(array(
             ":login" => $this->login

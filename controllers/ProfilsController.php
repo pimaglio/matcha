@@ -27,29 +27,41 @@ function lowpassword()
 // INSERT TABLE DATA
 
 if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset($_POST['sexe']) && isset($_POST['age'])
-        && isset($_POST['location']) && isset($_POST['orientation']) && isset($_POST['bio'])) {
+    && isset($_POST['location']) && isset($_POST['orientation']) && isset($_POST['bio'])) {
     $arr = [];
-    $arr['sexe'] = htmlspecialchars($_POST['sexe']);
-    $arr['age'] = htmlspecialchars($_POST['age']);
-    $arr['location'] = htmlspecialchars($_POST['location']);
-    $arr['orientation'] = htmlspecialchars($_POST['orientation']);
-    $arr['bio'] = htmlspecialchars($_POST['bio']);
-    $db_con = new infos($arr);
-    $db_con->add_data();
-    header("Location: ../view");
+    if (($b = htmlspecialchars($_POST['bio'])) !== $_POST['bio'] ||
+        ($l = htmlspecialchars($_POST['location'])) !== $_POST['location']) {
+        $_SESSION['alert'] = 's';
+        header('Location: ../view/createprofile.php');
+        exit();
+    } else {
+        $arr['sexe'] = $_POST['sexe'];
+        $arr['age'] = $_POST['age'];
+        $arr['location'] = $_POST['location'];
+        $arr['orientation'] = $_POST['orientation'];
+        $arr['bio'] = $_POST['bio'];
+        $db_con = new infos($arr);
+        $db_con->add_data();
+//        header("Location: ../view");
+    }
 }
 
 // CREATION DU COMPTE
 
 if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['login'])
     && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['password'])
-&& isset($_POST['password2'])){
-    if (strlen($_POST['login']) > 25){
+    && isset($_POST['password2'])) {
+    if (htmlspecialchars($_POST['nom']) !== $_POST['nom'] || htmlspecialchars($_POST['login'])
+        !== $_POST['login'] || htmlspecialchars($_POST['email']) !== $_POST['email']) {
+        $_SESSION['alert'] = 's';
+        header('Location: ../view/register.php');
+        exit();
+    }
+    if (strlen($_POST['login']) > 25) {
         $_SESSION['alert'] = 8;
         header('Location: ../view/register.php');
         exit();
     }
-
     if ($_POST['password'] !== $_POST['password2']) {
         $_SESSION['alert'] = 7;
         header('Location: ../view/register.php');
@@ -68,8 +80,8 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
     }
     $password = hash('sha256', $_POST['password']);
     $new_user = new account(array(
-        'login' => htmlspecialchars($_POST['login']),
-        'nom' => htmlspecialchars($_POST['nom']),
+        'login' => $_POST['login'],
+        'nom' => $_POST['nom'],
         'password' => $password,
         'email' => $_POST['email'],
     ));
@@ -80,35 +92,41 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
     } else {
         $new_user->sendMail();
         $_SESSION['alert'] = 2;
+        header('Location: ../');
     }
 }
 
 // CONNEXION
 
 if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['password'])
-&& isset($_POST['login'])){
+    && isset($_POST['login'])) {
+    if (htmlspecialchars($_POST['login']) !== $_POST['login']){
+        $_SESSION['alert'] = 's';
+        header('Location: ../view/login.php');
+        exit();
+    }
     echo 'c\'est bon';
     $password = hash('sha256', $_POST['password']);
     $user = New account(array(
         'password' => $password,
-        'login' => htmlspecialchars($_POST['login'])
+        'login' => $_POST['login']
     ));
     $var = $user->Connect();
-//    if ($var === 1) {
-//        $_SESSION['alert'] = "Ce compte n'existe pas";
-//        header("Location: ../view/login.php");
-//        exit();
-//    }
-//    if ($var === 2) {
-//        $_SESSION['alert'] = "Vous devez activer votre compte";
-//        header("Location: ../view/login.php");
-//        exit();
-//    }
-//    if ($var === 3) {
-//        $_SESSION['alert'] = "Mot de passe erroné";
-//        header("Location: ../view/login.php");
-//    } else {
-//        $_SESSION['alert'] = "success";
-//        header("Location: ../view/home.php");
-//    }
+    if ($var === 1) {
+        $_SESSION['alert'] = "Ce compte n'existe pas";
+        header("Location: ../view/login.php");
+        exit();
+    }
+    if ($var === 2) {
+        $_SESSION['alert'] = "Vous devez activer votre compte";
+        header("Location: ../view/login.php");
+        exit();
+    }
+    if ($var === 3) {
+        $_SESSION['alert'] = "Mot de passe erroné";
+        header("Location: ../view/login.php");
+    } else {
+        $_SESSION['alert'] = "success";
+        header("Location: ../view/home.php");
+    }
 }
