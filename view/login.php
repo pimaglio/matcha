@@ -35,10 +35,10 @@ if (isset($_SESSION['alert'])) {
 <div class="form_create_profil">
     <div class="row">
         <div class="col s6">
-            <div class="form_pic2"></div>
+            <div class="form_pic"></div>
         </div>
         <div class="col s6">
-            <h2 class="title-form"><br>Connexion</h2>
+            <h2 class="title-form">Connexion <br><span class="title-form-alt">sign up</span></h2>
         </div>
     </div>
     <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
