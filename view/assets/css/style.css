@@ -38,6 +38,7 @@ a {
 
 body {
     font-family: 'Nunito', sans-serif;
+    background-color: #f7f7f7;
 }
 
 * {
@@ -72,6 +73,7 @@ body {
 
 nav {
     margin-bottom: 50px;
+    background-color: #f50057 !important;
 }
 
 /*BUTTON*/
@@ -223,4 +225,12 @@ MY PROFIL PAGE
 
 .title_profil_info{
     text-transform: uppercase;
+}
+
+.icon_profil2 {
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/user_info.svg');
+    background-size: cover;
 }
