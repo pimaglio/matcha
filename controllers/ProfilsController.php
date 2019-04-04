@@ -24,6 +24,18 @@ function lowpassword()
         return 0;
 }
 
+function recup_data($login)
+{
+    $db_con = new infos();
+    $data = $db_con->array_data();
+    return $data;
+}
+
+if (isset($_POST) && $_POST['recup'] === 'ok' && isset($_POST['login'])) {
+    $data = recup_data($_POST['login']);
+    var_dump($data);
+//    $inter = recup_inter($_POST['login']);
+}
 // INSERT TABLE DATA
 
 if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset($_POST['sexe']) && isset($_POST['age'])
@@ -43,12 +55,12 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
         $db_con = new infos($arr);
         $db_con->add_data();
         $inte = [];
-        foreach ($_POST as $k => $v){
+        foreach ($_POST as $k => $v) {
             if ($v == 101)
                 $inte[$k] = $v;
         }
         $db_con->add_interest($inte);
-//        header("Location: ../view");
+        header("Location: ../view");
     }
 }
 
@@ -106,7 +118,7 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
 
 if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['password'])
     && isset($_POST['login'])) {
-    if (htmlspecialchars($_POST['login']) !== $_POST['login']){
+    if (htmlspecialchars($_POST['login']) !== $_POST['login']) {
         $_SESSION['alert'] = 's';
         header('Location: ../view/login.php');
         exit();
@@ -139,8 +151,8 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
 
 // MDP OUBLIE
 
-if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'])){
-    if (htmlspecialchars($_POST['login']) !== $_POST['login']){
+if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'])) {
+    if (htmlspecialchars($_POST['login']) !== $_POST['login']) {
         $_SESSION['alert'] = 's';
         header('Location: ../view/reset.php');
         exit();

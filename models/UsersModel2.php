@@ -98,6 +98,8 @@ class infos
             ));
         }
     }
+
+    public function array
 }
 
 class account
