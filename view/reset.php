@@ -9,7 +9,7 @@
 if (isset($_SESSION['loggued_on_user']))
     header("Location: home.php");
 session_start();
-include('header.php');
+include('header_alt.php');
 ?>
 
 <body>
@@ -27,16 +27,39 @@ if (isset($_SESSION['alert'])) {
 ?>
 <div id="background">
 </div>
-<div class="container-form">
-    <div class="form_pic"></div>
-    <h2 class="title-form" >Réinitialiser le mot de passe</h2>
-    <form class="form_index" id="login-form" method="POST" action="../controllers/UsersController.php">
-        <p class="title-form2">Login</p>
-        <input type="text" name="login" id="login" placeholder="Login"
-               required><br/>
+
+<div class="form_create_profil" style="padding-bottom: 50px">
+    <div class="row">
+        <div class="col s6">
+            <div class="form_pic2"></div>
+        </div>
+        <div class="col s6">
+            <h2 class="title-form">Réinitialiser <br><span class="title-form-alt">le mot de passe</span></h2>
+        </div>
+    </div>
+    <form id="register-form" method="POST" action="../controllers/UsersController.php">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="login" type="text" class="validate" name="login" required>
+                <label for="login">Nom d'utilisateur</label>
+            </div>
+        </div>
         <input type="hidden" name="forgot" value="ok"><br/>
-        <input type="submit" name="submit" value="Envoyer" id="submit" class="btn3"/>
-        <br/>
+        <div style="text-align: center">
+            <button class="waves-teal btn-large" type="submit" name="submit"
+                    value="Créer mon profil">Recevoir un email
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     </form>
 </div>
+
+<script src="assets/js/materialize.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
+</script>
+
 </body>

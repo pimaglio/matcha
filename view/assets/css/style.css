@@ -74,6 +74,8 @@ nav{
     margin-bottom: 50px;
 }
 
+/*BUTTON*/
+
 /*CONTAINER FORM*/
 
 @media screen and (max-width: 600px) {
@@ -121,4 +123,5 @@ nav{
 
 .title-form-alt{
     font-weight: normal;
+    font-size: 2rem;
 }
