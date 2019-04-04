@@ -173,8 +173,28 @@ HOMEPAGE
 MY PROFIL PAGE
 */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1450px) {
     .my_profil {
+        width: 80% !important;
+        padding: 0 !important;
+    }
+    .row .col.s6{
+        width: 100% !important;
+    }
+    .row .col.s3{
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .my_profil {
+        width: 100% !important;
+        padding: 50px 0 !important;
+    }
+    .row .col.s6{
+        width: 100% !important;
+    }
+    .row .col.s3{
         width: 100% !important;
     }
 }
