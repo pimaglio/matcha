@@ -9,7 +9,7 @@
 if (isset($_SESSION['loggued_on_user']))
     header("Location: home.php");
 session_start();
-include('header.php');
+include('header_alt.php');
 ?>
 
 <body>
@@ -32,18 +32,46 @@ if (isset($_SESSION['alert'])) {
 ?>
 <div id="background">
 </div>
-<div class="container-form">
-    <div class="form_pic"></div>
-    <h2 class="title-form" >Se connecter</h2>
-    <form class="form_index" id="login-form" method="POST" action="../controllers/UsersController.php">
-        <p class="title-form2">Login</p>
-        <input type="text" name="login" id="login" placeholder="Login"
-               required><br/>
-        <p class="title-form2">Password</p>
-        <input type="password" name="passwd" id="passwd" placeholder="Password" required><br/>
-        <input type="submit" name="submit" value="Login" id="submit" class="btn3"/>
-        <br/>
+<div class="form_create_profil">
+    <div class="row">
+        <div class="col s6">
+            <div class="form_pic2"></div>
+        </div>
+        <div class="col s6">
+            <h2 class="title-form">Création <br><span class="title-form-alt">du compte</span></h2>
+        </div>
+    </div>
+    <form id="register-form" method="POST" action="../controllers/UsersController.php">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="login" type="text" class="validate" name="login" required>
+                <label for="login">Nom d'utilisateur</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">vpn_key</i>
+                <input id="password" type="password" class="validate" name="password" required>
+                <label for="password">Mot de passe</label>
+            </div>
+        </div>
+        <input type="hidden" name="register" value="ok">
+        <div style="text-align: center">
+            <button class="waves-teal btn-large" type="submit" name="submit"
+                    value="Créer mon profil">Se connecter
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
     </form>
-    <p class="connect">Mot de passe oublié ? <a class="link" href="reset.php">Réinitialiser le mot de passe</a></p>
+    <div style="text-align: center; margin-top: 50px">
+        <p class="connect">Mot de passe oublié ? <a class="link" href="reset.php">Réinitialiser le mot de passe</a></p>
+    </div>
 </div>
+
+<script src="assets/js/materialize.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
+</script>
+
 </body>
