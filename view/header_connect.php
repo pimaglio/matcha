@@ -33,22 +33,23 @@ if (!isset($_SESSION)) {
     </div>
     <ul id="slide-out" class="sidenav fixed">
         <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="assets/images/clouds.png">
-                </div>
-                <a href="#user"><img class="circle" src="assets/images/profil.svg"></a>
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            <div class="user-view background_sidenav">
+                <a href="#user"><img class="circle" src="assets/images/me.jpg"></a>
+                <a href="#name"><span class="white-text name">Eric Reptil</span></a>
+                <a href="#email"><span class="white-text email">lereptildu69@marzingue.com</span></a>
             </div>
         </li>
-        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-        <li><a href="#!">Second Link</a></li>
+        <li><a class="subheader">Menu Principal</a></li>
+        <li><a href="#!"><i class="fas fa-bolt"></i>Matcha Now !</a></li>
+        <li><a href="#!"><i class="fas fa-heart"></i>Mes likes</a></li>
+        <li><a href="#!"><i class="fas fa-envelope"></i>Messages</a></li>
+        <li><a href="#!"><i class="fas fa-history"></i>Historique des visites</a></li>
         <li>
             <div class="divider"></div>
         </li>
-        <li><a class="subheader">Subheader</a></li>
-        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        <li><a class="subheader">Paramètres Généraux</a></li>
+        <li><a href="logout.php"><i class="fas fa-user-edit"></i>Mon profil</a></li>
+        <li><a href="logout.php"><i class="fas fa-power-off"></i>Se déconnecter</a></li>
     </ul>
 </nav>
 

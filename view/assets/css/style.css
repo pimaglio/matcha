@@ -162,3 +162,7 @@ HOMEPAGE
 .home_content{
     padding-top: 15%;
 }
+
+.background_sidenav{
+    background: linear-gradient(#141e30, #243b55);
+}
