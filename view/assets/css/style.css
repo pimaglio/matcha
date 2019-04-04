@@ -66,24 +66,48 @@ body {
     background-size: 100vw 400px;
 }
 
-.container-form {
-    width: 400px;
+nav{
+    margin-bottom: 50px;
+}
+
+/*CONTAINER FORM*/
+
+@media screen and (max-width: 600px) {
+    .form_create_profil{
+        width: 100% !important;
+    }
+    .form_create_profil .form_pic2 {
+
+    }
+}
+
+.form_create_profil {
+    width: 800px;
     background-color: #ffffff;
-    padding: 70px 50px 5px 50px;
+    padding: 70px 50px 50px 50px;
     position: relative;
     border-radius: 8px;
     box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
     transition: all .3s;
     animation: fadeIn 1s;
     margin: auto;
-    margin-top: 7%;
 }
 
-.container-form .form_pic {
+.form_create_profil .form_pic2 {
+    float: right;
     width: 150px;
     height: 150px;
-    background-image: url('../images/team.svg');
-    position: absolute;
-    top: -80px;
-    left: 125px;
+    background-image: url('../images/createprofil.svg');
+}
+
+.title-form{
+    color: black;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.title-form-alt{
+    font-weight: normal;
 }

@@ -25,8 +25,14 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
 <div id="background">
 </div>
 <div class="form_create_profil">
-    <div class="form_pic2"></div>
-    <h2 class="title-form">Création <span class="title-form-alt">du profil</span></h2>
+    <div class="row">
+        <div class="col s6">
+            <div class="form_pic2"></div>
+        </div>
+        <div class="col s6">
+            <h2 class="title-form">Création <br><span class="title-form-alt">du profil</span></h2>
+        </div>
+    </div>
     <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
         <p class="title-form2">Âge (18 à 116 ans)</p>
         <input type="number" name="age" id="age" value="18" min="18" max="116" required><br/>
@@ -123,15 +129,16 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
         </div>
         <input type="hidden" name="createprofile" value="ok">
         <div style="text-align: center">
-        <button class="btn-large waves-effect waves-light pink accent-3" type="submit" name="submit" value="Créer mon profil">Créer mon profil
-            <i class="material-icons right">send</i>
-        </button>
+            <button class="btn-large waves-effect waves-light pink accent-3" type="submit" name="submit"
+                    value="Créer mon profil">Créer mon profil
+                <i class="material-icons right">send</i>
+            </button>
         </div>
     </form>
 </div>
 <script src="assets/js/materialize.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('select').formSelect();
     });
 </script>
