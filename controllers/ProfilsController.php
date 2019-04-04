@@ -24,17 +24,72 @@ function lowpassword()
         return 0;
 }
 
-function recup_data($login)
+function recup_data()
 {
-    $db_con = new infos();
-    $data = $db_con->array_data();
-    return $data;
+    $db_con = new infos($_POST);
+    return $db_con->array_data();
 }
 
-if (isset($_POST) && $_POST['recup'] === 'ok' && isset($_POST['login'])) {
-    $data = recup_data($_POST['login']);
-    var_dump($data);
-//    $inter = recup_inter($_POST['login']);
+function recup_inter()
+{
+    $db_con = new infos($_POST);
+    return $db_con->array_inter();
+}
+
+//$data = recup_data();
+//$inter = recup_inter();
+// MODIF USER
+
+if (isset($_POST) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
+    && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['nom'])
+    && isset($_POST['email'])) {
+    var_dump($_POST);
+    $db_con = new account(array(
+//        'login' => $_POST['login'],
+        'login' => $_SESSION['loggued_on_user']
+    ));
+    if (htmlspecialchars($_POST['nom']) !== $_POST['nom'] || htmlspecialchars($_POST['login'])
+        !== $_POST['login'] || htmlspecialchars($_POST['email']) !== $_POST['email']) {
+        $_SESSION['alert'] = 's';
+        header('Location: ../view/account.php');
+        exit();
+    }
+    if (!empty($_POST['password']) && !empty($_POST['password2'])) {
+        if (strlen($_POST['login']) > 25) {
+            $_SESSION['alert'] = 8;
+            header('Location: ../view/account.php');
+            exit();
+        }
+        if ($_POST['password'] !== $_POST['password2']) {
+            $_SESSION['alert'] = 7;
+            header('Location: ../view/account.php');
+            exit();
+        }
+        $spechar = lowpassword();
+        if ($spechar == 5) {
+            $_SESSION['alert'] = 5;
+            header('Location: ../view/account.php');
+            exit();
+        }
+        if (lowpassword() == 1) {
+            $_SESSION['alert'] = 4;
+            header('Location: ../view/account.php');
+            exit();
+        }
+        $password = hash('sha256', $_POST['password']);
+    } else
+        $password = $db_con->user_passwd();
+    $db = new account(array(
+        'login' => $_SESSION['loggued_on_user'],
+        'password' => $password,
+        'email' => $_POST['email'],
+        'nom' => $_POST['nom']
+    ));
+    $db->edit_profil($_SESSION['loggued_on_user']);
+}
+
+if (isset($_POST) && $_POST['data_modif'] === 'ok') {
+    echo 'modifiction de user en attente';
 }
 // INSERT TABLE DATA
 

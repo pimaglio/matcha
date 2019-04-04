@@ -35,8 +35,10 @@ class infos
             $this->bio = $user_data['bio'];
         if (array_key_exists('popularite', $user_data))
             $this->popularite = $user_data['popularite'];
-        if (isset($_SESSION['loggued_on_user']))
-            $this->login = $_SESSION['loggued_on_user'];
+//        if (isset($_SESSION['loggued_on_user']))
+//            $this->login = $_SESSION['loggued_on_user'];
+        if (isset($_POST['login']))
+            $this->login = $_POST['login'];
         $this->db_con = database_connect();
         $this->id = $this->find_id();
     }
@@ -63,7 +65,7 @@ class infos
             ":id_usr" => $this->id
         ));
         if (isset($stmt->fetch(PDO::FETCH_ASSOC)['id']))
-            return ;
+            return;
         $query = 'INSERT INTO `data` (id_usr, age, sex, location, orientation, bio) VALUES (:id, :age, :sexe, :loc, :ori, :bio)';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -76,7 +78,8 @@ class infos
         ));
     }
 
-    public function add_interest($arr){
+    public function add_interest($arr)
+    {
         $query = 'SELECT id_usr FROM `interest` WHERE id_usr=:id_usr';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -89,9 +92,8 @@ class infos
                 ":id" => $this->id
             ));
         }
-        foreach ($arr as $k => $v){
-            $query = 'UPDATE `interest` SET ' . $k .'=1 WHERE id_usr=:id';
-            echo $query . '</br>';
+        foreach ($arr as $k => $v) {
+            $query = 'UPDATE `interest` SET ' . $k . '=1 WHERE id_usr=:id';
             $stmt = $this->db_con->prepare($query);
             $stmt->execute(array(
                 ":id" => $this->id
@@ -99,7 +101,33 @@ class infos
         }
     }
 
-    public function array
+    public function array_data()
+    {
+        $arr = [];
+        $query = 'SELECT * FROM `data` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        $arr = $arr[0];
+        return $arr;
+    }
+
+    public function array_inter()
+    {
+        $arr = [];
+        $query = 'SELECT * FROM `interest` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        $arr = $arr[0];
+        return $arr;
+    }
 }
 
 class account
@@ -130,6 +158,16 @@ class account
     }
 
 //              CONTROL INSCRIPTION LOGIN / EMAIL
+
+    public function user_passwd(){
+        $query = 'SELECT * FROM user_db WHERE login=:log';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":log" => $this->login
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $fetch['password'];
+    }
 
     public function ifLoginTaken()
     {
@@ -238,11 +276,12 @@ class account
         try {
             if ($this->ifLoginTaken() || $this->ifEmailTaken())
                 return 1;
-            $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login, email=:email, password=:password WHERE login='$usser'");
+            $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login, nom=:nom, email=:email, password=:password WHERE login='$usser'");
             $val = $stmt->execute(array(
                 ":login" => $this->login,
                 ":email" => $this->email,
                 ":password" => $this->password,
+                ":nom" => $this->nom
             ));
         } catch (PDOException $e) {
             echo $e->getMessage();
