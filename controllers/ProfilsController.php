@@ -36,16 +36,19 @@ function recup_inter()
     return $db_con->array_inter();
 }
 
+function recup_user()
+{
+
+}
+
 //$data = recup_data();
 //$inter = recup_inter();
 // MODIF USER
 
-if (isset($_POST) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
+if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
     && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['nom'])
     && isset($_POST['email'])) {
-    var_dump($_POST);
     $db_con = new account(array(
-//        'login' => $_POST['login'],
         'login' => $_SESSION['loggued_on_user']
     ));
     if (htmlspecialchars($_POST['nom']) !== $_POST['nom'] || htmlspecialchars($_POST['login'])
@@ -78,17 +81,20 @@ if (isset($_POST) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
         }
         $password = hash('sha256', $_POST['password']);
     } else
-        $password = $db_con->user_passwd();
+        $password = hash('sha256', $db_con->user_passwd());
+    $info = new infos([]);
+    $id = $info->find_id();
     $db = new account(array(
-        'login' => $_SESSION['loggued_on_user'],
+        'login' => $_POST['login'],
         'password' => $password,
         'email' => $_POST['email'],
         'nom' => $_POST['nom']
     ));
-    $db->edit_profil($_SESSION['loggued_on_user']);
+    $db->edit_profil($id);
+    header('Location: ../view');
 }
 
-if (isset($_POST) && $_POST['data_modif'] === 'ok') {
+if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok') {
     echo 'modifiction de user en attente';
 }
 // INSERT TABLE DATA

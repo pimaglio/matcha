@@ -35,10 +35,8 @@ class infos
             $this->bio = $user_data['bio'];
         if (array_key_exists('popularite', $user_data))
             $this->popularite = $user_data['popularite'];
-//        if (isset($_SESSION['loggued_on_user']))
-//            $this->login = $_SESSION['loggued_on_user'];
-        if (isset($_POST['login']))
-            $this->login = $_POST['login'];
+        if (isset($_SESSION['loggued_on_user']))
+            $this->login = $_SESSION['loggued_on_user'];
         $this->db_con = database_connect();
         $this->id = $this->find_id();
     }
@@ -128,6 +126,8 @@ class infos
         $arr = $arr[0];
         return $arr;
     }
+
+
 }
 
 class account
@@ -271,18 +271,20 @@ class account
         return 1;
     }
 
-    public function edit_profil($usser)
+    public function edit_profil($id)
     {
         try {
             if ($this->ifLoginTaken() || $this->ifEmailTaken())
                 return 1;
-            $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login, nom=:nom, email=:email, password=:password WHERE login='$usser'");
-            $val = $stmt->execute(array(
+            $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login, email=:email, password=:password, nom=:nom WHERE id='$id'");
+            $stmt->execute(array(
                 ":login" => $this->login,
                 ":email" => $this->email,
                 ":password" => $this->password,
                 ":nom" => $this->nom
             ));
+            unset($_SESSION['loggued_on_user']);
+            $_SESSION['loggued_on_user'] = $this->login;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
