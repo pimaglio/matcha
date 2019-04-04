@@ -41,7 +41,7 @@ if (isset($_SESSION['alert'])) {
             <h2 class="title-form"><br>Connexion</h2>
         </div>
     </div>
-    <form id="register-form" method="POST" action="../controllers/UsersController.php">
+    <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
