@@ -34,8 +34,16 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
         </div>
     </div>
     <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
-        <p class="title-form2">Âge (18 à 116 ans)</p>
-        <input type="number" name="age" id="age" value="18" min="18" max="116" required><br/>
+        <div class="row">
+            <div class="col s6">
+                <p class="title-form2">Âge (18 à 116 ans)</p>
+                <input type="number" name="age" id="age" value="18" min="18" max="116" required><br/>
+            </div>
+            <div class="col s6">
+                <p class="title-form2">Ville</p>
+                <input type="text" name="location" id="location" required><br/>
+            </div>
+        </div>
         <p class="title-form2">Genre</p>
         <div class="input-field col s12">
             <select name="sexe">
