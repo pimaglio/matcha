@@ -67,8 +67,13 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="nom" type="text" class="validate" name="nom" required>
+                <input id="nom" type="text" class="validate" name="nom" maxlength="50" required>
                 <label for="nom">Nom et Prénom</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="login" type="text" class="validate" name="login" maxlength="25" required>
+                <label for="login">Nom d'utilisateur</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">email</i>
@@ -77,12 +82,12 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="password" type="password" class="validate" name="password" required>
+                <input id="password" type="password" class="validate" name="password" maxlength="25" required>
                 <label for="password">Mot de passe</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="password2" type="password" class="validate" name="password2" required>
+                <input id="password2" type="password" class="validate" name="password2" maxlength="25" required>
                 <label for="password2">Mot de passe (confirmation)</label>
             </div>
         </div>

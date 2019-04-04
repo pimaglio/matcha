@@ -38,7 +38,7 @@ if (isset($_SESSION['alert'])) {
             <div class="form_pic2"></div>
         </div>
         <div class="col s6">
-            <h2 class="title-form">Création <br><span class="title-form-alt">du compte</span></h2>
+            <h2 class="title-form"><br>Connexion</h2>
         </div>
     </div>
     <form id="register-form" method="POST" action="../controllers/UsersController.php">

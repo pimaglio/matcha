@@ -22,7 +22,7 @@ if (!isset($_SESSION)) {
 <body>
 <nav>
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center"><i class="material-icons">cloud</i>MATCHA</a>
+        <a href="../" class="brand-logo center"><i class="material-icons">cloud</i>MATCHA</a>
         <ul class="right hide-on-med-and-down">
             <li><a href="sass.html"><i class="material-icons">search</i></a></li>
             <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
