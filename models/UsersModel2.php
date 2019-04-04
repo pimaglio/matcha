@@ -38,7 +38,6 @@ class infos
             $this->popularite = $user_data['popularite'];
         if (isset($_SESSION['loggued_but_not_valid']))
             $this->login = $_SESSION['loggued_but_not_valid'];
-        echo $this->bio;
         $this->db_con = database_connect();
         $this->id = $this->find_id();
     }
@@ -59,6 +58,13 @@ class infos
 
     public function add_data()
     {
+        $query = 'SELECT id FROM `data` WHERE id_usr=:id_usr';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id
+        ));
+        if (isset($stmt->fetch(PDO::FETCH_ASSOC)['id']))
+            return ;
         $query = 'INSERT INTO `data` (id_usr, age, sex, location, orientation, bio) VALUES (:id, :age, :sexe, :loc, :ori, :bio)';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(

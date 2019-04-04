@@ -9,19 +9,16 @@ include('../models/UsersModel2.php');
 if (!isset($_SESSION)) {
     session_start();
 }
-var_dump($_POST);
-if ($_POST['createprofile'] === 'ok'){
+
+if ($_POST['createprofile'] === 'ok' && isset($_POST['sexe']) && isset($_POST['age'])
+        && isset($_POST['location']) && isset($_POST['orientation']) && isset($_POST['bio'])) {
     $arr = [];
-    if (isset($_POST['sexe']))
-        $arr['sexe'] = htmlspecialchars($_POST['sexe']);
-    if (isset($_POST['age']))
-        $arr['age'] = htmlspecialchars($_POST['age']);
-    if (isset($_POST['location']))
-        $arr['location'] = htmlspecialchars($_POST['location']);
-    if (isset($_POST['orientation']))
-        $arr['orientation'] = htmlspecialchars($_POST['orientation']);
-    if (isset($_POST['bio']))
-        $arr['bio'] = htmlspecialchars($_POST['bio']);
+    $arr['sexe'] = htmlspecialchars($_POST['sexe']);
+    $arr['age'] = htmlspecialchars($_POST['age']);
+    $arr['location'] = htmlspecialchars($_POST['location']);
+    $arr['orientation'] = htmlspecialchars($_POST['orientation']);
+    $arr['bio'] = htmlspecialchars($_POST['bio']);
     $db_con = new infos($arr);
     $db_con->add_data();
+    header("Location: ../view");
 }
