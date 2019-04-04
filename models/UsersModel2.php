@@ -40,7 +40,6 @@ class infos
             $this->login = $_SESSION['loggued_but_not_valid'];
         $this->db_con = database_connect();
         $this->id = $this->find_id();
-        echo 'id du login session = ' . $this->id;
     }
 
     public function find_id()
@@ -59,5 +58,7 @@ class infos
 
     public function add_data(){
         echo 'je suis la </br>';
+        echo 'id du login session = ' . $this->id;
+        $query = 'INSERT INTO data (id_usr, )'
     }
 }
