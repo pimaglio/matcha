@@ -23,17 +23,21 @@ a {
     color: #f23f57;
 }
 
-body {
+/*body {
     display: block;
     width: 100%;
     height: 100%;
     font-family: 'Nunito', sans-serif;
-    font-size: 16px;
+    !*font-size: 16px;*!
     line-height: 32px;
-    color: #7d93b2;
+!*    color: #7d93b2;*!
     background-color: #fafcff;
     font-weight: 200;
     margin: 0;
+}*/
+
+body{
+    font-family: 'Nunito', sans-serif;
 }
 
 * {
@@ -84,7 +88,7 @@ nav{
 .form_create_profil {
     width: 800px;
     background-color: #ffffff;
-    padding: 70px 50px 50px 50px;
+    padding: 70px 50px 10px 50px;
     position: relative;
     border-radius: 8px;
     box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
@@ -94,6 +98,13 @@ nav{
 }
 
 .form_create_profil .form_pic2 {
+    float: right;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/createprofil.svg');
+}
+
+.form_create_profil .form_pic {
     float: right;
     width: 150px;
     height: 150px;
