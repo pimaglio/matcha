@@ -23,7 +23,6 @@ class infos
 
     public function __construct(array $user_data)
     {
-//        $_SESSION['loggued_but_not_valid'] = 'root';
         if (array_key_exists('age', $user_data))
             $this->age = $user_data['age'];
         if (array_key_exists('sexe', $user_data))
@@ -36,8 +35,8 @@ class infos
             $this->bio = $user_data['bio'];
         if (array_key_exists('popularite', $user_data))
             $this->popularite = $user_data['popularite'];
-        if (isset($_SESSION['loggued_but_not_valid']))
-            $this->login = $_SESSION['loggued_but_not_valid'];
+        if (isset($_SESSION['loggued_on_user']))
+            $this->login = $_SESSION['loggued_on_user'];
         $this->db_con = database_connect();
         $this->id = $this->find_id();
     }
@@ -52,7 +51,6 @@ class infos
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($array, $data);
-        var_dump($array);
         $array = $array[0];
         return $array['id'];
     }
@@ -76,6 +74,29 @@ class infos
             ":ori" => $this->orientation,
             ":bio" => $this->bio
         ));
+    }
+
+    public function add_interest($arr){
+        $query = 'SELECT id_usr FROM `interest` WHERE id_usr=:id_usr';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id
+        ));
+        if (!isset($stmt->fetch(PDO::FETCH_ASSOC)['id_usr'])) {
+            $query = 'INSERT INTO `interest` (id_usr) VALUES (:id)';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id" => $this->id
+            ));
+        }
+        foreach ($arr as $k => $v){
+            $query = 'UPDATE `interest` SET ' . $k .'=1 WHERE id_usr=:id';
+            echo $query . '</br>';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id" => $this->id
+            ));
+        }
     }
 }
 
@@ -141,7 +162,6 @@ class account
 
     public function add()
     {
-//        echo $this->nom;
         try {
             if ($this->ifLoginTaken() || $this->ifEmailTaken())
                 return 1;

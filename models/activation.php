@@ -19,7 +19,7 @@ if ($res === 3)
 if ($res === 0)
 {
 	$_SESSION['alert'] = 'success';
-	header("Location: ../view/home.php");
+	header("Location: ../view/createprofile.php");
 	return ;
 }
 header("Location: ../index.php");

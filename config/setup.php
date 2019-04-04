@@ -96,6 +96,7 @@ CREATE TABLE user_db (
   cle varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   notif tinyint(1) DEFAULT NULL,
   valid tinyint(1) DEFAULT NULL,
+  statut varchar(255) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
@@ -144,8 +145,7 @@ CREATE TABLE interest (
   voyage binary(1) NOT NULL default '0',
   vegan binary(1) NOT NULL default '0',
   geek binary(1) NOT NULL default '0',
-  fumeur binary(1) NOT NULL default '0',
-  festif binary(1) NOT NULL default '0',
+  soiree binary(1) NOT NULL default '0',
   tattoo binary(1) NOT NULL default '0',
   musique binary(1) NOT NULL default '0',
   lecture binary(1) NOT NULL default '0',

@@ -42,6 +42,12 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
         $arr['bio'] = $_POST['bio'];
         $db_con = new infos($arr);
         $db_con->add_data();
+        $inte = [];
+        foreach ($_POST as $k => $v){
+            if ($v == 101)
+                $inte[$k] = $v;
+        }
+        $db_con->add_interest($inte);
 //        header("Location: ../view");
     }
 }
@@ -105,7 +111,6 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
         header('Location: ../view/login.php');
         exit();
     }
-    echo 'c\'est bon';
     $password = hash('sha256', $_POST['password']);
     $user = New account(array(
         'password' => $password,
@@ -127,9 +132,12 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
         header("Location: ../view/login.php");
     } else {
         $_SESSION['alert'] = "success";
-        header("Location: ../view/home.php");
+        header("Location: ../view/");
     }
 }
+
+
+// MDP OUBLIE
 
 if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'])){
     if (htmlspecialchars($_POST['login']) !== $_POST['login']){

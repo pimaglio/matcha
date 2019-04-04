@@ -70,67 +70,67 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
         <div class="row">
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="sport" value="1"/>
+                    <input type="checkbox" name="sport" value="101"/>
                     <span>Sport</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="voyage" value="1"/>
+                    <input type="checkbox" name="voyage" value="101"/>
                     <span>Voyage</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="vegan" value="1"/>
+                    <input type="checkbox" name="vegan" value="101"/>
                     <span>Vegan</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="geek" value="1"/>
+                    <input type="checkbox" name="geek" value="101"/>
                     <span>Geek</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="soiree" value="1"/>
+                    <input type="checkbox" name="soiree" value="101"/>
                     <span>Soiree</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="tattoo" value="1"/>
+                    <input type="checkbox" name="tattoo" value="101"/>
                     <span>Tattoo</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="musique" value="1"/>
+                    <input type="checkbox" name="musique" value="101"/>
                     <span>Musique</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="lecture" value="1"/>
+                    <input type="checkbox" name="lecture" value="101"/>
                     <span>Lecture</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="association" value="1"/>
+                    <input type="checkbox" name="association" value="101"/>
                     <span>Association</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="theatre" value="1"/>
+                    <input type="checkbox" name="theatre" value="101"/>
                     <span>Théâtre</span>
                 </label>
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="religion" value="1"/>
+                    <input type="checkbox" name="religion" value="101git "/>
                     <span>Religion</span>
                 </label>
             </p>
