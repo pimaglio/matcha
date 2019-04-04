@@ -159,10 +159,10 @@ if ($_POST['submit'] == 'Register2'){
     if (isset($_POST['orientation']))
         $arr['orientation'] = htmlspecialchars($_POST['orientation']);
     if (isset($_POST['bio']))
-        $arr
+        $arr['bio'] = htmlspecialchars($_POST['bio']);
     var_dump($arr);
-//    echo $arr['age'];
     $data = new infos($arr);
+    $data->add_data();
 }
 //      CONNEXION
 

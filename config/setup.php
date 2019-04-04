@@ -74,6 +74,7 @@ try {
     $sql_create_data_tbl = <<<EOSQL
 CREATE TABLE data (
   id int(11) NOT NULL AUTO_INCREMENT,
+  id_usr int(11) NOT NULL,
   login varchar(25) COLLATE utf8_unicode_ci,
   age int(3) NOT NULL,
   sex int(1) NOT NULL,
