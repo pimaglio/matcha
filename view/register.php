@@ -67,12 +67,14 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="nom" type="text" class="validate" name="nom" maxlength="50" required>
+                <input id="nom" type="text" class="validate" pattern="[A-Za-z\s -]+" name="nom" maxlength="50" required>
+                <span class="helper-text" data-error="Format invalide: (A-z) et (-)" data-success="Format valide"></span>
                 <label for="nom">Nom et Prénom</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="login" type="text" class="validate" name="login" maxlength="25" required>
+                <input id="login" type="text" class="validate" pattern="[A-Za-z-0-9\s -]+" ame="login" maxlength="25" required>
+                <span class="helper-text" data-error="Format invalide: (A-z), (0-9), (-)" data-success="Format valide"></span>
                 <label for="login">Nom d'utilisateur</label>
             </div>
             <div class="input-field col s12">
@@ -82,12 +84,15 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="password" type="password" class="validate" name="password" maxlength="25" required>
+                <input id="password" type="password" class="validate" pattern="(?=.*[!@#$%^&*(),.?:{}|<>]).{6,}" name="password" maxlength="25" required>
+                <span class="helper-text" data-error="Format invalide: Doit contenir 6 caractères minimum dont 1 caractère special (!@#$%^&*(),.?:{}|<>)" data-success="Format valide"></span>
                 <label for="password">Mot de passe</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
-                <input id="password2" type="password" class="validate" name="password2" maxlength="25" required>
+                <input id="password2" type="password" class="validate" pattern="(?=.*[!@#$%^&*(),.?:{}|<>]).{6,}" name="password2" maxlength="25" required>
+                <span class="helper-text" data-error="Les mots de passe ne correspondent pas" data-success="Format valide"></span>
+
                 <label for="password2">Mot de passe (confirmation)</label>
             </div>
         </div>
@@ -109,5 +114,19 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
     $(document).ready(function () {
         $('select').formSelect();
     });
+
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("password2");
+
+    function validatePassword(){
+        if(password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("Les mots de passe ne correspondent pas");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
 </script>
 </body>
