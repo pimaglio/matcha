@@ -48,7 +48,7 @@ if (!isset($_SESSION)) {
             <div class="divider"></div>
         </li>
         <li><a class="subheader">Paramètres Généraux</a></li>
-        <li><a href="logout.php"><i class="fas fa-user-edit"></i>Mon profil</a></li>
+        <li><a href="account.php"><i class="fas fa-user-edit"></i>Mon profil</a></li>
         <li><a href="logout.php"><i class="fas fa-power-off"></i>Se déconnecter</a></li>
     </ul>
 </nav>

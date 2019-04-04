@@ -166,3 +166,61 @@ HOMEPAGE
 .background_sidenav{
     background: linear-gradient(#141e30, #243b55);
 }
+
+/*
+MY PROFIL PAGE
+*/
+
+@media screen and (max-width: 600px) {
+    .my_profil {
+        width: 100% !important;
+    }
+}
+
+.my_profil {
+    position: relative;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 50px;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    margin: auto;
+}
+
+.my_profil .my_pic {
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/picture_profil.svg');
+    background-size: cover;
+    margin-right: 20px;
+}
+
+.image_slider{
+    border-radius: 100% !important;
+}
+
+.title_profil{
+    text-transform: uppercase;
+}
+.title_profil_alt{
+    font-size: 300 !important;
+}
+
+.icon_profil {
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/createprofil.svg');
+}
+
+.panel_info{
+    padding-bottom: 50px !important;
+}
+
+.title_profil_info{
+    text-transform: uppercase;
+}
