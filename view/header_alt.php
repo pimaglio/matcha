@@ -11,18 +11,18 @@ if (!isset($_SESSION)) {
     <link rel="icon" type="image/png" href="assets/images/favico.png"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/materialize.css">
     <script src="assets/js/materialize.js"></script>
 
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
 <nav>
     <div class="nav-wrapper">
-        <a href="../" class="brand-logo center"><i class="material-icons">cloud</i>MATCHA</a>
+        <a href="../" class="brand-logo center logo_home"><i class="fas fa-heart"></i>Matcha</a>
         <ul class="right hide-on-med-and-down">
             <li><a href="sass.html"><i class="material-icons">search</i></a></li>
             <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>

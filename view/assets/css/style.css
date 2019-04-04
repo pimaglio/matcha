@@ -36,7 +36,7 @@ a {
     margin: 0;
 }*/
 
-body{
+body {
     font-family: 'Nunito', sans-serif;
 }
 
@@ -70,7 +70,7 @@ body{
     background-size: 100vw 400px;
 }
 
-nav{
+nav {
     margin-bottom: 50px;
 }
 
@@ -79,9 +79,10 @@ nav{
 /*CONTAINER FORM*/
 
 @media screen and (max-width: 600px) {
-    .form_create_profil{
+    .form_create_profil {
         width: 100% !important;
     }
+
     .form_create_profil .form_pic2 {
 
     }
@@ -113,7 +114,7 @@ nav{
     background-image: url('../images/createprofil.svg');
 }
 
-.title-form{
+.title-form {
     color: black;
     text-align: left;
     text-transform: uppercase;
@@ -121,7 +122,42 @@ nav{
     font-weight: bold;
 }
 
-.title-form-alt{
+.title-form-alt {
     font-weight: normal;
     font-size: 2rem;
+}
+
+/*
+HOMEPAGE
+*/
+
+.home_page {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.85),
+            rgba(0, 0, 0, 0.45)
+    ),
+    url('../images/couple.jpg') no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.logo_home{
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 5rem;
+}
+
+.home_left_col{
+    text-align: right;
+}
+
+.home_right_col{
+    text-align: left;
+}
+
+.home_content{
+    padding-top: 15%;
 }
