@@ -130,3 +130,32 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
         header("Location: ../view/home.php");
     }
 }
+
+if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'])){
+    if (htmlspecialchars($_POST['login']) !== $_POST['login']){
+        $_SESSION['alert'] = 's';
+        header('Location: ../view/reset.php');
+        exit();
+    }
+    $spe = "!#$%+?@";
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    $newpass = substr(str_shuffle($chars), 0, 6);
+    $newpass .= substr(str_shuffle($spe), 0, 1);
+    $password = hash('sha256', $newpass);
+    $new_user = new account(array(
+        'login' => $_POST['login'],
+        'password' => $password
+    ));
+    $var = $new_user->ifLoginTaken();
+    if ($var !== 1) {
+        $_SESSION['alert'] = 'error';
+        header('Location: ../view/reset.php');
+        exit();
+    } else {
+        $new_user->passMail($newpass);
+        unset($_SESSION['alert']);
+        $_SESSION['alert'] = 'success';
+        header('Location: ../view/login.php');
+    }
+}
