@@ -54,7 +54,7 @@ if (isset($_SESSION['alert'])) {
                 <label for="password">Mot de passe</label>
             </div>
         </div>
-        <input type="hidden" name="login" value="ok">
+        <input type="hidden" name="connec" value="ok">
         <div style="text-align: center">
             <button class="waves-teal btn-large" type="submit" name="submit"
                     value="Créer mon profil">Se connecter

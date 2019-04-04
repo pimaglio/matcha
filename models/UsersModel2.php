@@ -23,7 +23,7 @@ class infos
 
     public function __construct(array $user_data)
     {
-        $_SESSION['loggued_but_not_valid'] = 'root';
+//        $_SESSION['loggued_but_not_valid'] = 'root';
         if (array_key_exists('age', $user_data))
             $this->age = $user_data['age'];
         if (array_key_exists('sexe', $user_data))
@@ -81,6 +81,7 @@ class infos
 class account
 {
     private $login;
+    private $nom;
     private $password;
     private $email;
     private $date;
@@ -98,6 +99,8 @@ class account
             $this->email = $user_account['email'];
         if (array_key_exists('notif', $user_account))
             $this->notif = $user_account['notif'];
+        if (array_key_exists('nom', $user_account))
+            $this->nom = $user_account['nom'];
         $this->date = date('Y-m-d H:i:s');
         $this->db_con = database_connect();
     }
@@ -137,12 +140,14 @@ class account
 
     public function add()
     {
+        echo $this->nom;
         try {
             if ($this->ifLoginTaken() || $this->ifEmailTaken())
                 return 1;
-            $stmt = $this->db_con->prepare("INSERT INTO user_db(login,email,password,creation_date) VALUES (:login, :email, :password, :creation_date)");
+            $stmt = $this->db_con->prepare("INSERT INTO user_db(login, nom, email, password, creation_date) VALUES (:login, :nom, :email, :password, :creation_date)");
             $val = $stmt->execute(array(
                 ":login" => $this->login,
+                ":nom" => $this->nom,
                 ":email" => $this->email,
                 ":password" => $this->password,
                 ":creation_date" => $this->date
@@ -231,9 +236,9 @@ class account
             ":cle" => $cle,
             ":login" => $this->login
         ));
-        $sujet = "Camagru | Activer votre compte";
-        $entete = "From: no_reply@camagru.com";
-        $message = 'Bienvenue sur Camagru ' . $this->login . '!
+        $sujet = "Matcha | Activer votre compte";
+        $entete = "From: no_reply@matcha.com";
+        $message = 'Bienvenue sur Matcha ' . $this->login . '!
 
 		Pour activer votre compte, veuillez cliquer sur le lien ci dessous
 		ou copier/coller dans votre navigateur internet.
@@ -259,8 +264,8 @@ class account
             ":login" => $this->login
         ));
         $fetched = $stmt->fetch(PDO::FETCH_ASSOC);
-        $sujet = "Camagru | Réinitialisation de votre mot de passe";
-        $entete = "From: no_reply@camagru.com";
+        $sujet = "Matcha | Réinitialisation de votre mot de passe";
+        $entete = "From: no_reply@matcha.com";
         $message = 'Salut ' . $this->login . '!
         
         Voici ton nouveau mot de passe:    ' . $newpass . '
@@ -300,6 +305,7 @@ class account
 
     public function Connect()
     {
+        echo $this->login;
         $stmt = $this->db_con->prepare("SELECT email, valid, password, login FROM user_db WHERE login=:login");
         $stmt->execute(array(
             ":login" => $this->login
