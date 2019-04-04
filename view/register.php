@@ -73,7 +73,7 @@ if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="login" type="text" class="validate" pattern="[A-Za-z-0-9\s -]+" ame="login" maxlength="25" required>
+                <input id="login" type="text" class="validate" pattern="[A-Za-z-0-9\s -]+" name="login" maxlength="25" required>
                 <span class="helper-text" data-error="Format invalide: (A-z), (0-9), (-)" data-success="Format valide"></span>
                 <label for="login">Nom d'utilisateur</label>
             </div>
