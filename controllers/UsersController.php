@@ -7,9 +7,8 @@
  */
 
 include('../models/UsersModel.php');
-include('../models/UsersModel2.php');
-//if (!$_SESSION['loggued_on_user'])
-//    header("Location: ../index.php");
+if (!$_SESSION['loggued_on_user'])
+    header("Location: ../index.php");
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -147,23 +146,6 @@ if ($_POST['submit'] == 'Register') {
     }
 }
 
-// DEUXIEME FORM POUR LES AUTRES INFORMATIONS //
-if ($_POST['submit'] == 'Register2'){
-    $arr = [];
-    if (isset($_POST['sexe']))
-        $arr['sexe'] = htmlspecialchars($_POST['sexe']);
-    if (isset($_POST['age']))
-        $arr['age'] = htmlspecialchars($_POST['age']);
-    if (isset($_POST['location']))
-        $arr['location'] = htmlspecialchars($_POST['location']);
-    if (isset($_POST['orientation']))
-        $arr['orientation'] = htmlspecialchars($_POST['orientation']);
-    if (isset($_POST['bio']))
-        $arr['bio'] = htmlspecialchars($_POST['bio']);
-    var_dump($arr);
-    $data = new infos($arr);
-    $data->add_data();
-}
 //      CONNEXION
 
 if ($_POST['submit'] == 'Login' && isset($_POST['passwd']) && isset($_POST['login'])) {

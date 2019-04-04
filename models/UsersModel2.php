@@ -6,8 +6,8 @@
  * Time: 12:23
  */
 
-//include('../config/database.php');
-//session_start();
+include('../config/database.php');
+session_start();
 
 class infos
 {
@@ -32,12 +32,13 @@ class infos
             $this->location = $user_data['location'];
         if (array_key_exists('orientation', $user_data))
             $this->orientation = $user_data['orientation'];
-        if (array_key_exists('$bio', $user_data))
+        if (array_key_exists('bio', $user_data))
             $this->bio = $user_data['bio'];
         if (array_key_exists('popularite', $user_data))
             $this->popularite = $user_data['popularite'];
         if (isset($_SESSION['loggued_but_not_valid']))
             $this->login = $_SESSION['loggued_but_not_valid'];
+        echo $this->bio;
         $this->db_con = database_connect();
         $this->id = $this->find_id();
     }
@@ -56,9 +57,17 @@ class infos
         return $array['id'];
     }
 
-    public function add_data(){
-        echo 'je suis la </br>';
-        echo 'id du login session = ' . $this->id;
-        $query = 'INSERT INTO data (id_usr, )'
+    public function add_data()
+    {
+        $query = 'INSERT INTO `data` (id_usr, age, sex, location, orientation, bio) VALUES (:id, :age, :sexe, :loc, :ori, :bio)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id,
+            ":age" => $this->age,
+            ":sexe" => $this->sexe,
+            ":loc" => $this->location,
+            ":ori" => $this->orientation,
+            ":bio" => $this->bio
+        ));
     }
 }
