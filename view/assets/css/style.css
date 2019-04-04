@@ -176,7 +176,7 @@ MY PROFIL PAGE
 @media screen and (max-width: 1450px) {
     .my_profil {
         width: 80% !important;
-        padding: 0 !important;
+        padding: 50px 50px !important;
     }
     .row .col.s6{
         width: 100% !important;
