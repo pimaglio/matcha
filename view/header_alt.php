@@ -21,7 +21,7 @@ if (!isset($_SESSION)) {
 </head>
 <body>
 <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper fade-in one">
         <a href="../" class="brand-logo center logo_home"><i class="fas fa-heart"></i>Matcha</a>
     </div>
 </nav>

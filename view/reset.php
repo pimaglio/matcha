@@ -29,7 +29,7 @@ if (isset($_SESSION['alert'])) {
 </div>
 
 <div class="form_create_profil" style="padding-bottom: 50px">
-    <div class="row">
+    <div class="row fade-in two">
         <div class="col s6">
             <div class="form_pic2"></div>
         </div>
@@ -38,7 +38,7 @@ if (isset($_SESSION['alert'])) {
         </div>
     </div>
     <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
-        <div class="row">
+        <div class="row fade-in three">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
                 <input id="login" type="text" class="validate" name="login" required>
@@ -47,7 +47,7 @@ if (isset($_SESSION['alert'])) {
         </div>
         <input type="hidden" name="forgot" value="ok"><br/>
         <div style="text-align: center">
-            <button class="waves-teal btn-large" type="submit" name="submit"
+            <button class="waves-teal btn-large fade-in four" type="submit" name="submit"
                     value="Créer mon profil">Recevoir un email
                 <i class="material-icons right">send</i>
             </button>

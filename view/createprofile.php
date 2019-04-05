@@ -25,7 +25,7 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
 <div id="background">
 </div>
 <div class="form_create_profil">
-    <div class="row">
+    <div class="row fade-in two">
         <div class="col s6">
             <div class="form_pic2"></div>
         </div>
@@ -34,7 +34,7 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
         </div>
     </div>
     <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
-        <div class="row">
+        <div class="row fade-in three">
             <div class="col s6">
                 <p class="title-form2">Âge (18 à 116 ans)</p>
                 <input type="number" name="age" id="age" value="18" min="18" max="116" required><br/>
@@ -44,8 +44,8 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
                 <input type="text" name="location" id="location" required><br/>
             </div>
         </div>
-        <p class="title-form2">Genre</p>
-        <div class="input-field col s12">
+        <div class="input-field col s12 fade-in four">
+            <p class="title-form2">Genre</p>
             <select name="sexe">
                 <option class="red" value="0" selected>Non binaire</option>
                 <option value="1">Femme</option>
@@ -55,19 +55,23 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
                 <option value="5">Intersexuel</option>
             </select>
         </div>
-        <p class="title-form2">Bio (max 255 caractères)</p>
-        <textarea id="textarea1" class="materialize-textarea" name='bio' maxlength="255" required></textarea>
-        <p class="title-form2">Orientation Sexuelle</p>
-        <select id="orientation" name="orientation">
-            <option value="0" selected>Bisexuelle</option>
-            <option value="1">Hétérosexuelle</option>
-            <option value="2">Homosexuelle</option>
-            <option value="3">Altersexuelle</option>
-            <option value="4">Pansexuelle</option>
-            <option value="5">Asexuelle</option>
-            <option value="6">Sapiosexuelle</option>
-        </select>
-        <div class="row">
+        <div class="fade-in five">
+            <p class="title-form2">Bio (max 255 caractères)</p>
+            <textarea id="textarea1" class="materialize-textarea" name='bio' maxlength="255" required></textarea>
+        </div>
+        <div class="fade-in six">
+            <p class="title-form2">Orientation Sexuelle</p>
+            <select id="orientation" name="orientation">
+                <option value="0" selected>Bisexuelle</option>
+                <option value="1">Hétérosexuelle</option>
+                <option value="2">Homosexuelle</option>
+                <option value="3">Altersexuelle</option>
+                <option value="4">Pansexuelle</option>
+                <option value="5">Asexuelle</option>
+                <option value="6">Sapiosexuelle</option>
+            </select>
+        </div>
+        <div class="row fade-in seven">
             <p class="col s4">
                 <label>
                     <input type="checkbox" name="sport" value="101"/>
@@ -137,7 +141,7 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
         </div>
         <input type="hidden" name="createprofile" value="ok">
         <div style="text-align: center">
-            <button class="btn-large waves-effect waves-light pink accent-3" type="submit" name="submit"
+            <button class="btn-large waves-effect waves-light pink accent-3 fade-in eight" type="submit" name="submit"
                     value="Créer mon profil">Créer mon profil
                 <i class="material-icons right">send</i>
             </button>

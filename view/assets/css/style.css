@@ -93,7 +93,7 @@ nav {
 .form_create_profil {
     width: 800px;
     background-color: #ffffff;
-    padding: 70px 50px 10px 50px;
+    padding: 70px 50px 30px 50px;
     position: relative;
     border-radius: 8px;
     box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
@@ -147,25 +147,25 @@ HOMEPAGE
     text-align: center;
 }
 
-.logo_home{
+.logo_home {
     font-family: 'Lobster', cursive;
     color: white;
     font-size: 5rem;
 }
 
-.home_left_col{
+.home_left_col {
     text-align: right;
 }
 
-.home_right_col{
+.home_right_col {
     text-align: left;
 }
 
-.home_content{
+.home_content {
     padding-top: 15%;
 }
 
-.background_sidenav{
+.background_sidenav {
     background: linear-gradient(#141e30, #243b55);
 }
 
@@ -178,10 +178,12 @@ MY PROFIL PAGE
         width: 80% !important;
         padding: 50px 50px !important;
     }
-    .row .col.s6{
+
+    .row .col.s6 {
         width: 100% !important;
     }
-    .row .col.s3{
+
+    .row .col.s3 {
         width: 100% !important;
     }
 }
@@ -191,10 +193,12 @@ MY PROFIL PAGE
         width: 100% !important;
         padding: 50px 0 !important;
     }
-    .row .col.s6{
+
+    .row .col.s6 {
         width: 100% !important;
     }
-    .row .col.s3{
+
+    .row .col.s3 {
         width: 100% !important;
     }
 }
@@ -221,14 +225,15 @@ MY PROFIL PAGE
     margin-right: 20px;
 }
 
-.image_slider{
+.image_slider {
     border-radius: 100% !important;
 }
 
-.title_profil{
+.title_profil {
     text-transform: uppercase;
 }
-.title_profil_alt{
+
+.title_profil_alt {
     font-size: 300 !important;
 }
 
@@ -239,11 +244,11 @@ MY PROFIL PAGE
     background-image: url('../images/createprofil.svg');
 }
 
-.panel_info{
+.panel_info {
     padding-bottom: 50px !important;
 }
 
-.title_profil_info{
+.title_profil_info {
     text-transform: uppercase;
 }
 
@@ -253,4 +258,98 @@ MY PROFIL PAGE
     height: 150px;
     background-image: url('../images/user_info.svg');
     background-size: cover;
+}
+
+/*
+ANIMATION
+*/
+
+/* Keyframes for the fade-in */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+    opacity:0;
+    opacity: 1 \9; /*just in case ie*/
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:1s;
+    -moz-animation-duration:1s;
+    animation-duration:1s;
+}
+
+.fade-in.one {
+    -webkit-animation-delay: 0.1s;
+    -moz-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+.fade-in.two {
+    -webkit-animation-delay: .3s;
+    -moz-animation-delay: .3s;
+    animation-delay: .3s;
+}
+
+.fade-in.three {
+    -webkit-animation-delay: .6s;
+    -moz-animation-delay: .6s;
+    animation-delay: .6s;
+}
+.fade-in.four {
+    -webkit-animation-delay: .9s;
+    -moz-animation-delay: .9s;
+    animation-delay: .9s;
+}
+
+.fade-in.five {
+    -webkit-animation-delay: 1.2s;
+    -moz-animation-delay:1.2s;
+    animation-delay: 1.2s;
+}
+
+.fade-in.six {
+    -webkit-animation-delay: 1.5s;
+    -moz-animation-delay: 1.5s;
+    animation-delay: 1.5s;
+}
+.fade-in.seven {
+    -webkit-animation-delay: 1.8s;
+    -moz-animation-delay: 1.8s;
+    animation-delay: 1.8s;
+}
+
+.fade-in.eight {
+    -webkit-animation-delay: 2.1s;
+    -moz-animation-delay: 2.1s;
+    animation-delay: 2.1s;
+}
+
+.fade-in.nine {
+    -webkit-animation-delay: 2.4s;
+    -moz-animation-delay: 2.4s;
+    animation-delay: 2.4s;
+}
+.fade-in.ten {
+    -webkit-animation-delay: 2.7s;
+    -moz-animation-delay: 2.7s;
+    animation-delay: 2.7s;
+}
+
+.fade-in.eleven {
+    -webkit-animation-delay: 3s;
+    -moz-animation-delay: 3s;
+    animation-delay: 3s;
+}
+
+.fade-in.twelve {
+    -webkit-animation-delay: 3.3s;
+    -moz-animation-delay: 3.3s;
+    animation-delay: 3.3s;
 }

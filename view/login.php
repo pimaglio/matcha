@@ -32,7 +32,7 @@ if (isset($_SESSION['alert'])) {
 ?>
 <div id="background">
 </div>
-<div class="form_create_profil">
+<div class="form_create_profil fade-in two">
     <div class="row">
         <div class="col s6">
             <div class="form_pic"></div>
@@ -43,12 +43,12 @@ if (isset($_SESSION['alert'])) {
     </div>
     <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 fade-in three">
                 <i class="material-icons prefix">account_circle</i>
                 <input id="login" type="text" class="validate" name="login" required>
                 <label for="login">Nom d'utilisateur</label>
             </div>
-            <div class="input-field col s12">
+            <div class="input-field col s12 fade-in four">
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="password" type="password" class="validate" name="password" required>
                 <label for="password">Mot de passe</label>
@@ -56,14 +56,14 @@ if (isset($_SESSION['alert'])) {
         </div>
         <input type="hidden" name="connec" value="ok">
         <div style="text-align: center">
-            <button class="waves-teal btn-large" type="submit" name="submit"
+            <button class="waves-teal btn-large fade-in five" type="submit" name="submit"
                     value="Créer mon profil">Se connecter
                 <i class="material-icons right">send</i>
             </button>
         </div>
     </form>
     <div style="text-align: center; margin-top: 50px">
-        <p class="connect">Mot de passe oublié ? <a class="link" href="reset.php">Réinitialiser le mot de passe</a></p>
+        <p class="connect fade-in five">Mot de passe oublié ? <a class="link" href="reset.php">Réinitialiser le mot de passe</a></p>
     </div>
 </div>
 
