@@ -88,6 +88,10 @@ nav {
     .form_create_profil .form_pic2 {
 
     }
+    .container_slider{
+        padding: 0px;
+        max-height: 250px;
+    }
 }
 
 .form_create_profil {
@@ -121,13 +125,17 @@ nav {
     color: black;
     text-align: left;
     text-transform: uppercase;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: bold;
 }
 
 .title-form-alt {
     font-weight: normal;
     font-size: 2rem;
+}
+
+.container_slider{
+    padding: 50px;
 }
 
 /*
@@ -208,7 +216,6 @@ MY PROFIL PAGE
     width: 80%;
     background-color: #ffffff;
     padding: 50px;
-    position: relative;
     border-radius: 8px;
     box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
     transition: all .3s;
@@ -445,4 +452,14 @@ NOTIFICATIONS
 
 .icon_spacing {
     margin-right: 15px;
+}
+
+/*
+SIDENAV
+*/
+
+.image_profil_sidenav{
+    height: 150px !important;
+    width: 150px !important;
+    margin: auto !important;
 }

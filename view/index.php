@@ -13,17 +13,7 @@ include('header_connect.php');
 ?>
 
 <body>
-<?php
-if (isset($_SESSION['alert'])) {
-    if ($_SESSION['alert'] === 'success') {
-        echo "<button class='msg-success'><i class=\"fas fa-envelope icon\"></i>Un nouveau mot de passe vient de vous être envoyé par email.</button>";
-        unset($_SESSION['alert']);
-    } else {
-        echo "<button class='msg-error'><i class=\"fas fa-exclamation-circle icon\"></i>Ce compte n'existe pas.</button>";
-        unset($_SESSION['alert']);
-    }
-}
-?>
+
 <div id="background">
 </div>
 

@@ -45,6 +45,10 @@ if (isset($_SESSION['success'])) {
             $icon = 'fas fa-check';
             $message = 'Vous êtes connecté !';
             break;
+        case 5:
+            $icon = 'fas fa-check';
+            $message = 'Votre compte est validé !';
+            break;
     }
     echo "
     <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>

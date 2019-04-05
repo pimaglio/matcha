@@ -16,43 +16,7 @@ include('header_alt.php');
 ?>
 
 <body>
-<?php
-$errmdp = 0;
-if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
-    echo "<button class='msg-error2'><i class=\"fas fa-exclamation-circle icon\"></i>Ce nom d'utilisateur existe déjà !</button>";
-    unset($_SESSION['error']);
-}
 
-
-if (isset($_SESSION['error']) && $_SESSION['error'] == 6) {
-    echo "<button class='msg-error2'><i class=\"fas fa-exclamation-circle icon\"></i>Cette adresse email existe déjà !</button>";
-    unset($_SESSION['error']);
-}
-
-if (isset($_SESSION['alert']) && $_SESSION['alert'] == 8) {
-    echo "<button class='msg-error2'><i class=\"fas fa-exclamation-circle icon\"></i>Ce nom d'utilisateur est trop long ! (25 caractères maximum)</button>";
-    unset($_SESSION['alert']);
-}
-
-if (isset($_SESSION['alert']) && $_SESSION['alert'] == 4) {
-    $errmdp = 1;
-    echo "<button class='msg-error2'><i class=\"fas fa-exclamation-circle icon\"></i>Mot de pass trop court (6 caractères minimum)</button>";
-    unset($_SESSION['alert']);
-}
-
-if (isset($_SESSION['alert']) && $_SESSION['alert'] == 5) {
-    $errmdp = 1;
-    echo "<button class='msg-error2'><i class=\"fas fa-exclamation-circle icon\"></i>Vous devez utiliser 1 caractère spécial (#!$-/=?* .. )</button>";
-    unset($_SESSION['alert']);
-}
-
-if (isset($_SESSION['alert']) && $_SESSION['alert'] == 7) {
-    $errmdp = 1;
-    echo "<button class='msg-error2'><i class=\"fas fa-exclamation-circle icon\"></i>Les mots de passes ne correspondent pas</button>";
-    unset($_SESSION['alert']);
-}
-
-?>
 <div id="background">
 </div>
 

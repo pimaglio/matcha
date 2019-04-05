@@ -36,7 +36,7 @@ if (!isset($_SESSION)) {
 <ul id="slide-out" class="sidenav fixed">
     <li>
         <div class="user-view background_sidenav">
-            <a href="#user"><img class="circle" src="assets/images/me.jpg"></a>
+            <a href="#user"><img class="circle image_profil_sidenav" src="assets/images/me.jpg"></a>
             <a href="#name"><span class="white-text name">Eric Reptil</span></a>
             <a href="#email"><span class="white-text email">lereptildu69@marzingue.com</span></a>
         </div>

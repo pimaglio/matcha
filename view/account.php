@@ -22,37 +22,13 @@ include('header_connect.php');
     <div class="col s6">
         <div class="my_pic"></div>
         <h2 class="title-form-alt">Mes <br><span class="title-form">Photos</span></h2>
-        <div class="slider">
-            <ul class="slides">
-                <li>
-                    <img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
-                    <div class="caption left-align">
-                        <h3>Left Aligned Caption</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
-                    <div class="caption right-align">
-                        <h3>Right Aligned Caption</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-                <li>
-                    <img src="https://lorempixel.com/580/250/nature/4"> <!-- random image -->
-                    <div class="caption center-align">
-                        <h3>This is our big Tagline!</h3>
-                        <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                    </div>
-                </li>
-            </ul>
+        <div class="container_slider">
+            <div class="carousel carousel-slider">
+                <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
+                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
+                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
+                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
+            </div>
         </div>
 
         <div class="file-field input-field">
@@ -245,12 +221,28 @@ include('header_connect.php');
 
 <script src="assets/js/materialize.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.slider').slider();
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
     });
     $(document).ready(function () {
         $('select').formSelect();
     });
+
+
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("password2");
+
+    function validatePassword(){
+        if(password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("Les mots de passe ne correspondent pas");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
 </script>
 
 </body>
