@@ -76,6 +76,21 @@ class infos
         ));
     }
 
+    public function edit_data()
+    {
+        echo 'je suis la </br>';
+        $query = 'UPDATE data SET age=:age, sex=:sexe, location=:loc, orientation=:ori, bio=:bio WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":age" => $this->age,
+            ":sexe" => $this->sexe,
+            ":loc" => $this->location,
+            ":ori" => $this->orientation,
+            ":bio" => $this->bio,
+            ":id" => $this->id
+        ));
+    }
+
     public function add_interest($arr)
     {
         $query = 'SELECT id_usr FROM `interest` WHERE id_usr=:id_usr';
@@ -91,6 +106,24 @@ class infos
             ));
         }
         foreach ($arr as $k => $v) {
+            $query = 'UPDATE `interest` SET ' . $k . '=1 WHERE id_usr=:id';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id" => $this->id
+            ));
+        }
+    }
+
+    public function edit_interest($del, $add){
+        echo $this->id;
+        foreach ($del as $k => $v) {
+            $query = 'UPDATE interest SET ' . $k .'=0 WHERE id_usr=:id';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id" => $this->id
+            ));
+        }
+        foreach ($add as $k => $v) {
             $query = 'UPDATE `interest` SET ' . $k . '=1 WHERE id_usr=:id';
             $stmt = $this->db_con->prepare($query);
             $stmt->execute(array(
@@ -126,8 +159,6 @@ class infos
         $arr = $arr[0];
         return $arr;
     }
-
-
 }
 
 class account
@@ -159,7 +190,8 @@ class account
 
 //              CONTROL INSCRIPTION LOGIN / EMAIL
 
-    public function user_passwd(){
+    public function user_passwd()
+    {
         $query = 'SELECT * FROM user_db WHERE login=:log';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(

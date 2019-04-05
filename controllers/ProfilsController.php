@@ -12,6 +12,13 @@ if (!isset($_SESSION)) {
 
 //var_dump ($_POST);
 
+function htmldump($variable, $height = "300px")
+{
+    echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
+    var_dump($variable);
+    echo "</pre>\n";
+}
+
 function lowpassword()
 {
     $cl = strlen($_POST['password']);
@@ -94,8 +101,29 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
     header('Location: ../view');
 }
 
-if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok') {
+if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok' && isset($_POST['age']) && isset($_POST['location'])
+&& isset($_POST['sexe']) && isset($_POST['orientation']) && isset($_POST['bio'])) {
+    if (htmlspecialchars($_POST['age']) !== $_POST['age'] || htmlspecialchars($_POST['sexe']) !== $_POST['sexe']
+    || htmlspecialchars($_POST['location']) !== $_POST['location'] || htmlspecialchars($_POST['bio']) !== $_POST['bio']){
+        $_SESSION['alert'] = 's';
+        header('Location: ../view/account.php');
+        exit();
+    }
     echo 'modifiction de user en attente';
+    echo $_SESSION['loggued_on_user'] . '</br>';
+    $db_con = new infos($_POST);
+    $db_con->edit_data();
+    echo 'OK';
+    $inte = $db_con->array_inter();
+    unset($inte['id']);
+    unset($inte['id_usr']);
+    $inter = [];
+    foreach ($_POST as $k => $v) {
+        if ($v == 101)
+            $inter[$k] = $v;
+    }
+    $db_con->edit_interest($inte, $inter);
+    header('Location: ../view/');
 }
 // INSERT TABLE DATA
 
