@@ -97,6 +97,7 @@ CREATE TABLE user_db (
   notif tinyint(1) DEFAULT NULL,
   valid tinyint(1) DEFAULT NULL,
   statut varchar(255) NOT NULL,
+  profile binary(1) NOT NULL default '0',
   PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
@@ -167,9 +168,9 @@ CREATE TABLE visit (
 EOSQL;
 
     $sql_create_user = <<<EOSQL
-INSERT INTO user_db (login, password, email, valid)
+INSERT INTO user_db (login, password, email, valid, profile)
 VALUES 
-  ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'pmaglioz@gmail.com', '1');
+  ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'pmaglioz@gmail.com', '1', '1');
 EOSQL;
 
     $msg = '';

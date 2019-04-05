@@ -117,7 +117,8 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
         unset($_SESSION['error']);
         unset ($_SESSION['modif']);
         $_SESSION['success'] = 1;
-        header('Location: ../view');
+        $_SESSION['loggued_on_user'] = $_POST['login'];
+        header('Location: ../view/account.php');
     }
 }
 
@@ -142,10 +143,10 @@ if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok' && isset($_POST
             $inter[$k] = $v;
     }
     $db_con->edit_interest($inte, $inter);
-    $_SESSION['succes'] = 1;
+    $_SESSION['success'] = 1;
     header('Location: ../view/');
 }
-// INSERT TABLE DATA
+// CREATEPROFILE
 
 if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset($_POST['sexe']) && isset($_POST['age'])
     && isset($_POST['location']) && isset($_POST['orientation']) && isset($_POST['bio'])) {
@@ -169,11 +170,12 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
                 $inte[$k] = $v;
         }
         $db_con->add_interest($inte);
+        $_SESSION['success'] = 6;
         header("Location: ../view");
     }
 }
 
-// CREATION DU COMPTE
+// REGISTER
 
 if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['login'])
     && isset($_POST['nom']) && isset($_POST['email']) && isset($_POST['password'])
@@ -218,7 +220,7 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
         exit();
     } else {
         $new_user->sendMail();
-        $_SESSION['succes'] = 2;
+        $_SESSION['success'] = 2;
         header('Location: ../');
     }
 }
