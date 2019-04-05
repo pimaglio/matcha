@@ -89,6 +89,10 @@ else if (isset($_SESSION['error'])) {
             $icon = 'fas fa-exclamation-triangle';
             $message = 'Vous devez activer votre compte.';
             break;
+        case 10:
+            $icon = 'fas fa-times';
+            $message = 'Mot de passe incorrect.';
+            break;
     }
     echo "
     <div class=\"quotes alert_notif\"><a class=\"error\"><i class=\"$icon icon_spacing\"></i>$message</a></div>

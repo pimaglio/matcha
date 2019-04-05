@@ -2,6 +2,9 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+
+if (isset($_SESSION['loggued_on_user']))
+    header("Location: ./view");
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,22 +24,6 @@ if (!isset($_SESSION)) {
 </head>
 
 <body>
-<?php
-if (isset($_SESSION['alert'])) {
-    if ($_SESSION['alert'] === 'success') {
-        echo "<button class='msg-success'><i class=\"fas fa-envelope icon\"></i>Votre compte est activé ! Vous pouvez vous connecter.</button>";
-        echo "<div class='bg-over'></div>";
-        header("Refresh:3");
-        unset($_SESSION['alert']);
-    } else {
-        $ERROR = $_SESSION['alert'];
-        echo "<button class='msg-error'><i class=\"fas fa-exclamation-circle icon\"></i>$ERROR</button>";
-        echo "<div class='bg-over'></div>";
-        header("Refresh:3");
-        unset($_SESSION['alert']);
-    }
-}
-?>
 
 <div class="home_page row">
     <h1 class="logo_home fade-in one">
