@@ -113,6 +113,7 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
             'nom' => $_POST['nom']
         ));
         $db->edit_profil($id);
+        unset($_SESSION['error']);
         unset ($_SESSION['modif']);
         $_SESSION['succes'] = 1;
         header('Location: ../view');
