@@ -1,8 +1,9 @@
 <?php
+session_start();
 
 if (isset($_SESSION['loggued_on_user']))
-    header("Location: home.php");
-session_start();
+    header("Location: ./view");
+
 
 include('header.php');
 

@@ -38,7 +38,7 @@ a {
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-color: #f7f7f7;
+    background-color: #FAFCFF;
 }
 
 * {
@@ -352,4 +352,30 @@ ANIMATION
     -webkit-animation-delay: 3.3s;
     -moz-animation-delay: 3.3s;
     animation-delay: 3.3s;
+}
+
+/*
+NOTIFICATIONS
+*/
+
+.quotes {display: none;}
+
+.alert_notif{
+    text-transform: uppercase;
+    text-align: center;
+    width: 400px;
+    background-color: #ffffff;
+    padding: 15px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 3px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+}
+.success{
+    color: forestgreen;
+}
+.icon_spacing{
+    margin-right: 15px;
 }

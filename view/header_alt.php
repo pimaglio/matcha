@@ -20,8 +20,8 @@ if (!isset($_SESSION)) {
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper fade-in one">
+<nav class="fade-in one">
+    <div class="nav-wrapper">
         <a href="../" class="brand-logo center logo_home"><i class="fas fa-heart"></i>Matcha</a>
     </div>
 </nav>

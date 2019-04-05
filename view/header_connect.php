@@ -20,7 +20,8 @@ if (!isset($_SESSION)) {
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
-<nav>
+
+<nav class="fade-in one">
     <div class="nav-wrapper">
         <a href="../" class="brand-logo center logo_home"><i class="fas fa-heart"></i>Matcha</a>
         <ul class="right hide-on-med-and-down">
@@ -31,29 +32,83 @@ if (!isset($_SESSION)) {
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
     </div>
-    <ul id="slide-out" class="sidenav fixed">
-        <li>
-            <div class="user-view background_sidenav">
-                <a href="#user"><img class="circle" src="assets/images/me.jpg"></a>
-                <a href="#name"><span class="white-text name">Eric Reptil</span></a>
-                <a href="#email"><span class="white-text email">lereptildu69@marzingue.com</span></a>
-            </div>
-        </li>
-        <li><a class="subheader">Menu Principal</a></li>
-        <li><a href="#!"><i class="fas fa-bolt"></i>Matcha Now !</a></li>
-        <li><a href="#!"><i class="fas fa-heart"></i>Mes likes</a></li>
-        <li><a href="#!"><i class="fas fa-envelope"></i>Messages</a></li>
-        <li><a href="#!"><i class="fas fa-history"></i>Historique des visites</a></li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li><a class="subheader">Paramètres Généraux</a></li>
-        <li><a href="account.php"><i class="fas fa-user-edit"></i>Mon profil</a></li>
-        <li><a href="logout.php"><i class="fas fa-power-off"></i>Se déconnecter</a></li>
-    </ul>
 </nav>
+<ul id="slide-out" class="sidenav fixed">
+    <li>
+        <div class="user-view background_sidenav">
+            <a href="#user"><img class="circle" src="assets/images/me.jpg"></a>
+            <a href="#name"><span class="white-text name">Eric Reptil</span></a>
+            <a href="#email"><span class="white-text email">lereptildu69@marzingue.com</span></a>
+        </div>
+    </li>
+    <li><a class="subheader">Menu Principal</a></li>
+    <li><a href="#!"><i class="fas fa-bolt"></i>Matcha Now !</a></li>
+    <li><a href="#!"><i class="fas fa-heart"></i>Mes likes</a></li>
+    <li><a href="#!"><i class="fas fa-envelope"></i>Messages</a></li>
+    <li><a href="#!"><i class="fas fa-history"></i>Historique des visites</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a class="subheader">Paramètres Généraux</a></li>
+    <li><a href="account.php"><i class="fas fa-user-edit"></i>Mon profil</a></li>
+    <li><a href="logout.php"><i class="fas fa-power-off"></i>Se déconnecter</a></li>
+</ul>
+
+<!--NOTIFICATIONS-->
+
+<?php
+if (isset($_SESSION['success'])) {
+    switch ($_SESSION['success']) {
+        case 1:
+            $message = '';
+            break;
+        case 2:
+            $message = '';
+            break;
+        case 3:
+            $message = '';
+            break;
+        case 4:
+            $icon = 'fas fa-check';
+            $message = 'Vous êtes connecte !';
+            break;
+    }
+    echo "
+    <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
+    ";
+    unset($_SESSION['success']);
+} else if (isset($_SESSION['error'])) {
+    switch ($_SESSION['error']) {
+        case 0:
+            $message = '';
+            break;
+        case 1:
+            $message = '';
+            break;
+        case 2:
+            $message = '';
+            break;
+    }
+}
+?>
 
 <script>
+    (function () {
+
+        var quotes = $(".quotes");
+        var quoteIndex = -1;
+
+        function showNextQuote() {
+            ++quoteIndex;
+            quotes.eq(quoteIndex % quotes.length)
+                .fadeIn(1000)
+                .delay(2000)
+                .fadeOut(1000);
+        }
+
+        showNextQuote();
+
+    })();
     $(document).ready(function () {
         $('.sidenav').sidenav();
     });
