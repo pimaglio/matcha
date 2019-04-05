@@ -78,7 +78,8 @@ if (isset($_SESSION['success'])) {
     <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
     ";
     unset($_SESSION['success']);
-} else if (isset($_SESSION['error'])) {
+}
+else if (isset($_SESSION['error'])) {
     switch ($_SESSION['error']) {
         case 1:
             $icon = 'fas fa-exclamation-triangle';

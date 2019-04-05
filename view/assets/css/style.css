@@ -432,6 +432,7 @@ NOTIFICATIONS
     margin: auto;
     border-radius: 3px;
     box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    z-index: 50;
 }
 
 .success {
