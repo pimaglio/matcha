@@ -26,7 +26,93 @@ if (!isset($_SESSION)) {
     </div>
 </nav>
 
+<?php
+if (isset($_SESSION['success'])) {
+    switch ($_SESSION['success']) {
+        case 1:
+            $icon = 'fas fa-check';
+            $message = 'Mise à jour effectuée.';
+            break;
+        case 2:
+            $icon = 'fas fa-envelope';
+            $message = 'Un email de confirmation vous à été envoyé !';
+            break;
+        case 3:
+            $icon = 'fas fa-key';
+            $message = 'Un nouveau mot de passe vous à été envoyé !';
+            break;
+        case 4:
+            $icon = 'fas fa-check';
+            $message = 'Vous êtes connecté !';
+            break;
+    }
+    echo "
+    <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
+    ";
+    unset($_SESSION['success']);
+} else if (isset($_SESSION['error'])) {
+    switch ($_SESSION['error']) {
+        case 1:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Nom d\'utilisateur trop long.';
+            break;
+        case 2:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Les mots de passe ne sont pas identiques.';
+            break;
+        case 3:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Votre mot de passe doit contenir au moins 1 caractère spécial.';
+            break;
+        case 4:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Votre mot de passe est trop court (6 caractères minimum).';
+            break;
+        case 5:
+            $icon = 'fas fa-bomb';
+            $message = 'Script détecté. Petit malin...';
+            break;
+        case 6:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Ce nom d\'utilisateur existe déjà.';
+            break;
+        case 7:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Cette adresse email existe déjà.';
+            break;
+        case 8:
+            $icon = 'fas fa-times';
+            $message = 'Ce compte n\'existe pas.';
+            break;
+        case 9:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Vous devez activer votre compte.';
+            break;
+    }
+    echo "
+    <div class=\"quotes alert_notif\"><a class=\"error\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
+    ";
+    unset($_SESSION['error']);
+}
+?>
+
 <script>
+    (function () {
+
+        var quotes = $(".quotes");
+        var quoteIndex = -1;
+
+        function showNextQuote() {
+            ++quoteIndex;
+            quotes.eq(quoteIndex % quotes.length)
+                .fadeIn(1000)
+                .delay(2000)
+                .fadeOut(1000);
+        }
+
+        showNextQuote();
+
+    })();
     $(document).ready(function () {
         $('.sidenav').sidenav();
     });

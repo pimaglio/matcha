@@ -264,25 +264,80 @@ MY PROFIL PAGE
 ANIMATION
 */
 
+@keyframes colorchange {
+    0% {
+        background: #f50057 !important;
+    }
+    50% {
+        background: #00b0ff !important;
+    }
+    100% {
+        background: #f50057 !important;
+    }
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+    0% {
+        background: #f50057 !important;
+    }
+    50% {
+        background: #00b0ff !important;
+    }
+    100% {
+        background: #f50057 !important;
+    }
+}
+
+.anim_color {
+    animation: colorchange 10s infinite !important; /* animation-name followed by duration in seconds*/
+    /* you could also use milliseconds (ms) or something like 2.5s */
+    -webkit-animation: colorchange 10s infinite !important; /* Chrome and Safari */
+}
+
+
 /* Keyframes for the fade-in */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .fade-in {
-    opacity:0;
+    opacity: 0;
     opacity: 1 \9; /*just in case ie*/
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
+    -webkit-animation: fadeIn ease-in 1;
+    -moz-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
 
-    -webkit-animation-fill-mode:forwards;
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
 }
 
 .fade-in.one {
@@ -302,6 +357,7 @@ ANIMATION
     -moz-animation-delay: .6s;
     animation-delay: .6s;
 }
+
 .fade-in.four {
     -webkit-animation-delay: .9s;
     -moz-animation-delay: .9s;
@@ -310,7 +366,7 @@ ANIMATION
 
 .fade-in.five {
     -webkit-animation-delay: 1.2s;
-    -moz-animation-delay:1.2s;
+    -moz-animation-delay: 1.2s;
     animation-delay: 1.2s;
 }
 
@@ -319,6 +375,7 @@ ANIMATION
     -moz-animation-delay: 1.5s;
     animation-delay: 1.5s;
 }
+
 .fade-in.seven {
     -webkit-animation-delay: 1.8s;
     -moz-animation-delay: 1.8s;
@@ -336,6 +393,7 @@ ANIMATION
     -moz-animation-delay: 2.4s;
     animation-delay: 2.4s;
 }
+
 .fade-in.ten {
     -webkit-animation-delay: 2.7s;
     -moz-animation-delay: 2.7s;
@@ -358,9 +416,11 @@ ANIMATION
 NOTIFICATIONS
 */
 
-.quotes {display: none;}
+.quotes {
+    display: none;
+}
 
-.alert_notif{
+.alert_notif {
     text-transform: uppercase;
     text-align: center;
     width: 400px;
@@ -373,9 +433,15 @@ NOTIFICATIONS
     border-radius: 3px;
     box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
 }
-.success{
-    color: forestgreen;
+
+.success {
+    color: #00e676;
 }
-.icon_spacing{
+
+.error{
+    color: #f50057;
+}
+
+.icon_spacing {
     margin-right: 15px;
 }
