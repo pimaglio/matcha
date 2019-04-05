@@ -93,16 +93,17 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
         $password = hash('sha256', $db_con->user_passwd());
     $info = new infos([]);
     $id = $info->find_id();
-    $db_con = new account($user);
+    $db_con = new account($_POST);
     $_SESSION['modif'] = 1;
     if ($var = $db_con->ifLoginTaken() === 1 && isset($_SESSION['error']) && $_SESSION['error'] === 6 && $_POST['login'] !== $user['login']){
         header('Location: ../view/account.php');
         unset ($_SESSION['modif']);
         exit();
     }
-    else if  ($var = $db_con->ifEmailTaken() === 1 && isset($_SESSION['error']) && $_SESSION['error'] === 7 && $_POST['email'] !== $user['email']){
-        header('Location: ../view/account.php');
+    else if  (($var = $db_con->ifEmailTaken() === 1) && $_POST['email'] !== $user['email']){
+        $_SESSION['error'] = 7;
         unset ($_SESSION['modif']);
+                header('Location: ../view/account.php');
         exit();
     }
     else {

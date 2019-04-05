@@ -235,9 +235,10 @@ class account
         ));
         $count = $stmt->rowCount();
         if ($count != 0) {
-            $_SESSION['error'] = 7;
-            if (!isset($_SESSION['modif']))
+            if (!isset($_SESSION['modif'])){
+                $_SESSION['error'] = 7;
                 header("Location: ../view/register.php");
+            }
             return 1;
         }
         return 0;
