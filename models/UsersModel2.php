@@ -209,7 +209,7 @@ class account
         ));
         $count = $stmt->rowCount();
         if ($count != 0) {
-            $_SESSION['error'] = 2;
+            $_SESSION['error'] = 6;
             return 1;
         }
         return 0;
@@ -223,7 +223,7 @@ class account
         ));
         $count = $stmt->rowCount();
         if ($count != 0) {
-            $_SESSION['error'] = 6;
+            $_SESSION['error'] = 7;
             header("Location: ../view/register.php");
             return 1;
         }
@@ -257,51 +257,51 @@ class account
 
 //    EDIT PROFIL
 
-    public function UpPass($user)
-    {
-        try {
-            $stmt = $this->db_con->prepare("UPDATE user_db SET password=:password WHERE login='$user'");
-            $val = $stmt->execute(array(
-                ":password" => $this->password,
-            ));
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        $_SESSION['alert'] = 11;
-        return 1;
-    }
-
-    public function UpLogin($user)
-    {
-        try {
-            $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login WHERE login='$user'");
-            $val = $stmt->execute(array(
-                ":login" => $this->login,
-            ));
-            $stmt = $this->db_con->prepare("UPDATE data SET login=:login WHERE login='$user'");
-            $val = $stmt->execute(array(
-                ":login" => $this->login,
-            ));
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        $_SESSION['alert'] = 12;
-        return 1;
-    }
-
-    public function UpEmail($user)
-    {
-        try {
-            $stmt = $this->db_con->prepare("UPDATE user_db SET email=:email WHERE login='$user'");
-            $val = $stmt->execute(array(
-                ":email" => $this->email,
-            ));
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-        $_SESSION['alert'] = 13;
-        return 1;
-    }
+//    public function UpPass($user)
+//    {
+//        try {
+//            $stmt = $this->db_con->prepare("UPDATE user_db SET password=:password WHERE login='$user'");
+//            $val = $stmt->execute(array(
+//                ":password" => $this->password,
+//            ));
+//        } catch (PDOException $e) {
+//            echo $e->getMessage();
+//        }
+//        $_SESSION['alert'] = 11;
+//        return 1;
+//    }
+//
+//    public function UpLogin($user)
+//    {
+//        try {
+//            $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login WHERE login='$user'");
+//            $val = $stmt->execute(array(
+//                ":login" => $this->login,
+//            ));
+//            $stmt = $this->db_con->prepare("UPDATE data SET login=:login WHERE login='$user'");
+//            $val = $stmt->execute(array(
+//                ":login" => $this->login,
+//            ));
+//        } catch (PDOException $e) {
+//            echo $e->getMessage();
+//        }
+//        $_SESSION['alert'] = 12;
+//        return 1;
+//    }
+//
+//    public function UpEmail($user)
+//    {
+//        try {
+//            $stmt = $this->db_con->prepare("UPDATE user_db SET email=:email WHERE login='$user'");
+//            $val = $stmt->execute(array(
+//                ":email" => $this->email,
+//            ));
+//        } catch (PDOException $e) {
+//            echo $e->getMessage();
+//        }
+//        $_SESSION['alert'] = 13;
+//        return 1;
+//    }
 
     public function edit_profil($id)
     {

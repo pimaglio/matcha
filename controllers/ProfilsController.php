@@ -50,6 +50,8 @@ function recup_user()
 
 //$data = recup_data();
 //$inter = recup_inter();
+
+
 // MODIF USER
 
 if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
@@ -60,29 +62,29 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
     ));
     if (htmlspecialchars($_POST['nom']) !== $_POST['nom'] || htmlspecialchars($_POST['login'])
         !== $_POST['login'] || htmlspecialchars($_POST['email']) !== $_POST['email']) {
-        $_SESSION['alert'] = 's';
+        $_SESSION['error'] = 5;
         header('Location: ../view/account.php');
         exit();
     }
     if (!empty($_POST['password']) && !empty($_POST['password2'])) {
         if (strlen($_POST['login']) > 25) {
-            $_SESSION['alert'] = 8;
+            $_SESSION['error'] = 1;
             header('Location: ../view/account.php');
             exit();
         }
         if ($_POST['password'] !== $_POST['password2']) {
-            $_SESSION['alert'] = 7;
+            $_SESSION['error'] = 2;
             header('Location: ../view/account.php');
             exit();
         }
         $spechar = lowpassword();
         if ($spechar == 5) {
-            $_SESSION['alert'] = 5;
+            $_SESSION['error'] = 3;
             header('Location: ../view/account.php');
             exit();
         }
         if (lowpassword() == 1) {
-            $_SESSION['alert'] = 4;
+            $_SESSION['error'] = 4;
             header('Location: ../view/account.php');
             exit();
         }
@@ -98,22 +100,22 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
         'nom' => $_POST['nom']
     ));
     $db->edit_profil($id);
+    $_SESSION['succes'] = 1;
     header('Location: ../view');
 }
+
+// MODIF DATA ET INTERET
 
 if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok' && isset($_POST['age']) && isset($_POST['location'])
 && isset($_POST['sexe']) && isset($_POST['orientation']) && isset($_POST['bio'])) {
     if (htmlspecialchars($_POST['age']) !== $_POST['age'] || htmlspecialchars($_POST['sexe']) !== $_POST['sexe']
     || htmlspecialchars($_POST['location']) !== $_POST['location'] || htmlspecialchars($_POST['bio']) !== $_POST['bio']){
-        $_SESSION['alert'] = 's';
+        $_SESSION['error'] = 5;
         header('Location: ../view/account.php');
         exit();
     }
-    echo 'modifiction de user en attente';
-    echo $_SESSION['loggued_on_user'] . '</br>';
     $db_con = new infos($_POST);
     $db_con->edit_data();
-    echo 'OK';
     $inte = $db_con->array_inter();
     unset($inte['id']);
     unset($inte['id_usr']);
@@ -123,6 +125,7 @@ if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok' && isset($_POST
             $inter[$k] = $v;
     }
     $db_con->edit_interest($inte, $inter);
+    $_SESSION['succes'] = 1;
     header('Location: ../view/');
 }
 // INSERT TABLE DATA
@@ -132,7 +135,7 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
     $arr = [];
     if (($b = htmlspecialchars($_POST['bio'])) !== $_POST['bio'] ||
         ($l = htmlspecialchars($_POST['location'])) !== $_POST['location']) {
-        $_SESSION['alert'] = 's';
+        $_SESSION['error'] = 5;
         header('Location: ../view/createprofile.php');
         exit();
     } else {
@@ -160,28 +163,28 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
     && isset($_POST['password2'])) {
     if (htmlspecialchars($_POST['nom']) !== $_POST['nom'] || htmlspecialchars($_POST['login'])
         !== $_POST['login'] || htmlspecialchars($_POST['email']) !== $_POST['email']) {
-        $_SESSION['alert'] = 's';
+        $_SESSION['error'] = 5;
         header('Location: ../view/register.php');
         exit();
     }
     if (strlen($_POST['login']) > 25) {
-        $_SESSION['alert'] = 8;
+        $_SESSION['error'] = 1;
         header('Location: ../view/register.php');
         exit();
     }
     if ($_POST['password'] !== $_POST['password2']) {
-        $_SESSION['alert'] = 7;
+        $_SESSION['error'] = 2;
         header('Location: ../view/register.php');
         exit();
     }
     $spechar = lowpassword();
     if ($spechar == 5) {
-        $_SESSION['alert'] = 5;
+        $_SESSION['error'] = 3;
         header('Location: ../view/register.php');
         exit();
     }
     if (lowpassword() == 1) {
-        $_SESSION['alert'] = 4;
+        $_SESSION['error'] = 4;
         header('Location: ../view/register.php');
         exit();
     }
@@ -198,7 +201,7 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
         exit();
     } else {
         $new_user->sendMail();
-        $_SESSION['alert'] = 2;
+        $_SESSION['succes'] = 2;
         header('Location: ../');
     }
 }
@@ -208,7 +211,7 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
 if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['password'])
     && isset($_POST['login'])) {
     if (htmlspecialchars($_POST['login']) !== $_POST['login']) {
-        $_SESSION['alert'] = 's';
+        $_SESSION['error'] = 5;
         header('Location: ../view/login.php');
         exit();
     }
@@ -219,20 +222,20 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
     ));
     $var = $user->Connect();
     if ($var === 1) {
-        $_SESSION['alert'] = "Ce compte n'existe pas";
+        $_SESSION['error'] = 8;
         header("Location: ../view/login.php");
         exit();
     }
     if ($var === 2) {
-        $_SESSION['alert'] = "Vous devez activer votre compte";
+        $_SESSION['error'] = 9;
         header("Location: ../view/login.php");
         exit();
     }
     if ($var === 3) {
-        $_SESSION['alert'] = "Mot de passe erroné";
+        $_SESSION['error'] = 10;
         header("Location: ../view/login.php");
     } else {
-        $_SESSION['alert'] = "success";
+        $_SESSION['success'] = 4;
         header("Location: ../view/");
     }
 }
@@ -242,7 +245,7 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
 
 if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'])) {
     if (htmlspecialchars($_POST['login']) !== $_POST['login']) {
-        $_SESSION['alert'] = 's';
+        $_SESSION['error'] = 5;
         header('Location: ../view/reset.php');
         exit();
     }
@@ -258,13 +261,13 @@ if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'
     ));
     $var = $new_user->ifLoginTaken();
     if ($var !== 1) {
-        $_SESSION['alert'] = 'error';
+        $_SESSION['error'] = 8;
         header('Location: ../view/reset.php');
         exit();
     } else {
         $new_user->passMail($newpass);
-        unset($_SESSION['alert']);
-        $_SESSION['alert'] = 'success';
+        unset($_SESSION['error']);
+        $_SESSION['error'] = 3;
         header('Location: ../view/login.php');
     }
 }
