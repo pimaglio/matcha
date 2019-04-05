@@ -188,6 +188,18 @@ class account
         $this->db_con = database_connect();
     }
 
+    // RECUP USER ARRAY
+
+    public function array_user(){
+        $query = 'SELECT * FROM user_db WHERE login=:log';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":log" => $this->login
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $fetch;
+    }
+
 //              CONTROL INSCRIPTION LOGIN / EMAIL
 
     public function user_passwd()
@@ -224,7 +236,8 @@ class account
         $count = $stmt->rowCount();
         if ($count != 0) {
             $_SESSION['error'] = 7;
-            header("Location: ../view/register.php");
+            if (!isset($_SESSION['modif']))
+                header("Location: ../view/register.php");
             return 1;
         }
         return 0;
@@ -306,8 +319,6 @@ class account
     public function edit_profil($id)
     {
         try {
-            if ($this->ifLoginTaken() || $this->ifEmailTaken())
-                return 1;
             $stmt = $this->db_con->prepare("UPDATE user_db SET login=:login, email=:email, password=:password, nom=:nom WHERE id='$id'");
             $stmt->execute(array(
                 ":login" => $this->login,

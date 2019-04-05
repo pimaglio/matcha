@@ -10,8 +10,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-//var_dump ($_POST);
-
 function htmldump($variable, $height = "300px")
 {
     echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
@@ -60,6 +58,8 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
     $db_con = new account(array(
         'login' => $_SESSION['loggued_on_user']
     ));
+    $user = $db_con->array_user();
+    echo $_SESSION['loggued_on_user'];
     if (htmlspecialchars($_POST['nom']) !== $_POST['nom'] || htmlspecialchars($_POST['login'])
         !== $_POST['login'] || htmlspecialchars($_POST['email']) !== $_POST['email']) {
         $_SESSION['error'] = 5;
@@ -93,15 +93,30 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
         $password = hash('sha256', $db_con->user_passwd());
     $info = new infos([]);
     $id = $info->find_id();
-    $db = new account(array(
-        'login' => $_POST['login'],
-        'password' => $password,
-        'email' => $_POST['email'],
-        'nom' => $_POST['nom']
-    ));
-    $db->edit_profil($id);
-    $_SESSION['succes'] = 1;
-    header('Location: ../view');
+    $db_con = new account($user);
+    $_SESSION['modif'] = 1;
+    if ($var = $db_con->ifLoginTaken() === 1 && isset($_SESSION['error']) && $_SESSION['error'] === 6 && $_POST['login'] !== $user['login']){
+        header('Location: ../view/account.php');
+        unset ($_SESSION['modif']);
+        exit();
+    }
+    else if  ($var = $db_con->ifEmailTaken() === 1 && isset($_SESSION['error']) && $_SESSION['error'] === 7 && $_POST['email'] !== $user['email']){
+        header('Location: ../view/account.php');
+        unset ($_SESSION['modif']);
+        exit();
+    }
+    else {
+        $db = new account(array(
+            'login' => $_POST['login'],
+            'password' => $password,
+            'email' => $_POST['email'],
+            'nom' => $_POST['nom']
+        ));
+        $db->edit_profil($id);
+        unset ($_SESSION['modif']);
+        $_SESSION['succes'] = 1;
+        header('Location: ../view');
+    }
 }
 
 // MODIF DATA ET INTERET
