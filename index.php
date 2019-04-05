@@ -33,11 +33,11 @@ if (isset($_SESSION['alert'])) {
     </h1>
     <div class="home_content fade-in two">
         <div class="col s6 home_left_col">
-            <a href="view/register.php" class="waves-effect waves-light btn-large"><i
+            <a href="view/register.php" class="waves-effect waves-light btn-large blue"><i
                         class="material-icons left">create</i>Inscription</a>
         </div>
         <div class="col s6 home_right_col fade-in three">
-            <a href="view/login.php" class="waves-effect waves-light btn-large blue"><i
+            <a href="view/login.php" class="waves-effect waves-light btn-large"><i
                         class="material-icons left">person</i>Connexion</a>
         </div>
     </div>
