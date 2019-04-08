@@ -446,6 +446,14 @@ class account
         }
     }
 
+    public function set_statut($i){
+        $query = 'UPDATE user_db SET statut=:i WHERE login=:log';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":log" => $this->login,
+            ":i" => $i
+        ));
+    }
 
     public function UpNotif()
     {

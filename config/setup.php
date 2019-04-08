@@ -96,7 +96,7 @@ CREATE TABLE user_db (
   cle varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   notif tinyint(1) DEFAULT NULL,
   valid tinyint(1) DEFAULT NULL,
-  statut varchar(255) NOT NULL,
+  statut varchar(255) NOT NULL default '0',
   profile binary(1) NOT NULL default '0',
   PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
