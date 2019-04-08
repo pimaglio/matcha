@@ -437,7 +437,7 @@ class account
             return 3;
         if ($fetched['profile'] == 0){
             $_SESSION['loggued_on_user'] = $fetched['login'];
-            $_SESSION['loggued_but_not_complet'] = $fetched['login'];
+//            $_SESSION['loggued_but_not_complet'] = $fetched['login'];
             return 4;
         }
         else {

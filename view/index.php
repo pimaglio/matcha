@@ -6,6 +6,7 @@
  * Time: 11:59
  */
 session_start();
+var_dump($_SESSION);
 if (isset($_SESSION['loggued_but_not_complet']))
     header("Location: createprofile.php");
 

@@ -72,13 +72,16 @@ if (isset($_SESSION['success'])) {
             $icon = 'fas fa-check';
             $message = 'Vous êtes connecté !';
             break;
+        case 6:
+            $icon = 'fas fa-check';
+            $message = 'Vos informations ont bien été mises à jour !';
+            break;
     }
     echo "
     <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
     ";
     unset($_SESSION['success']);
-}
-else if (isset($_SESSION['error'])) {
+} else if (isset($_SESSION['error'])) {
     switch ($_SESSION['error']) {
         case 1:
             $icon = 'fas fa-exclamation-triangle';

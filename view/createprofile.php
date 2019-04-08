@@ -7,7 +7,6 @@
  */
 
 session_start();
-var_dump($_SESSION);
 if (!isset($_SESSION['loggued_but_not_complet']))
     header("Location: ../index.php");
 

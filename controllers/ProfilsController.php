@@ -172,7 +172,7 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
         $db_con->add_interest($inte);
         $db_con->profile_complete();
         $_SESSION['success'] = 6;
-        $_SESSION['loggued_on_user'] = $_SESSION['loggued_but_non_complet'];
+        $_SESSION['loggued_on_user'] = $_SESSION['loggued_but_not_complet'];
         unset($_SESSION['loggued_but_not_complet']);
         header("Location: ../view");
     }
@@ -223,6 +223,8 @@ if (isset($_POST['register']) && $_POST['register'] === 'ok' && isset($_POST['lo
         exit();
     } else {
         $new_user->sendMail();
+        $_SESSION['loggued_but_not_complet'] = $_POST['login'];
+        unset ($_SESSION['loggued_but_not_valid']);
         $_SESSION['success'] = 2;
         header('Location: ../');
     }
