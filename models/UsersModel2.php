@@ -79,7 +79,6 @@ class infos
 
     public function edit_data()
     {
-        echo 'je suis la </br>';
         $query = 'UPDATE data SET age=:age, sex=:sexe, location=:loc, orientation=:ori, bio=:bio WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -107,11 +106,13 @@ class infos
             ));
         }
         foreach ($arr as $k => $v) {
-            $query = 'UPDATE `interest` SET ' . $k . '=1 WHERE id_usr=:id';
-            $stmt = $this->db_con->prepare($query);
-            $stmt->execute(array(
-                ":id" => $this->id
-            ));
+            if ($arr[$k] != 0) {
+                $query = 'UPDATE `interest` SET ' . $k . '=1 WHERE id_usr=:id';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":id" => $this->id
+                ));
+            }
         }
     }
 
@@ -213,6 +214,7 @@ class account
     private $date;
     private $notif;
     private $db_con;
+    private $valid;
     public $error;
 
     public function __construct(array $user_account)
@@ -227,6 +229,8 @@ class account
             $this->notif = $user_account['notif'];
         if (array_key_exists('nom', $user_account))
             $this->nom = $user_account['nom'];
+        if (array_key_exists('valid', $user_account))
+            $this->valid = $user_account['valid'];
         $this->date = date('Y-m-d H:i:s');
         $this->db_con = database_connect();
     }
@@ -243,7 +247,7 @@ class account
         return $fetch;
     }
 
-//              CONTROL INSCRIPTION LOGIN / EMAIL
+    // CONTROL INSCRIPTION LOGIN / EMAIL
 
     public function user_passwd()
     {
@@ -513,5 +517,13 @@ class account
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function setValid(){
+        $query = 'UPDATE user_db SET valid=1 WHERE login=:login';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":login" => $this->login
+        ));
     }
 }

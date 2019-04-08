@@ -141,7 +141,7 @@ if (isset($_POST['data_modif']) && $_POST['data_modif'] === 'ok' && isset($_POST
     }
     $db_con->edit_interest($inte, $inter);
     $_SESSION['success'] = 1;
-    header('Location: ../view/');
+    header('Location: ../view/account.php');
 }
 // CREATEPROFILE
 
@@ -310,7 +310,7 @@ function unlog(){
     $user->set_statut(0);
 }
 
-// DELETE ACCOUNT
+// DELETE ACCOUNT A FINIR pour toutes les tables
 
 function delete_account(){
     $db_con = new infos([]);
@@ -320,4 +320,28 @@ function delete_account(){
 //    $db_con->del_user_db();
 //    $db_con->del_user_db();
 //    $db_con->del_user_db();
+}
+
+//FAKE ACCOUNT
+
+function manage_fake_account($arr){
+    echo 'ok';
+    $db_con = new account($arr);
+    $db_con->add();
+    $db_con->setValid();
+    $db = new infos($arr);
+    $db->add_data();
+    $array['sport'] = rand(0,1);
+    $array['voyage'] = rand(0,1);
+    $array['vegan'] = rand(0,1);
+    $array['geek'] = rand(0,1);
+    $array['soiree'] = rand(0,1);
+    $array['tattoo'] = rand(0,1);
+    $array['musique'] = rand(0,1);
+    $array['lecture'] = rand(0,1);
+    $array['association'] = rand(0,1);
+    $array['theatre'] = rand(0,1);
+    $array['religion'] = rand(0,1);
+    $db->add_interest($array);
+
 }
