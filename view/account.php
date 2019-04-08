@@ -50,6 +50,8 @@ include('header_connect.php');
         <?php
         $user = recup_user();
         $user_name = $user['nom'];
+        $user_login = $user['login'];
+        $user_email = $user['email'];
         echo "
        
         <form id=\"user-form\" method=\"POST\" action=\"../controllers/ProfilsController.php\">
@@ -64,7 +66,7 @@ include('header_connect.php');
                 </div>
                 <div class=\"input-field col s3\">
                     <i class=\"material-icons prefix\">account_circle</i>
-                    <input id=\"login\" type=\"text\" class=\"validate\" pattern=\"[A-Za-z-0-9\s -]+\" name=\"login\"
+                    <input id=\"login\" type=\"text\"  value='$user_login' class=\"validate\" pattern=\"[A-Za-z-0-9\s -]+\" name=\"login\"
                            maxlength=\"25\" required>
                     <span class=\"helper-text\" data-error=\"Format invalide: (A-z), (0-9), (-)\"
                           data-success=\"Format valide\"></span>
@@ -90,7 +92,7 @@ include('header_connect.php');
                 </div>
                 <div class=\"input-field col s3\">
                     <i class=\"material-icons prefix\">email</i>
-                    <input id=\"email\" type=\"text\" class=\"validate\" name=\"email\" required>
+                    <input id=\"email\" type=\"text\" value='$user_email' class=\"validate\" name=\"email\" required>
                     <label for=\"email\">Adresse email</label>
                 </div>
                 <div class=\"col s12\" style=\"text-align: right\">
@@ -115,117 +117,129 @@ include('header_connect.php');
         <div class="icon_profil2"></div>
         <h2 class="title-form-alt">Mes données<br><span class="title-form">personelles</span></h2>
     </div>
-    <form id="data-form" method="POST" action="../controllers/ProfilsController.php">
-        <div class="col s3">
-            <p class="title-form2">Âge (18 à 116 ans)</p>
-            <input type="number" name="age" id="age" value="18" min="18" max="116" required><br/>
+    <?php
+    $data = recup_data();
+    $data_age = $data['age'];
+    $data_location = $data['location'];
+    $data_bio = $data['bio'];
+    $interest = recup_inter();
+
+    echo "
+    <form id=\"data-form\" method=\"POST\" action=\"../controllers/ProfilsController.php\">
+        <div class=\"col s3\">
+            <p class=\"title-form2\">Âge (18 à 116 ans)</p>
+            <input type=\"number\" name=\"age\" id=\"age\" value=\"$data_age\" min=\"18\" max=\"116\" required><br/>
         </div>
-        <div class="col s3">
-            <p class="title-form2">Ville</p>
-            <input type="text" name="location" id="location" required><br/>
+        <div class=\"col s3\">
+            <p class=\"title-form2\">Ville</p>
+            <input type=\"text\" name=\"location\" value=' $data_location' id=\"location\" required><br/>
         </div>
-        <div class="col s3">
-            <p class="title-form2">Genre</p>
-            <select name="sexe">
-                <option class="red" value="0" selected>Non binaire</option>
-                <option value="1">Femme</option>
-                <option value="2">Homme</option>
-                <option value="3">Transsexuelle</option>
-                <option value="4">Transsexuel</option>
-                <option value="5">Intersexuel</option>
+        <div class=\"col s3\">
+            <p class=\"title-form2\">Genre</p>
+            <select name=\"sexe\">
+                <option class=\"red\" value=\"0\""; if ($data['sex'] == 0) echo 'selected'; echo ">Non binaire</option>
+                <option value=\"1\""; if ($data['sex'] == 1) echo 'selected'; echo ">Femme</option>
+                <option value=\"2\""; if ($data['sex'] == 2) echo 'selected'; echo ">Homme</option>
+                <option value=\"3\""; if ($data['sex'] == 3) echo 'selected'; echo ">Transsexuelle</option>
+                <option value=\"4\""; if ($data['sex'] == 4) echo 'selected'; echo ">Transsexuel</option>
+                <option value=\"5\""; if ($data['sex'] == 5) echo 'selected'; echo ">Intersexuel</option>
             </select>
         </div>
-        <div class="col s3">
-            <p class="title-form2">Orientation Sexuelle</p>
-            <select id="orientation" name="orientation">
-                <option value="0" selected>Bisexuelle</option>
-                <option value="1">Hétérosexuelle</option>
-                <option value="2">Homosexuelle</option>
-                <option value="3">Altersexuelle</option>
-                <option value="4">Pansexuelle</option>
-                <option value="5">Asexuelle</option>
-                <option value="6">Sapiosexuelle</option>
+        <div class=\"col s3\">
+            <p class=\"title-form2\">Orientation Sexuelle</p>
+            <select id=\"orientation\" name=\"orientation\">
+                <option value=\"0\""; if ($data['orientation'] == 0) echo 'selected'; echo ">Bisexuelle</option>
+                <option value=\"1\""; if ($data['orientation'] == 1) echo 'selected'; echo ">Hétérosexuelle</option>
+                <option value=\"2\""; if ($data['orientation'] == 2) echo 'selected'; echo ">Homosexuelle</option>
+                <option value=\"3\""; if ($data['orientation'] == 3) echo 'selected'; echo ">Altersexuelle</option>
+                <option value=\"4\""; if ($data['orientation'] == 4) echo 'selected'; echo ">Pansexuelle</option>
+                <option value=\"5\""; if ($data['orientation'] == 5) echo 'selected'; echo ">Asexuelle</option>
+                <option value=\"6\""; if ($data['orientation'] == 6) echo 'selected'; echo ">Sapiosexuelle</option>
             </select>
         </div>
-        <div class="col s12">
-            <p class="title-form2">Bio (max 255 caractères)</p>
-            <textarea id="textarea1" class="materialize-textarea" name='bio' maxlength="255" required></textarea>
-            <p class="title-form2">Centre(s) d'intérêt(s)</p>
+        <div class=\"col s12\">
+            <p class=\"title-form2\">Bio (max 255 caractères)</p>
+            <textarea id=\"textarea1\" class=\"materialize-textarea\" name='bio' maxlength=\"255\" required>$data_bio</textarea>
+            <p class=\"title-form2\">Centre(s) d'intérêt(s)</p>
         </div>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="sport" value="101"/>
+                <input type=\"checkbox\" name=\"sport\" value=\"101\""; if ($interest['sport'] == 1) echo 'checked'; echo "/>
                 <span>Sport</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="voyage" value="101"/>
+                <input type=\"checkbox\" name=\"voyage\" value=\"101\""; if ($interest['voyage'] == 1) echo 'checked'; echo "/>
                 <span>Voyage</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="vegan" value="101"/>
+                <input type=\"checkbox\" name=\"vegan\" value=\"101\""; if ($interest['vegan'] == 1) echo 'checked'; echo "/>
                 <span>Vegan</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="geek" value="101"/>
+                <input type=\"checkbox\" name=\"geek\" value=\"101\""; if ($interest['geek'] == 1) echo 'checked'; echo "/>
                 <span>Geek</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="soiree" value="101"/>
+                <input type=\"checkbox\" name=\"soiree\" value=\"101\""; if ($interest['soiree'] == 1) echo 'checked'; echo "/>
                 <span>Soiree</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="tattoo" value="101"/>
+                <input type=\"checkbox\" name=\"tattoo\" value=\"101\""; if ($interest['tattoo'] == 1) echo 'checked'; echo "/>
                 <span>Tattoo</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="musique" value="101"/>
+                <input type=\"checkbox\" name=\"musique\" value=\"101\""; if ($interest['musique'] == 1) echo 'checked'; echo "/>
                 <span>Musique</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="lecture" value="101"/>
+                <input type=\"checkbox\" name=\"lecture\" value=\"101\""; if ($interest['lecture'] == 1) echo 'checked'; echo "/>
                 <span>Lecture</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="association" value="101"/>
+                <input type=\"checkbox\" name=\"association\" value=\"101\""; if ($interest['association'] == 1) echo 'checked'; echo "/>
                 <span>Association</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="theatre" value="101"/>
+                <input type=\"checkbox\" name=\"theatre\" value=\"101\""; if ($interest['theatre'] == 1) echo 'checked'; echo "/>
                 <span>Théâtre</span>
             </label>
         </p>
-        <p class="col s4">
+        <p class=\"col s4\">
             <label>
-                <input type="checkbox" name="religion" value="101git "/>
+                <input type=\"checkbox\" name=\"religion\" value=\"101git \""; if ($interest['religion'] == 1) echo 'checked'; echo "/>
                 <span>Religion</span>
             </label>
         </p>
-        <input type="hidden" name="data_modif" value="ok">
-        <div class="col s12" style="text-align: right">
-            <button class="btn-large waves-effect waves-light pink accent-3" type="submit" name="submit"
-                    value="Créer mon profil">Mettre à jour
-                <i class="material-icons right">send</i>
+        <input type=\"hidden\" name=\"data_modif\" value=\"ok\">
+        <div class=\"col s12\" style=\"text-align: right\">
+            <button class=\"btn-large waves-effect waves-light pink accent-3\" type=\"submit\" name=\"submit\"
+                    value=\"Créer mon profil\">Mettre à jour
+                <i class=\"material-icons right\">send</i>
             </button>
         </div>
     </form>
+    ";
+
+    ?>
+
 </main>
 
 <script src="assets/js/materialize.js"></script>
