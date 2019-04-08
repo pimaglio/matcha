@@ -10,6 +10,7 @@ if (isset($_SESSION['loggued_on_user']))
     header("Location: home.php");
 session_start();
 include('header_connect.php');
+
 ?>
 
 <body>

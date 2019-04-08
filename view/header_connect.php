@@ -1,7 +1,9 @@
 <?php
+require_once "../controllers/ProfilsController.php";
 if (!isset($_SESSION)) {
     session_start();
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,8 +36,17 @@ if (!isset($_SESSION)) {
     <li>
         <div class="user-view background_sidenav">
             <a href="#user"><img class="circle image_profil_sidenav" src="assets/images/fakeuser.jpg"></a>
-            <a href="#name"><span class="white-text name">Eric Reptile</span></a>
-            <a href="#email"><span class="white-text email">lereptildu69@marzingue.com</span></a>
+            <?php
+            $data = recup_user();
+            $name = $data['nom'];
+            $email = $data['email'];
+            echo "
+            <a href=\"#name\"><span class=\"white-text name\">$name</span></a>
+            <a href=\"#email\"><span class=\"white-text email\">$email</span></a>
+            ";
+            ?>
+
+
         </div>
     </li>
     <li><a class="subheader">Menu Principal</a></li>
