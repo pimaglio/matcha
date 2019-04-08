@@ -49,10 +49,8 @@ if (!isset($_SESSION)) {
     <li><a class="subheader">Paramètres Généraux</a></li>
     <li><a href="account.php"><i class="material-icons">settings</i>Mon profil</a></li>
     <li><a href="logout.php"><i class="material-icons">power_settings_new</i>Se déconnecter</a></li>
-    <form method="post" action="logout.php">
-        <input type="hidden" name="delete" value="ok">
-        <li><a href="logout.php"><i class="material-icons">delete</i>Supprimer mon compte</a></li>
-    </form>
+    <li><a href="delete.php"><i class="material-icons">delete</i>Supprimer mon compte</a></li>
+
 </ul>
 
 <!--NOTIFICATIONS-->
