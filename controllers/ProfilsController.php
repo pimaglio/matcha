@@ -47,10 +47,6 @@ function recup_user()
     return $db_con->array_user();
 }
 
-//$data = recup_data();
-//$inter = recup_inter();
-
-
 // MODIF USER
 
 if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
