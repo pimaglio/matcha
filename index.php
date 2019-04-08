@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
 }
 
 if (isset($_SESSION['loggued_on_user']))
+    if (!isset($_SESSION['loggued_but_not_complet']))
     header("Location: ./view");
 ?>
 <!DOCTYPE html>
@@ -132,7 +133,7 @@ else if (isset($_SESSION['error'])) {
             ++quoteIndex;
             quotes.eq(quoteIndex % quotes.length)
                 .fadeIn(1000)
-                .delay(2000)
+                .delay(3000)
                 .fadeOut(1000);
         }
 

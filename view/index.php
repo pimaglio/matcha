@@ -5,10 +5,13 @@
  * Date: 2019-02-12
  * Time: 11:59
  */
-
-if (isset($_SESSION['loggued_on_user']))
-    header("Location: home.php");
 session_start();
+if (isset($_SESSION['loggued_but_not_complet']))
+    header("Location: createprofile.php");
+
+if (!isset($_SESSION['loggued_on_user']))
+    header("Location: ../index.php");
+
 include('header_connect.php');
 ?>
 

@@ -170,7 +170,10 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
                 $inte[$k] = $v;
         }
         $db_con->add_interest($inte);
+        $db_con->profile_complete();
         $_SESSION['success'] = 6;
+        $_SESSION['loggued_on_user'] = $_SESSION['loggued_but_non_complet'];
+        unset($_SESSION['loggued_but_not_complet']);
         header("Location: ../view");
     }
 }
@@ -253,7 +256,14 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
     if ($var === 3) {
         $_SESSION['error'] = 10;
         header("Location: ../view/login.php");
-    } else {
+        exit();
+    }
+    if ($var === 4) {
+/*        $_SESSION['error'] = 13;*/
+        header("Location: ../view/createprofile.php");
+        exit();
+    }
+    else {
         $_SESSION['success'] = 4;
         header("Location: ../view/");
     }

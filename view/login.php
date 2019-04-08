@@ -15,23 +15,7 @@ include('header_alt.php');
 ?>
 
 <body>
-<?php
-if (isset($_SESSION['alert'])) {
-    if ($_SESSION['alert'] === 'success') {
-        echo "<button class='msg-success'><i class=\"fas fa-envelope icon\"></i>Votre compte est activé ! Vous pouvez vous connecter.</button>";
-        echo "<div class='bg-over'></div>";
-        header("Refresh:3");
-        unset($_SESSION['alert']);
-    }
-    else {
-        $ERROR = $_SESSION['alert'];
-        echo "<button class='msg-error'><i class=\"fas fa-exclamation-circle icon\"></i>$ERROR</button>";
-        echo "<div class='bg-over'></div>";
-        header("Refresh:3");
-        unset($_SESSION['alert']);
-    }
-}
-?>
+
 <div id="background">
 </div>
 <div class="form_create_profil fade-in two">

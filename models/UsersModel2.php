@@ -114,6 +114,16 @@ class infos
         }
     }
 
+    public function profile_complete(){
+        $login_now = $_SESSION['loggued_on_user'];
+        $query = "UPDATE user_db SET profile=:profile WHERE login='$login_now'";
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":profile" => 1
+        ));
+
+    }
+
     public function edit_interest($del, $add){
         echo $this->id;
         foreach ($del as $k => $v) {
@@ -413,7 +423,7 @@ class account
 
     public function Connect()
     {
-        $stmt = $this->db_con->prepare("SELECT email, valid, password, login FROM user_db WHERE login=:login");
+        $stmt = $this->db_con->prepare("SELECT email, valid, password, login, profile FROM user_db WHERE login=:login");
         $stmt->execute(array(
             ":login" => $this->login
         ));
@@ -425,8 +435,15 @@ class account
             return 2;
         if ($fetched['password'] !== $this->password)
             return 3;
-        $_SESSION['loggued_on_user'] = $fetched['login'];
-        return 0;
+        if ($fetched['profile'] == 0){
+            $_SESSION['loggued_on_user'] = $fetched['login'];
+            $_SESSION['loggued_but_not_complet'] = $fetched['login'];
+            return 4;
+        }
+        else {
+            $_SESSION['loggued_on_user'] = $fetched['login'];
+            return 0;
+        }
     }
 
 

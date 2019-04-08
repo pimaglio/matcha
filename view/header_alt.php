@@ -23,6 +23,15 @@ if (!isset($_SESSION)) {
 <nav style="background-color: #00b0ff !important;" class="fade-in one">
     <div class="nav-wrapper">
         <a href="../" class="brand-logo center logo_home"><i class="fas fa-heart"></i>Matcha</a>
+        <ul class="right hide-on-med-and-down">
+            <?php
+            if (isset($_SESSION['loggued_on_user'])) {
+                echo "
+                <li><a href=\"logout.php\"><i class=\"material-icons\">power_settings_new</i></a></li>
+                ";
+            }
+            ?>
+        </ul>
     </div>
 </nav>
 
@@ -54,8 +63,7 @@ if (isset($_SESSION['success'])) {
     <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
     ";
     unset($_SESSION['success']);
-}
-else if (isset($_SESSION['error'])) {
+} else if (isset($_SESSION['error'])) {
     switch ($_SESSION['error']) {
         case 1:
             $icon = 'fas fa-exclamation-triangle';

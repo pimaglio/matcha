@@ -7,9 +7,9 @@
  */
 
 session_start();
-
-if (!isset($_SESSION['loggued_on_user']))
-    header("Location: index.php");
+var_dump($_SESSION);
+if (!isset($_SESSION['loggued_but_not_complet']))
+    header("Location: ../index.php");
 
 include('header_alt.php');
 ?>
