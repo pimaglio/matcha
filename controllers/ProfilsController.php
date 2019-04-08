@@ -43,7 +43,8 @@ function recup_inter()
 
 function recup_user()
 {
-
+    $db_con = new infos([]);
+    return $db_con->array_user();
 }
 
 //$data = recup_data();
@@ -311,4 +312,16 @@ if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'
 function unlog(){
     $user = new account(["login" => $_SESSION['loggued_on_user']]);
     $user->set_statut(0);
+}
+
+// DELETE ACCOUNT
+
+function delete_account(){
+    $db_con = new infos([]);
+    $db_con->del_user_db();
+    $db_con->del_data();
+    $db_con->del_interest();
+//    $db_con->del_user_db();
+//    $db_con->del_user_db();
+//    $db_con->del_user_db();
 }
