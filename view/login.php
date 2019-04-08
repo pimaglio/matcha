@@ -43,14 +43,14 @@ if (isset($_SESSION['alert'])) {
             <h2 class="title-form">Connexion <br><span class="title-form-alt">sign up</span></h2>
         </div>
     </div>
-    <form id="register-form" method="POST" action="../controllers/ProfilsController.php">
+    <form class="fade-in three" id="register-form" method="POST" action="../controllers/ProfilsController.php">
         <div class="row">
-            <div class="input-field col s12 fade-in three">
+            <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
                 <input id="login" type="text" class="validate" name="login" required>
                 <label for="login">Nom d'utilisateur</label>
             </div>
-            <div class="input-field col s12 fade-in four">
+            <div class="input-field col s12">
                 <i class="material-icons prefix">vpn_key</i>
                 <input id="password" type="password" class="validate" name="password" required>
                 <label for="password">Mot de passe</label>
@@ -65,7 +65,7 @@ if (isset($_SESSION['alert'])) {
         </div>
     </form>
     <div style="text-align: center; margin-top: 50px">
-        <p class="connect fade-in five">Mot de passe oublié ? <a class="link" href="reset.php">Réinitialiser le mot de passe</a></p>
+        <p class="connect fade-in four">Mot de passe oublié ? <a class="link" href="reset.php">Réinitialiser le mot de passe</a></p>
     </div>
 </div>
 

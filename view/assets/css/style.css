@@ -88,7 +88,8 @@ nav {
     .form_create_profil .form_pic2 {
 
     }
-    .container_slider{
+
+    .container_slider {
         padding: 0px;
         max-height: 250px;
     }
@@ -134,7 +135,7 @@ nav {
     font-size: 2rem;
 }
 
-.container_slider{
+.container_slider {
     padding: 50px;
 }
 
@@ -446,7 +447,7 @@ NOTIFICATIONS
     color: #00e676;
 }
 
-.error{
+.error {
     color: #f50057;
 }
 
@@ -458,8 +459,141 @@ NOTIFICATIONS
 SIDENAV
 */
 
-.image_profil_sidenav{
+.image_profil_sidenav {
     height: 150px !important;
     width: 150px !important;
     margin: auto !important;
+}
+
+
+/*
+PROFILE PAGE
+*/
+
+.container_profil {
+    padding-top: 5%;
+    width: 60%;
+    margin: auto;
+    display: flex;
+}
+
+.user_profil {
+    width: 550px;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    margin: auto;
+}
+
+.user_profil_gallery {
+    width: 30%;
+    display: block;
+    transition: all .3s;
+    animation: fadeIn 1s;
+    margin: auto;
+}
+
+.user_profil_image{
+    transform: translateY(-50px);
+    width: 180px;
+    margin: auto;
+    margin-bottom: -40px;
+}
+
+.score_profil{
+    width: 300px;
+}
+
+.info_sub_profil{
+    font-size: 1.3rem;
+}
+
+.connected{
+    color: #00e676;
+}
+
+.fw100{
+    font-weight: 100 !important;
+}
+
+.pdrl{
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.pdtb{
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.icon_spacing2{
+    margin-right: 10px;
+}
+.chip{
+    width: auto !important;
+    transition: all 0.5s;
+}
+
+.chip:hover{
+    transition: all 0.5s;
+    transform: scale(1.1);
+}
+
+.tag{
+    background-color: #E4E4E4;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    line-height: 2.5;
+    text-transform: uppercase;
+}
+
+hr.style14 {
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+.ludwig {
+    position: relative;
+    padding-left: 1em;
+    border-left: 0.2em solid #f50057;
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 100;
+}
+.ludwig:before, .ludwig:after {
+    content: '\201C';
+    color: #f50057;
+}
+.ludwig:after {
+    content: '\201D';
+}
+
+@media screen and (max-width: 600px) {
+    .user_profil_gallery{
+        width: 100%;
+    }
+    .container_profil{
+        width: 100%;
+        display: block;
+    }
+    .user_profil{
+        width: 100%;
+    }
+    .rp{
+        width: 33% !important;
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    .container_profil{
+        width: 100%;
+        display: block;
+    }
 }

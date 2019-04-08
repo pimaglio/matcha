@@ -17,85 +17,123 @@ include('header_connect.php');
 
 ?>
 
-<main class="my_profil row">
+<div class="container_profil">
 
-    <div class="col s6">
-        <div class="my_pic"></div>
-        <h2 class="title-form-alt">Mes <br><span class="title-form">Photos</span></h2>
-        <div class="container_slider">
-            <div class="carousel carousel-slider">
-                <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
-                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
+    <div class="user_profil">
+        <div class="user_profil_image">
+            <img class="materialboxed circle" width="180" height="180" src="assets/images/fakeuser.jpg">
+        </div>
+        <div class="row center score_profil">
+            <div class="col s12">
+                <p><i class="fas fa-circle connected"></i> Connecté</p>
+            </div>
+        </div>
+        <div class="row center pdrl">
+            <div class="col s12">
+                <b class="info_sub_profil">Eric Reptile, </b><span>27ans</span>
+                <p class="fw100">Marseille, France</p>
+            </div>
+            <div style="margin-top: 20px" class="col s12">
+                <b class="info_sub_profil"><i class="fas fa-star icon_spacing"></i>456</b>
+                <p>Popularité</p>
+            </div>
+        </div>
+        <div class="row pdtb pdrl center">
+            <div class="col s6">
+                <b class="info_sub_profil fw100"><i class="fas fa-venus-mars icon_spacing"></i>Homme</b>
+            </div>
+            <div class="col s6">
+                <b class="info_sub_profil fw100"><i class="fas fa-search icon_spacing"></i>Babtou</b>
             </div>
         </div>
 
-    </div>
-    <div class="col s6 panel_info">
-        <div class="icon_profil"></div>
-        <h2 class="title-form-alt">Informations<br><span class="title-form">Générales</span></h2>
-    </div>
-
-</main>
-
-<div class="card-profile shadow card">
-    <div class="justify-content-center row">
-        <div class="order-lg-2 col-lg-3">
-            <div class="card-profile-image"><a href="#pablo"><img alt="..." class="rounded-circle"
-                                                                  src="/argon-dashboard-react/static/media/team-4-800x800.23007132.jpg"></a>
-            </div>
-        </div>
-    </div>
-    <div class="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4 card-header">
-        <div class="d-flex justify-content-between"><a href="#pablo" class="mr-4 btn btn-info btn-sm">Connect</a><a
-                    href="#pablo" class="float-right btn btn-default btn-sm">Message</a></div>
-    </div>
-    <div class="pt-0 pt-md-4 card-body">
-        <div class="row">
-            <div class="col">
-                <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                    <div><span class="heading">22</span><span class="description">Friends</span></div>
-                    <div><span class="heading">10</span><span class="description">Photos</span></div>
-                    <div><span class="heading">89</span><span class="description">Comments</span></div>
+        <div style="margin-bottom: 50px" class="row center pdrl">
+            <div class="col s3 s3">
+                <div class="tag">
+                    <p class=""><i class="fas fa-running icon_spacing2"></i>Sport</p>
                 </div>
             </div>
-        </div>
-        <div class="text-center"><h3>Jessica Jones<span class="font-weight-light">, 27</span></h3>
-            <div class="h5 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
-            <div class="h5 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-plane icon_spacing2"></i>Voyage</p>
+                </div>
             </div>
-            <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
-            <hr class="my-4">
-            <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all
-                of his own music.</p><a href="#pablo">Show more</a></div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-apple-alt icon_spacing2"></i>Vegan</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-gamepad icon_spacing2"></i>Geek</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-glass-cheers icon_spacing2"></i>Soirée</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-dragon icon_spacing2"></i>Tattoo</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-music icon_spacing2"></i>Musique</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-book icon_spacing2"></i>Lecture</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-theater-masks icon_spacing2"></i>Théâtre</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-peace icon_spacing2"></i>Religion</p>
+                </div>
+            </div>
+            <div class="col s3 rp">
+                <div class="tag">
+                    <p class=""><i class="fas fa-palette icon_spacing2"></i>Peinture</p>
+                </div>
+            </div>
+            <div style="margin-top: 30px" class="col s12">
+                <hr class="style14">
+            </div>
+            <div class="col s12">
+                <blockquote class="ludwig">
+                    I don't know why we are here, but I'm pretty sure that it is not in order to enjoy ourselves.
+                </blockquote>
+            </div>
+        </div>
     </div>
+
+    <div class="user_profil_gallery">
+        <div class="carousel">
+            <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
+            <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+            <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+            <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+            <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+        </div>
+    </div>
+
 </div>
+
 
 <script src="assets/js/materialize.js"></script>
 <script>
-    $('.carousel.carousel-slider').carousel({
-        fullWidth: true,
-        indicators: true
+    $(document).ready(function () {
+        $('.carousel').carousel();
     });
     $(document).ready(function () {
-        $('select').formSelect();
+        $('.materialboxed').materialbox();
     });
-
-
-    var password = document.getElementById("password")
-        , confirm_password = document.getElementById("password2");
-
-    function validatePassword() {
-        if (password.value !== confirm_password.value) {
-            confirm_password.setCustomValidity("Les mots de passe ne correspondent pas");
-        } else {
-            confirm_password.setCustomValidity('');
-        }
-    }
-
-    password.onchange = validatePassword;
-    confirm_password.onkeyup = validatePassword;
 </script>
-
 </body>
