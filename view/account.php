@@ -47,56 +47,64 @@ include('header_connect.php');
         <h2 class="title-form-alt">Informations<br><span class="title-form">Générales</span></h2>
     </div>
     <div class="row">
-        <form id="user-form" method="POST" action="../controllers/ProfilsController.php">
-            <div class="row">
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="nom" type="text" class="validate" pattern="[A-Za-z\s -]+" name="nom" maxlength="50"
+        <?php
+        $user = recup_user();
+        $user_name = $user['nom'];
+        echo "
+       
+        <form id=\"user-form\" method=\"POST\" action=\"../controllers/ProfilsController.php\">
+            <div class=\"row\">
+                <div class=\"input-field col s3\">
+                    <i class=\"material-icons prefix\">account_circle</i>
+                    <input id=\"nom\" type=\"text\" value='$user_name' class=\"validate\" pattern=\"[A-Za-z\s -]+\" name=\"nom\" maxlength=\"50\"
                            required>
-                    <span class="helper-text" data-error="Format invalide: (A-z) et (-)"
-                          data-success="Format valide"></span>
-                    <label for="nom">Nom et Prénom</label>
+                    <span class=\"helper-text\" data-error=\"Format invalide: (A-z) et (-)\"
+                          data-success=\"Format valide\"></span>
+                    <label for=\"nom\">Nom et Prénom</label>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="login" type="text" class="validate" pattern="[A-Za-z-0-9\s -]+" name="login"
-                           maxlength="25" required>
-                    <span class="helper-text" data-error="Format invalide: (A-z), (0-9), (-)"
-                          data-success="Format valide"></span>
-                    <label for="login">Nom d'utilisateur</label>
+                <div class=\"input-field col s3\">
+                    <i class=\"material-icons prefix\">account_circle</i>
+                    <input id=\"login\" type=\"text\" class=\"validate\" pattern=\"[A-Za-z-0-9\s -]+\" name=\"login\"
+                           maxlength=\"25\" required>
+                    <span class=\"helper-text\" data-error=\"Format invalide: (A-z), (0-9), (-)\"
+                          data-success=\"Format valide\"></span>
+                    <label for=\"login\">Nom d'utilisateur</label>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" class="validate" pattern="(?=.*[!@#$%^&*(),.?:{}|<>]).{6,}"
-                           name="password" maxlength="25" required>
-                    <span class="helper-text"
-                          data-error="Format invalide: Doit contenir 6 caractères minimum dont 1 caractère special (!@#$%^&*(),.?:{}|<>)"
-                          data-success="Format valide"></span>
-                    <label for="password">Mot de passe</label>
+                <div class=\"input-field col s3\">
+                    <i class=\"material-icons prefix\">vpn_key</i>
+                    <input id=\"password\" type=\"password\" class=\"validate\" pattern=\"(?=.*[!@#$%^&*(),.?:{}|<>]).{6,}\"
+                           name=\"password\" maxlength=\"25\">
+                    <span class=\"helper-text\"
+                          data-error=\"Format invalide: Doit contenir 6 caractères minimum dont 1 caractère special (!@#$%^&*(),.?:{}|<>)\"
+                          data-success=\"Format valide\"></span>
+                    <label for=\"password\">Mot de passe</label>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">vpn_key</i>
-                    <input id="password2" type="password" class="validate" pattern="(?=.*[!@#$%^&*(),.?:{}|<>]).{6,}"
-                           name="password2" maxlength="25" required>
-                    <span class="helper-text" data-error="Les mots de passe ne correspondent pas"
-                          data-success="Format valide"></span>
+                <div class=\"input-field col s3\">
+                    <i class=\"material-icons prefix\">vpn_key</i>
+                    <input id=\"password2\" type=\"password\" class=\"validate\" pattern=\"(?=.*[!@#$%^&*(),.?:{}|<>]).{6,}\"
+                           name=\"password2\" maxlength=\"25\">
+                    <span class=\"helper-text\" data-error=\"Les mots de passe ne correspondent pas\"
+                          data-success=\"Format valide\"></span>
 
-                    <label for="password2">Mot de passe (confirmation)</label>
+                    <label for=\"password2\">Mot de passe (confirmation)</label>
                 </div>
-                <div class="input-field col s3">
-                    <i class="material-icons prefix">email</i>
-                    <input id="email" type="text" class="validate" name="email" required>
-                    <label for="email">Adresse email</label>
+                <div class=\"input-field col s3\">
+                    <i class=\"material-icons prefix\">email</i>
+                    <input id=\"email\" type=\"text\" class=\"validate\" name=\"email\" required>
+                    <label for=\"email\">Adresse email</label>
                 </div>
-                <div class="col s12" style="text-align: right">
-                    <button class="btn-large waves-effect waves-light pink accent-3" type="submit" name="submit"
-                            value="Créer mon profil">Mettre à jour
-                        <i class="material-icons right">send</i>
+                <div class=\"col s12\" style=\"text-align: right\">
+                    <button class=\"btn-large waves-effect waves-light pink accent-3\" type=\"submit\" name=\"submit\"
+                            value=\"Créer mon profil\">Mettre à jour
+                        <i class=\"material-icons right\">send</i>
                     </button>
                 </div>
             </div>
-            <input type="hidden" name="user_modif" value="ok">
+            <input type=\"hidden\" name=\"user_modif\" value=\"ok\">
         </form>
+        
+        ";
+        ?>
     </div>
 </main>
 
