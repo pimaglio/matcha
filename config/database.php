@@ -8,7 +8,7 @@
 
 function database_connect()
 {
-    $DB_DSN = "172.24.0.2";
+    $DB_DSN = "172.18.0.2";
     $DB_USER = "root";
     $DB_PASSWORD = "root";
     $DB_NAME = "matcha";

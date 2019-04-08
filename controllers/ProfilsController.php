@@ -10,12 +10,12 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-//function htmldump($variable, $height = "300px")
-//{
-//    echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
-//    var_dump($variable);
-//    echo "</pre>\n";
-//}
+function htmldump($variable, $height = "300px")
+{
+    echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
+    var_dump($variable);
+    echo "</pre>\n";
+}
 
 function lowpassword()
 {
@@ -87,7 +87,7 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
         }
         $password = hash('sha256', $_POST['password']);
     } else
-        $password = hash('sha256', $db_con->user_passwd());
+        $password = $db_con->user_passwd();
     $info = new infos([]);
     $id = $info->find_id();
     $db_con = new account($_POST);
@@ -100,7 +100,7 @@ if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST
     else if  (($var = $db_con->ifEmailTaken() === 1) && $_POST['email'] !== $user['email']){
         $_SESSION['error'] = 7;
         unset ($_SESSION['modif']);
-                header('Location: ../view/account.php');
+        header('Location: ../view/account.php');
         exit();
     }
     else {

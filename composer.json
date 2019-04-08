@@ -1,0 +1,6 @@
+{
+    "require": {
+        "randomuser/generator": "^1.0",
+        "fzaninotto/faker": "~1.4"
+    }
+}
