@@ -39,16 +39,20 @@ if (!isset($_SESSION)) {
         </div>
     </li>
     <li><a class="subheader">Menu Principal</a></li>
-    <li><a href="#!"><i class="fas fa-bolt"></i>Matcha Now !</a></li>
-    <li><a href="#!"><i class="fas fa-heart"></i>Mes likes</a></li>
-    <li><a href="#!"><i class="fas fa-envelope"></i>Messages</a></li>
-    <li><a href="#!"><i class="fas fa-history"></i>Historique des visites</a></li>
+    <li><a href="#!"><i class="material-icons">flash_on</i>Matcha now !</a></li>
+    <li><a href="#!"><i class="material-icons">whatshot</i>Mes likes</a></li>
+    <li><a href="#!"><i class="material-icons">message</i>Messages</a></li>
+    <li><a href="#!"><i class="material-icons">history</i>Historique des visites</a></li>
     <li>
         <div class="divider"></div>
     </li>
     <li><a class="subheader">Paramètres Généraux</a></li>
-    <li><a href="account.php"><i class="fas fa-user-edit"></i>Mon profil</a></li>
-    <li><a href="logout.php"><i class="fas fa-power-off"></i>Se déconnecter</a></li>
+    <li><a href="account.php"><i class="material-icons">settings</i>Mon profil</a></li>
+    <li><a href="logout.php"><i class="material-icons">power_settings_new</i>Se déconnecter</a></li>
+    <form method="post" action="logout.php">
+        <input type="hidden" name="delete" value="ok">
+        <li><a href="logout.php"><i class="material-icons">delete</i>Supprimer mon compte</a></li>
+    </form>
 </ul>
 
 <!--NOTIFICATIONS-->
