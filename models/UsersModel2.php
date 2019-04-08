@@ -40,7 +40,6 @@ class infos
             $this->login = $_SESSION['loggued_on_user'];
         $this->db_con = database_connect();
         $this->id = $this->find_id();
-        echo $this->id;
     }
 
     public function find_id()
@@ -127,7 +126,6 @@ class infos
     }
 
     public function edit_interest($del, $add){
-        echo $this->id;
         foreach ($del as $k => $v) {
             $query = 'UPDATE interest SET ' . $k .'=0 WHERE id_usr=:id';
             $stmt = $this->db_con->prepare($query);
