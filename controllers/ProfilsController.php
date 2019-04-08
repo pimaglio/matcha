@@ -173,6 +173,8 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
         $db_con->profile_complete();
         $_SESSION['success'] = 6;
         $_SESSION['loggued_on_user'] = $_SESSION['loggued_but_not_complet'];
+        $db = new account(["login" => $_SESSION['loggued_on_user']]);
+        $db->set_statut(1);
         unset($_SESSION['loggued_but_not_complet']);
         header("Location: ../view");
     }
@@ -267,6 +269,7 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
     }
     else {
         $_SESSION['success'] = 4;
+        $user->set_statut(1);
         header("Location: ../view/");
     }
 }
@@ -301,4 +304,11 @@ if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'
         $_SESSION['error'] = 3;
         header('Location: ../view/login.php');
     }
+}
+
+// DECONNEXION
+
+function unlog(){
+    $user = new account(["login" => $_SESSION['loggued_on_user']]);
+    $user->set_statut(0);
 }
