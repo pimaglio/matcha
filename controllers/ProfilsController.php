@@ -10,12 +10,12 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-function htmldump($variable, $height = "300px")
-{
-    echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
-    var_dump($variable);
-    echo "</pre>\n";
-}
+//function htmldump($variable, $height = "300px")
+//{
+//    echo "<pre style=\"border: 1px solid #000; height: {$height}; overflow: auto; margin: 0.5em;\">";
+//    var_dump($variable);
+//    echo "</pre>\n";
+//}
 
 function lowpassword()
 {
