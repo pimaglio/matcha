@@ -1,5 +1,6 @@
 <?php
 require_once "../controllers/ProfilsController.php";
+require_once "../controllers/SuggestController.php";
 if (!isset($_SESSION)) {
     session_start();
 }
