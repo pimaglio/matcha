@@ -166,15 +166,15 @@ CREATE TABLE visit (
   id int(11) NOT NULL AUTO_INCREMENT,
   id_usr int(11) NOT NULL,
   id_usr_h int(11) NOT NULL,
-  date date DEFAULT NULL,
+  date varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
 
     $sql_create_user = <<<EOSQL
-INSERT INTO user_db (login, password, email, valid, profile)
+INSERT INTO user_db (login, nom, password, email, valid, profile)
 VALUES 
-  ('root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'pmaglioz@gmail.com', '1', '1');
+  ('root', 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'root@root.com', '1', '1');
 EOSQL;
 
     $msg = '';

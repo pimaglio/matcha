@@ -18,6 +18,11 @@ class ComposerStaticInit89b1c2f329638364d2a49387bc0ee793
         array (
             'Psr\\Http\\Message\\' => 17,
         ),
+        'M' => 
+        array (
+            'MenaraSolutions\\Geographer\\Helpers\\' => 35,
+            'MenaraSolutions\\Geographer\\' => 27,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -34,6 +39,14 @@ class ComposerStaticInit89b1c2f329638364d2a49387bc0ee793
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'MenaraSolutions\\Geographer\\Helpers\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/menarasolutions/geographer-data/helpers',
+        ),
+        'MenaraSolutions\\Geographer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/menarasolutions/geographer/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
