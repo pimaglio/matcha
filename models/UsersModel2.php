@@ -294,7 +294,7 @@ class infos
 
     public function recup_popu_suggest(){
         $arr = [];
-        $query = 'SELECT id_usr FROM data WHERE popularite>=5000 AND NOT id_usr=:id ORDER BY `popularite` ASC';
+        $query = 'SELECT id_usr FROM data WHERE popularite>=5000 AND NOT id_usr=:id ORDER BY `popularite` DESC';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
            ":id" => $_SESSION['id']
