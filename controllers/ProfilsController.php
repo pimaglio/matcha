@@ -260,7 +260,7 @@ if (isset ($_POST['connec']) && $_POST['connec'] === 'ok' && isset($_POST['passw
         exit();
     }
     if ($var === 4) {
-/*        $_SESSION['error'] = 13;*/
+//        $_SESSION['error'] = 13;
         header("Location: ../view/createprofile.php");
         exit();
     }
@@ -328,9 +328,11 @@ function manage_fake_account($arr){
     $db_con = new account($arr);
     $db_con->add();
     $db_con->setValid();
+    $db_con->setProfile();
     $db = new infos($arr);
     $db->add_data();
     $db->addPP($arr['picture']);
+    $db->addpop($arr['popularite']);
     $array['sport'] = rand(0,1);
     $array['voyage'] = rand(0,1);
     $array['vegan'] = rand(0,1);
