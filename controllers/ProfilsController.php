@@ -6,6 +6,7 @@
  * Time: 15:05
  */
 include('../models/UsersModel2.php');
+include ('../models/LocationModel.php');
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -330,9 +331,12 @@ function manage_fake_account($arr){
     $db_con->setValid();
     $db_con->setProfile();
     $db = new infos($arr);
+    $id = $db->find_id();
     $db->add_data2($arr['location']);
     $db->addPP($arr['picture']);
     $db->addpop($arr['popularite']);
+    $loc = new location($arr['location']);
+    $loc->add_loc($id);
     $array['sport'] = rand(0,1);
     $array['voyage'] = rand(0,1);
     $array['vegan'] = rand(0,1);
