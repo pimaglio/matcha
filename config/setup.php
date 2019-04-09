@@ -86,7 +86,7 @@ CREATE TABLE data (
 EOSQL;
 
     $sql_create_user_db_tbl = <<<EOSQL
-CREATE TABLE user_db (
+CREATE TABLE if not exists user_db (
   id int(11) NOT NULL AUTO_INCREMENT,
   login varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   nom varchar(50) NOT NULL,
@@ -115,7 +115,11 @@ EOSQL;
 CREATE TABLE photo (
   id int (11) NOT NULL AUTO_INCREMENT,
   id_usr int(11) NOT NULL,
-  photo VARCHAR(255) NOT NULL,
+  pp VARCHAR(255) NOT NULL,
+  p1 VARCHAR(255) NOT NULL,
+  p2 VARCHAR(255) NOT NULL,
+  p3 VARCHAR(255) NOT NULL,
+  p4 VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;

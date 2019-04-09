@@ -325,12 +325,12 @@ function delete_account(){
 //FAKE ACCOUNT
 
 function manage_fake_account($arr){
-    echo 'ok';
     $db_con = new account($arr);
     $db_con->add();
     $db_con->setValid();
     $db = new infos($arr);
     $db->add_data();
+    $db->addPP($arr['picture']);
     $array['sport'] = rand(0,1);
     $array['voyage'] = rand(0,1);
     $array['vegan'] = rand(0,1);
@@ -343,5 +343,4 @@ function manage_fake_account($arr){
     $array['theatre'] = rand(0,1);
     $array['religion'] = rand(0,1);
     $db->add_interest($array);
-
 }

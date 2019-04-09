@@ -203,6 +203,15 @@ class infos
             ":id" => $this->id,
         ));
     }
+
+    public function addPP($pic){
+        $query = 'INSERT INTO `photo` (id_usr, pp) VALUE (:id, :pic)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id,
+            ":pic" => $pic
+        ));
+    }
 }
 
 class account
