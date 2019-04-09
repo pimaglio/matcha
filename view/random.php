@@ -1,10 +1,8 @@
 <?php
 require '../vendor/autoload.php';
 require '../controllers/ProfilsController.php';
-use MenaraSolutions\Geographer\Country;
+require '../controllers/SuggestController.php';
 
-
-$france = Country::build('FR');;
 $faker = Faker\Factory::create('fr_FR');
 $login = $_SESSION['loggued_on_user'];
 for ($i = 0; $i < 25; $i++) {

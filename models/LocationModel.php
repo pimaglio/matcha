@@ -43,6 +43,27 @@ class location
         ));
     }
 
+    public function recup_lat_long(){
+        $query = 'SELECT lat, `long` FROM `location` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $_SESSION['id']
+        ));
+        return $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function all_loc(){
+        $arr = [];
+        $query = 'SELECT id_usr, lat, `long` FROM `location` WHERE NOT id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $_SESSION['id']
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        return $arr;
+    }
+
     /**
      * Retourne la distance en metre ou kilometre (si $unit = 'k') entre deux latitude et longitude fournit
      */
@@ -56,11 +77,7 @@ class location
         $dla = ($rla2 - $rla1) / 2;
         $a = (sin($dla) * sin($dla)) + cos($rla1) * cos($rla2) * (sin($dlo) * sin($dlo));
         $d = 2 * atan2(sqrt($a), sqrt(1 - $a));
-        //
         $meter = ($earth_radius * $d);
-//        if ($unit == 'k') {
-//            return $meter / 1000;
-//        }
         return $meter / 1000;
     }
 }

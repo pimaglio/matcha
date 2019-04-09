@@ -39,7 +39,8 @@ class infos
         if (isset($_SESSION['loggued_on_user']))
             $this->login = $_SESSION['loggued_on_user'];
         $this->db_con = database_connect();
-        $this->id = $this->find_id();
+//        $this->id = $this->find_id();
+        $this->id = 2;
     }
 
     public function find_id()
@@ -304,6 +305,30 @@ class infos
         return $arr;
     }
 
+    public function research_age($min, $max){
+        $arr = [];
+        $query = 'SELECT id_usr FROM data WHERE age>=:min AND age<=:max AND id_usr!=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":min" => $min,
+            ":max" => $max,
+//            ":id" => $_SESSION['id'],
+            ":id" => $this->id,
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        return $arr;
+    }
+
+    public function recup_pop($id){
+        $query = 'SELECT popularite FROM data WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $fetch['popularite'];
+    }
 }
 
 class account
