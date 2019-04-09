@@ -74,13 +74,32 @@ function recup_inter_id($id)
 
 /*LIKE*/
 
-if (isset($_POST['like']) && $_POST['like'] === 'ok'){
+function is_like($id_usr, $id_usr_l){
+    $db_con = new like(array(
+        'id_usr' => $id_usr,
+        'id_usr_l' => $id_usr_l
+    ));
+    $res = $db_con->if_like();
+    return $res;
+}
+
+
+if (isset($_POST['like']) && $_POST['like'] === 'add'){
     $db_con = new like(array(
         'id_usr' => $_POST['id_usr'],
         'id_usr_l' => $_POST['id_usr_l'],
     ));
-    $res = $db_con->add_like();
-    echo $res;
+    $db_con->add_like();;
+    header('Location: ../view/profile.php?id=' . $_POST['id']);
+}
+
+if (isset($_POST['like']) && $_POST['like'] === 'del'){
+    $db_con = new like(array(
+        'id_usr' => $_POST['id_usr'],
+        'id_usr_l' => $_POST['id_usr_l'],
+    ));
+    $db_con->del_like();
+    header('Location: ../view/profile.php?id=' . $_POST['id']);
 }
 
 // MODIF USER

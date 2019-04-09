@@ -649,3 +649,27 @@ HISTORY
         width: 100% !important;
     }
 }
+
+.like-btn{
+    position: absolute;
+    top: 30px;
+    right: 0px;
+}
+
+.msg-btn{
+    position: absolute;
+    top: 15px;
+    left: 0px;
+}
+
+.signal{
+    position: absolute;
+    bottom: -41px;
+    left: 20px;
+}
+
+.blocker{
+    position: absolute;
+    bottom: -41px;
+    right: 20px;
+}

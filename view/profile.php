@@ -32,10 +32,36 @@ if (isset($_GET['id'])) {
 <body>
 <div class="container_profil">
 
-    <div class="user_profil">
+    <div style="position: relative" class="user_profil">
         <?php
         $id_usr = $_SESSION['id'];
         $id_usr_l = $_GET['id'];
+        $like = is_like($id_usr, $id_usr_l);
+        $message = "
+        <div class='msg-btn'>
+            <button class='waves-effect waves-light btn blue msg-btn' name='like' value='del'><i class=\"material-icons left\">chat_bubble</i>Message</button>
+        </div>
+        ";
+
+        if ($like == 1) {
+            $like_btn = "
+        <form class='like-btn' method='post' action='../controllers/ProfilsController.php'>
+        <input type='hidden' name='id_usr' value='$id_usr'>
+        <input type='hidden' name='id_usr_l' value='$id_usr_l'>
+        <input type='hidden' name='id' value='$id_usr_l'>
+        <button class='waves-effect waves-light btn' name='like' value='del'><i class=\"fas fa-heart-broken left\"></i>DISLIKE</button>
+        </form>";
+        }
+        else {
+            $like_btn = "
+        <form class='like-btn' method='post' action='../controllers/ProfilsController.php'>
+        <input type='hidden' name='id_usr' value='$id_usr'>
+        <input type='hidden' name='id_usr_l' value='$id_usr_l'>
+        <input type='hidden' name='id' value='$id_usr_l'>
+        <button class='waves-effect waves-light btn' name='like' value='add'><i class=\"material-icons left\">favorite</i>LIKE</button>
+        </form>";
+        }
+
         $user = recup_user_id($_GET['id']);
         $data = recup_data_id($_GET['id']);
         $inter = recup_inter_id($_GET['id']);
@@ -97,13 +123,10 @@ if (isset($_GET['id'])) {
 
         echo "
         <div class=\"user_profil_image\">
-        <form method='post' action='../controllers/ProfilsController.php'>
-        <input type='hidden' name='id_usr' value='$id_usr'>
-        <input type='hidden' name='id_usr_l' value='$id_usr_l'>
-        <button name='like' value='ok'>Like</button>
-        </form>
             <img class=\"materialboxed circle\" width=\"180\" height=\"180\" src=\"assets/images/fakeuser.jpg\">
         </div>
+        $message
+        $like_btn
         <div class=\"row center score_profil\">
             <div class=\"col s12\">
                 <p><i class=\"fas fa-circle connected\"></i> Connecté</p>
@@ -135,6 +158,12 @@ if (isset($_GET['id'])) {
             <div class=\"col s12\">
                 <blockquote class=\"ludwig\">" . $data['bio'] . "</blockquote>
             </div>
+        </div>
+        <div class=\"signal\">
+            <a style='font-weight: 200;color: black;' href=\"history.php\"><i class=\"material-icons left\">feedback</i>Signaler cet utilisateur</a>
+        </div>
+        <div class=\"blocker\">
+            <a style='font-weight: 200;color: black;' href=\"history.php\"><i class=\"material-icons left\">block</i>Bloquer cet utilisateur</a>
         </div>
         ";
         ?>
