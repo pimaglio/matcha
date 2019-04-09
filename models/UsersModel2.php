@@ -778,10 +778,6 @@ class like
     }
 
     public function del_like(){
-        $stmt = $this->db_con->prepare("DELETE FROM data WHERE login=:login");
-        $val = $stmt->execute(array(
-            "login" => $this->login
-        ));
         $query= 'DELETE FROM `likes` WHERE id_usr=:id_usr AND id_usr_l=:id_usr_l';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
