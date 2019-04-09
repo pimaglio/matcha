@@ -90,6 +90,7 @@ class infos
             ":id" => $this->id
         ));
     }
+
     public function addpop($pop)
     {
         $query = 'UPDATE data SET popularite=:pop WHERE id_usr=:id';
@@ -125,7 +126,8 @@ class infos
         }
     }
 
-    public function profile_complete(){
+    public function profile_complete()
+    {
         $login_now = $_SESSION['loggued_on_user'];
         $query = "UPDATE user_db SET profile=:profile WHERE login='$login_now'";
         $stmt = $this->db_con->prepare($query);
@@ -135,9 +137,10 @@ class infos
 
     }
 
-    public function edit_interest($del, $add){
+    public function edit_interest($del, $add)
+    {
         foreach ($del as $k => $v) {
-            $query = 'UPDATE interest SET ' . $k .'=0 WHERE id_usr=:id';
+            $query = 'UPDATE interest SET ' . $k . '=0 WHERE id_usr=:id';
             $stmt = $this->db_con->prepare($query);
             $stmt->execute(array(
                 ":id" => $this->id
@@ -166,7 +169,8 @@ class infos
         return $arr;
     }
 
-    public function array_user(){
+    public function array_user()
+    {
         $query = 'SELECT * FROM user_db WHERE id=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -189,7 +193,8 @@ class infos
         return $arr;
     }
 
-    public function del_user_db(){
+    public function del_user_db()
+    {
         $query = 'DELETE FROM user_db WHERE id=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -197,7 +202,8 @@ class infos
         ));
     }
 
-    public function del_data(){
+    public function del_data()
+    {
         $query = 'DELETE FROM data WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -205,7 +211,8 @@ class infos
         ));
     }
 
-    public function del_interest(){
+    public function del_interest()
+    {
         $query = 'DELETE FROM interest WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -213,7 +220,8 @@ class infos
         ));
     }
 
-    public function addPP($pic){
+    public function addPP($pic)
+    {
         $query = 'INSERT INTO `photo` (id_usr, pp) VALUE (:id, :pic)';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -256,7 +264,8 @@ class account
 
     // RECUP USER ARRAY
 
-    public function array_user(){
+    public function array_user()
+    {
         $query = 'SELECT * FROM user_db WHERE login=:log';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -301,7 +310,7 @@ class account
         ));
         $count = $stmt->rowCount();
         if ($count != 0) {
-            if (!isset($_SESSION['modif'])){
+            if (!isset($_SESSION['modif'])) {
                 $_SESSION['error'] = 7;
                 header("Location: ../view/register.php");
             }
@@ -491,18 +500,18 @@ class account
             return 2;
         if ($fetched['password'] !== $this->password)
             return 3;
-        if ($fetched['profile'] == 0){
+        if ($fetched['profile'] == 0) {
             $_SESSION['loggued_on_user'] = $fetched['login'];
 //            $_SESSION['loggued_but_not_complet'] = $fetched['login'];
             return 4;
-        }
-        else {
+        } else {
             $_SESSION['loggued_on_user'] = $fetched['login'];
             return 0;
         }
     }
 
-    public function set_statut($i){
+    public function set_statut($i)
+    {
         echo 'ok';
         $query = 'UPDATE user_db SET statut=:i WHERE login=:log';
         $stmt = $this->db_con->prepare($query);
@@ -539,7 +548,8 @@ class account
         return $this->email;
     }
 
-    public function setValid(){
+    public function setValid()
+    {
         $query = 'UPDATE user_db SET valid=1 WHERE login=:login';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -547,7 +557,8 @@ class account
         ));
     }
 
-    public function setProfile(){
+    public function setProfile()
+    {
         $query = 'UPDATE user_db SET profile=1 WHERE login=:login';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -555,7 +566,8 @@ class account
         ));
     }
 
-    public function select_id($id){
+    public function select_id($id)
+    {
         $query = 'SELECT id FROM user_db WHERE id=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -587,7 +599,8 @@ class history
         $this->db_con = database_connect();
     }
 
-    public function add_history(){
+    public function add_history()
+    {
         $query = 'INSERT INTO `visit` (id_usr, id_usr_h, date) VALUE (:id_usr, :id_usr_h, :date)';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -595,5 +608,16 @@ class history
             ":id_usr_h" => $this->id_usr_h,
             ":date" => $this->date
         ));
+    }
+
+    public function get_history()
+    {
+        $query = 'SELECT * FROM visit WHERE id_usr_h=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id_usr_h
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $fetch;
     }
 }

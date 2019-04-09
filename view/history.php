@@ -26,8 +26,20 @@ include('header_connect.php');
 
             <tbody>
             <tr>
-                <td>Alvin</td>git
-                <td>$0.87</td>
+                <?php
+                $db2 = new infos([]);
+                $db = new history(array(
+                    'id_usr_h' => $db2->find_id(),
+                ));
+                $data_history = $db->get_history();
+                var_dump($data_history);
+/*                foreach ($data_history as $key => $value) {
+                    echo "
+                    <td>$key</td>
+                    <td>$value</td>
+                    ";
+                }*/
+                ?>
             </tr>
             </tbody>
         </table>
