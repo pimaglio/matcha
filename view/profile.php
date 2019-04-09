@@ -30,17 +30,12 @@ if (isset($_GET['id'])) {
 ?>
 
 <body>
-<?php
-
-$id_usr = $_SESSION['loggued_on_user'];
-
-
-?>
-
 <div class="container_profil">
 
     <div class="user_profil">
         <?php
+        $id_usr = $_SESSION['id'];
+        $id_usr_l = $_GET['id'];
         $user = recup_user_id($_GET['id']);
         $data = recup_data_id($_GET['id']);
         $inter = recup_inter_id($_GET['id']);
@@ -92,7 +87,7 @@ $id_usr = $_SESSION['loggued_on_user'];
         $sport = $inter['sport'] ? '<div class="col s3 s3"><div class="tag"><p class=""><i class="fas fa-running icon_spacing2"></i>Sport</p></div></div>' : '';
         $voyage = $inter['voyage'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-plane icon_spacing2"></i>Voyage</p></div></div>' : '';
         $vegan = $inter['vegan'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-apple-alt icon_spacing2"></i>Vegan</p></div></div>' : '';
-        $geek = $inter['geek'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-gamepad icon_spacing2"></i>Geek</p></div>/div>' : '';
+        $geek = $inter['geek'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-gamepad icon_spacing2"></i>Geek</p></div></div>' : '';
         $soiree = $inter['soiree'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-glass-cheers icon_spacing2"></i>Soirée</p></div></div>' : '';
         $tattoo = $inter['tattoo'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-dragon icon_spacing2"></i>Tattoo</p></div></div>' : '';
         $musique = $inter['musique'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-music icon_spacing2"></i>Musique</p></div></div>' : '';
@@ -102,6 +97,11 @@ $id_usr = $_SESSION['loggued_on_user'];
 
         echo "
         <div class=\"user_profil_image\">
+        <form method='post' action='../controllers/ProfilsController.php'>
+        <input type='hidden' name='id_usr' value='$id_usr'>
+        <input type='hidden' name='id_usr_l' value='$id_usr_l'>
+        <button name='like' value='ok'>Like</button>
+        </form>
             <img class=\"materialboxed circle\" width=\"180\" height=\"180\" src=\"assets/images/fakeuser.jpg\">
         </div>
         <div class=\"row center score_profil\">

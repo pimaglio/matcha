@@ -72,7 +72,16 @@ function recup_inter_id($id)
     return $db_con->array_inter_id();
 }
 
+/*LIKE*/
 
+if (isset($_POST['like']) && $_POST['like'] === 'ok'){
+    $db_con = new like(array(
+        'id_usr' => $_POST['id_usr'],
+        'id_usr_l' => $_POST['id_usr_l'],
+    ));
+    $res = $db_con->add_like();
+    echo $res;
+}
 
 // MODIF USER
 

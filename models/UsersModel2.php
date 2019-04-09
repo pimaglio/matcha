@@ -729,21 +729,63 @@ class like
 
     public function add_like()
     {
-        $query = 'SELECT id FROM likes WHERE id_usr_l=:id_usr';
+        $query = 'SELECT id FROM likes WHERE id_usr=:id_usr_l AND id_usr_l=:id_usr AND like_usr=1';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-            ":id_usr_l" => $this->id_usr_l
+            ":id_usr_l" => $this->id_usr_l,
+            ":id_usr" => $this->id_usr
         ));
-        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (isset($fetch['id'])){
-            $query_match = 'INSERT INTO `likes` (like_usr_l) VALUE (:like_usr_l)';
+        $match = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($match['id'])) {
+            $query_match = 'UPDATE likes SET like_usr_l=1 WHERE id=:id_m';
             $stmt = $this->db_con->prepare($query_match);
             $stmt->execute(array(
-                ":like_usr_l" => $this->id_usr
+                ":id_m" => $match['id']
             ));
+            return "match";
         }
-        else
-            return 0;
-
+        else if (!isset($match['id'])){
+            $query = 'SELECT id FROM likes WHERE id_usr=:id_usr AND id_usr_l=:id_usr_l AND like_usr=1';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id_usr_l" => $this->id_usr_l,
+                ":id_usr" => $this->id_usr
+            ));
+            $al_like = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (isset($al_like['id'])) {
+                $query_match = 'UPDATE likes SET like_usr=0 WHERE id=:id_m';
+                $stmt = $this->db_con->prepare($query_match);
+                $stmt->execute(array(
+                    ":id_m" => $al_like['id']
+                ));
+                return "like delete1";
+            }
+            $query2 = 'SELECT id FROM likes WHERE id_usr=:id_usr_l AND id_usr_l=:id_usr AND like_usr_l=1';
+            $stmt = $this->db_con->prepare($query2);
+            $stmt->execute(array(
+                ":id_usr_l" => $this->id_usr_l,
+                ":id_usr" => $this->id_usr
+            ));
+            $al_like2 = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (isset($al_like2['id'])) {
+                $query_match = 'UPDATE likes SET like_usr_l=0 WHERE id=:id_m';
+                $stmt = $this->db_con->prepare($query_match);
+                $stmt->execute(array(
+                    ":id_m" => $al_like2['id']
+                ));
+                return "like delete2";
+            }
+            else if (!isset($al_like['id']) && !isset($al_like2['id'])){
+                $query_create = 'INSERT INTO `likes` (id_usr, id_usr_l, like_usr) VALUE (:id_usr, :id_usr_l, :like_usr)';
+                $stmt = $this->db_con->prepare($query_create);
+                $stmt->execute(array(
+                    ":id_usr" => $this->id_usr,
+                    ":id_usr_l" => $this->id_usr_l,
+                    ":like_usr" => '1'
+                ));
+                return "like";
+            }
+        }
+        return "ok";
     }
 }
