@@ -61,6 +61,15 @@ if (!isset($_SESSION)) {
     <li><a href="account.php"><i class="material-icons">settings</i>Mon profil</a></li>
     <li><a href="logout.php"><i class="material-icons">power_settings_new</i>Se déconnecter</a></li>
     <li><a href="delete.php"><i class="material-icons">delete</i>Supprimer mon compte</a></li>
+    <?php
+
+    if (isset($_SESSION['loggued_on_user']))
+        if ($_SESSION['loggued_on_user'] === 'root'){
+            echo "
+            <li><a style='color: #f50057' href=\"random.php\"><i style='color: #f50057' class=\"material-icons\">assignment_ind</i>Générer les FakesUsers</a></li>
+            ";
+        }
+    ?>
 
 </ul>
 
