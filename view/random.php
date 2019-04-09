@@ -35,7 +35,6 @@ for ($i = 0; $i < 25; $i++) {
     $arr['nom'] = $faker->name;
     $arr['login'] = $faker->userName;
     $arr['location'] = $city[$num];
-    var_dump ($arr['location']); echo '</br>';
     $arr['email'] = $faker->email;
     $arr['password'] = hash('sha256', 'Fabien69@');
     $arr['bio'] =  $faker->realText($maxNbChars = 255, $indexSize = 2);

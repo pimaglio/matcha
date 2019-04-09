@@ -334,7 +334,8 @@ if (isset($_POST['forgot']) && $_POST['forgot'] === 'ok' && isset($_POST['login'
 
 function unlog(){
     $user = new account(["login" => $_SESSION['loggued_on_user']]);
-    $user->set_statut(0);
+    $date = date('Y-m-d H:i:s');
+    $user->set_statut($date);
 }
 
 // DELETE ACCOUNT A FINIR pour toutes les tables
@@ -352,6 +353,9 @@ function delete_account(){
 //FAKE ACCOUNT
 
 function manage_fake_account($arr){
+//    $loc = new location($arr['location']);
+    echo $meter = location::distance(43.123331, 5.930767,47.377760, 0.675022);
+
     $db_con = new account($arr);
     $db_con->add();
     $db_con->setValid();
