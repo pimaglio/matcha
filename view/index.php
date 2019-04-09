@@ -22,11 +22,11 @@ include('header_connect.php');
 
 <div class="container">
     <div class="row">
-        <div class="col s12 m6 l3">
+        <div class="col s12 m6 l3 card_profil">
             <div class="card fade-in two">
                 <div class="card-image">
                     <img src="assets/images/fakeuser.jpg">
-                    <span class="card-title">Card Title</span>
+                    <span class="card-title">Sena</span>
                     <a class="btn-floating halfway-fab waves-effect waves-light"><i class="material-icons">favorite</i></a>
                 </div>
                 <div class="card-content">
@@ -46,9 +46,6 @@ include('header_connect.php');
                             <p class="fw100 right"><i class="fas fa-search icon_spacing"></i>Babtou</p>
                         </div>
                     </div>
-                    <br>
-                    <hr class="style14">
-                    <br>
                     <div class="container center">
                         <p><i class="fas fa-circle connected"></i> Connecté</p>
                     </div>

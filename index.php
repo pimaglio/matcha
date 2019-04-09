@@ -5,7 +5,7 @@ if (!isset($_SESSION)) {
 
 if (isset($_SESSION['loggued_on_user']))
     if (!isset($_SESSION['loggued_but_not_complet']))
-    header("Location: ./view");
+        header("Location: ./view");
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,8 +20,8 @@ if (isset($_SESSION['loggued_on_user']))
     <link rel="stylesheet" type="text/css" href="view/assets/css/materialize.css">
     <script src="view/assets/js/materialize.js"></script>
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-              integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 
 <body>
@@ -30,17 +30,15 @@ if (isset($_SESSION['loggued_on_user']))
     <h1 class="logo_home fade-in one">
         Matcha
     </h1>
-    <div class="home_content fade-in two">
-        <div class="col s6 home_left_col">
-            <a href="view/register.php" class="waves-effect waves-light btn-large blue"><i
-                        class="material-icons left">create</i>Inscription</a>
-        </div>
-        <div class="col s6 home_right_col fade-in three">
-            <a href="view/login.php" class="waves-effect waves-light btn-large"><i
-                        class="material-icons left">person</i>Connexion</a>
-        </div>
+    <div style="margin-top: 400px">
+        <a href="view/register.php" class="waves-effect waves-light btn-large blue"><i
+                    class="material-icons left">create</i>Inscription</a>
+        <a href="view/login.php" class="waves-effect waves-light btn-large"><i
+                    class="material-icons left">person</i>Connexion</a>
     </div>
 </div>
+
+
 
 <?php
 if (isset($_SESSION['success'])) {
@@ -66,8 +64,7 @@ if (isset($_SESSION['success'])) {
     <div class=\"quotes alert_notif\"><a class=\"success\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
     ";
     unset($_SESSION['success']);
-}
-else if (isset($_SESSION['error'])) {
+} else if (isset($_SESSION['error'])) {
     switch ($_SESSION['error']) {
         case 1:
             $icon = 'fas fa-exclamation-triangle';

@@ -496,53 +496,54 @@ PROFILE PAGE
     margin: auto;
 }
 
-.user_profil_image{
+.user_profil_image {
     transform: translateY(-50px);
     width: 180px;
     margin: auto;
     margin-bottom: -40px;
 }
 
-.score_profil{
+.score_profil {
     width: 300px;
 }
 
-.info_sub_profil{
+.info_sub_profil {
     font-size: 1.3rem;
 }
 
-.connected{
+.connected {
     color: #00e676;
 }
 
-.fw100{
+.fw100 {
     font-weight: 100 !important;
 }
 
-.pdrl{
+.pdrl {
     padding-right: 50px;
     padding-left: 50px;
 }
 
-.pdtb{
+.pdtb {
     margin-top: 20px !important;
     margin-bottom: 20px !important;
 }
 
-.icon_spacing2{
+.icon_spacing2 {
     margin-right: 10px;
 }
-.chip{
+
+.chip {
     width: auto !important;
     transition: all 0.5s;
 }
 
-.chip:hover{
+.chip:hover {
     transition: all 0.5s;
     transform: scale(1.1);
 }
 
-.tag{
+.tag {
     background-color: #E4E4E4;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -567,41 +568,51 @@ hr.style14 {
     line-height: 1.5em;
     font-weight: 100;
 }
+
 .ludwig:before, .ludwig:after {
     content: '\201C';
     color: #f50057;
 }
+
 .ludwig:after {
     content: '\201D';
 }
 
 @media screen and (max-width: 600px) {
-    .user_profil_gallery{
+    .user_profil_gallery {
         width: 100%;
     }
-    .container_profil{
+
+    .container_profil {
         width: 100%;
         display: block;
     }
-    .user_profil{
+
+    .user_profil {
         width: 100%;
     }
-    .rp{
+
+    .rp {
         width: 33% !important;
     }
 }
 
 @media screen and (max-width: 1450px) {
-    .container_profil{
+    .container_profil {
         width: 100%;
         display: block;
     }
 }
 
-.circle{
+.circle {
     border: 2px solid white;
 }
 
-.card_age{
-    f
+.card_profil {
+    min-width: 300px !important;
+}
+
+.slogan{
+    font-family: 'Nunito', sans-serif;
+    color: white;
 }
