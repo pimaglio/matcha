@@ -90,6 +90,15 @@ class infos
             ":id" => $this->id
         ));
     }
+    public function addpop($pop)
+    {
+        $query = 'UPDATE data SET popularite=:pop WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":pop" => (int)$pop,
+            ":id" => $this->id
+        ));
+    }
 
     public function add_interest($arr)
     {
@@ -212,6 +221,7 @@ class infos
             ":pic" => $pic
         ));
     }
+
 }
 
 class account
@@ -493,6 +503,7 @@ class account
     }
 
     public function set_statut($i){
+        echo 'ok';
         $query = 'UPDATE user_db SET statut=:i WHERE login=:log';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
@@ -534,5 +545,25 @@ class account
         $stmt->execute(array(
             ":login" => $this->login
         ));
+    }
+
+    public function setProfile(){
+        $query = 'UPDATE user_db SET profile=1 WHERE login=:login';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":login" => $this->login
+        ));
+    }
+
+    public function select_id($id){
+        $query = 'SELECT id FROM user_db WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($fetch['id']))
+            return 1;
+        return 0;
     }
 }
