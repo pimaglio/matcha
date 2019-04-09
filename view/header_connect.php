@@ -53,7 +53,7 @@ if (!isset($_SESSION)) {
     <li><a href="#!"><i class="material-icons">flash_on</i>Matcha now !</a></li>
     <li><a href="#!"><i class="material-icons">whatshot</i>Mes likes</a></li>
     <li><a href="#!"><i class="material-icons">message</i>Messages</a></li>
-    <li><a href="#!"><i class="material-icons">history</i>Historique des visites</a></li>
+    <li><a href="history.php"><i class="material-icons">history</i>Historique des visites</a></li>
     <li>
         <div class="divider"></div>
     </li>

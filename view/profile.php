@@ -1,19 +1,40 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pimaglio
- * Date: 2019-02-12
- * Time: 11:59
- */
-
-if (isset($_SESSION['loggued_on_user']))
-    header("Location: home.php");
-session_start();
 include('header_connect.php');
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['loggued_on_user']))
+    header('Location: ../index.php');
+
+if (!isset($_GET['id']))
+    header('Location: .');
+
+if (isset($_GET['id'])) {
+    $db_con = new account([]);
+    $db2 = new infos([]);
+    if (empty($_GET['id']))
+        header('Location: .');
+    if ($db_con->select_id($_GET['id']) == 0)
+        header('Location: .');
+    else {
+        $db = new history(array(
+            'id_usr' => $db2->find_id(),
+            'id_usr_h' => $_GET['id']
+        ));
+        $db->add_history();
+    }
+}
+
+
 ?>
 
 <body>
 <?php
+
+$id_usr = $_SESSION['loggued_on_user'];
+
 
 ?>
 

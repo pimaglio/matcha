@@ -616,3 +616,15 @@ hr.style14 {
     font-family: 'Nunito', sans-serif;
     color: white;
 }
+
+.user_history {
+    width: 550px;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    padding: 30px;
+    margin: auto;
+}

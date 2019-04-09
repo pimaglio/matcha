@@ -567,3 +567,33 @@ class account
         return 0;
     }
 }
+
+class history
+{
+    private $id_usr;
+    private $id_usr_h;
+    private $date;
+
+    private $db_con;
+    public $error;
+
+    public function __construct(array $user_history)
+    {
+        if (array_key_exists('id_usr', $user_history))
+            $this->id_usr = $user_history['id_usr'];
+        if (array_key_exists('id_usr_h', $user_history))
+            $this->id_usr_h = $user_history['id_usr_h'];
+        $this->date = date('Y-m-d H:i:s');
+        $this->db_con = database_connect();
+    }
+
+    public function add_history(){
+        $query = 'INSERT INTO `visit` (id_usr, id_usr_h, date) VALUE (:id_usr, :id_usr_h, :date)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+            ":id_usr_h" => $this->id_usr_h,
+            ":date" => $this->date
+        ));
+    }
+}
