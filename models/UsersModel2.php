@@ -703,3 +703,47 @@ class history
         return $fetch;
     }
 }
+
+class like
+{
+    private $id_usr;
+    private $id_usr_l;
+    private $like_usr;
+    private $like_usr_l;
+
+    private $db_con;
+    public $error;
+
+    public function __construct(array $user_like)
+    {
+        if (array_key_exists('id_usr', $user_like))
+            $this->id_usr = $user_like['id_usr'];
+        if (array_key_exists('id_usr_l', $user_like))
+            $this->id_usr_l = $user_like['id_usr_l'];
+        if (array_key_exists('like_usr', $user_like))
+            $this->like_usr = $user_like['like_usr'];
+        if (array_key_exists('like_usr_l', $user_like))
+            $this->like_usr_l = $user_like['like_usr_l'];
+        $this->db_con = database_connect();
+    }
+
+    public function add_like()
+    {
+        $query = 'SELECT id FROM likes WHERE id_usr_l=:id_usr';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr_l" => $this->id_usr_l
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($fetch['id'])){
+            $query_match = 'INSERT INTO `likes` (like_usr_l) VALUE (:like_usr_l)';
+            $stmt = $this->db_con->prepare($query_match);
+            $stmt->execute(array(
+                ":like_usr_l" => $this->id_usr
+            ));
+        }
+        else
+            return 0;
+
+    }
+}

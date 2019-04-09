@@ -107,6 +107,8 @@ CREATE TABLE likes (
   id int(11) NOT NULL AUTO_INCREMENT,
   id_usr int(11) NOT NULL,
   id_usr_l int(11) NOT NULL,
+  like_usr binary(1) NOT NULL default '0',
+  like_usr_l binary(1) NOT NULL default '0',
   PRIMARY KEY (id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
