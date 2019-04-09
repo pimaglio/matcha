@@ -44,7 +44,6 @@ $id_usr = $_SESSION['loggued_on_user'];
         $user = recup_user_id($_GET['id']);
         $data = recup_data_id($_GET['id']);
         $inter = recup_inter_id($_GET['id']);
-        htmldump($inter);
         $sex = '';
         $orientation = '';
         switch ($data['sex']) {
