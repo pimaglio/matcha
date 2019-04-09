@@ -122,12 +122,6 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 2) {
             </p>
             <p class="col s4">
                 <label>
-                    <input type="checkbox" name="association" value="101"/>
-                    <span>Association</span>
-                </label>
-            </p>
-            <p class="col s4">
-                <label>
                     <input type="checkbox" name="theatre" value="101"/>
                     <span>Théâtre</span>
                 </label>

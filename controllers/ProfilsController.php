@@ -48,6 +48,32 @@ function recup_user()
     return $db_con->array_user();
 }
 
+function recup_user_id($id)
+{
+    $db_con = new account(array(
+        'id' => $id
+    ));
+    return $db_con->array_user_id();
+}
+
+function recup_data_id($id)
+{
+    $db_con = new infos(array(
+        'id' => $id
+    ));
+    return $db_con->array_data_id();
+}
+
+function recup_inter_id($id)
+{
+    $db_con = new infos(array(
+        'id' => $id
+    ));
+    return $db_con->array_inter_id();
+}
+
+
+
 // MODIF USER
 
 if (isset($_POST['user_modif']) && $_POST['user_modif'] === 'ok' && isset($_POST['login'])
@@ -345,7 +371,6 @@ function manage_fake_account($arr){
     $array['tattoo'] = rand(0,1);
     $array['musique'] = rand(0,1);
     $array['lecture'] = rand(0,1);
-    $array['association'] = rand(0,1);
     $array['theatre'] = rand(0,1);
     $array['religion'] = rand(0,1);
     $db->add_interest($array);

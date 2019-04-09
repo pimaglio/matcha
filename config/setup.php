@@ -168,7 +168,6 @@ CREATE TABLE interest (
   tattoo binary(1) NOT NULL default '0',
   musique binary(1) NOT NULL default '0',
   lecture binary(1) NOT NULL default '0',
-  association binary(1) NOT NULL default '0',
   theatre binary(1) NOT NULL default '0',
   religion binary(1) NOT NULL default '0',
   PRIMARY KEY (id)

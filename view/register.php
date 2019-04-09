@@ -33,7 +33,7 @@ include('header_alt.php');
         <div class="row">
             <div class="input-field col s12 fade-in three">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="nom" type="text" class="validate" pattern="[A-Za-z\s -]+" name="nom" maxlength="50" required>
+                <input id="nom" type="text" class="validate" pattern="[A-Za-z\s -]+" name="nom" maxlength="50" autofocus required>
                 <span class="helper-text" data-error="Format invalide: (A-z) et (-)" data-success="Format valide"></span>
                 <label for="nom">Nom et Prénom</label>
             </div>

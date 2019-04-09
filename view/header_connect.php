@@ -39,9 +39,10 @@ if (!isset($_SESSION)) {
             <?php
             $data = recup_user();
             $name = $data['nom'];
+            $login = $data['login'];
             $email = $data['email'];
             echo "
-            <a href=\"#name\"><span class=\"white-text name\">$name</span></a>
+            <a href=\"#name\"><span class=\"white-text name\">$name ($login)</span></a>
             <a href=\"#email\"><span class=\"white-text email\">$email</span></a>
             ";
             ?>
@@ -50,7 +51,7 @@ if (!isset($_SESSION)) {
         </div>
     </li>
     <li><a class="subheader">Menu Principal</a></li>
-    <li><a href="#!"><i class="material-icons">flash_on</i>Matcha now !</a></li>
+    <li><a href="index.php"><i class="material-icons">flash_on</i>Matcha now !</a></li>
     <li><a href="#!"><i class="material-icons">whatshot</i>Mes likes</a></li>
     <li><a href="#!"><i class="material-icons">message</i>Messages</a></li>
     <li><a href="history.php"><i class="material-icons">history</i>Historique des visites</a></li>

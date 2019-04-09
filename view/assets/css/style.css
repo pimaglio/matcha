@@ -161,6 +161,9 @@ HOMEPAGE
     color: white;
     font-size: 5rem;
 }
+nav .brand-logo i, nav .brand-logo [class^=mdi-], nav .brand-logo [class*=mdi-], nav .brand-logo i.material-icons{
+    line-height: 56px;
+}
 
 .home_left_col {
     text-align: right;
@@ -617,6 +620,10 @@ hr.style14 {
     color: white;
 }
 
+/*
+HISTORY
+*/
+
 .user_history {
     width: 550px;
     display: block;
@@ -627,4 +634,18 @@ hr.style14 {
     animation: fadeIn 1s;
     padding: 30px;
     margin: auto;
+}
+
+.icon_history {
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/history.svg');
+    background-size: cover;
+}
+
+@media screen and (max-width: 600px) {
+    .user_history{
+        width: 100% !important;
+    }
 }

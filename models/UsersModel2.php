@@ -176,6 +176,20 @@ class infos
         }
     }
 
+    public function array_data_id()
+    {
+        $arr = [];
+        $query = 'SELECT * FROM `data` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        $arr = $arr[0];
+        return $arr;
+    }
+
     public function array_data()
     {
         $arr = [];
@@ -201,6 +215,20 @@ class infos
     }
 
     public function array_inter()
+    {
+        $arr = [];
+        $query = 'SELECT * FROM `interest` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        $arr = $arr[0];
+        return $arr;
+    }
+
+    public function array_inter_id()
     {
         $arr = [];
         $query = 'SELECT * FROM `interest` WHERE id_usr=:id';
@@ -257,6 +285,7 @@ class account
 {
     private $login;
     private $nom;
+    private $id;
     private $password;
     private $email;
     private $date;
@@ -267,6 +296,8 @@ class account
 
     public function __construct(array $user_account)
     {
+        if (array_key_exists('id', $user_account))
+            $this->id = $user_account['id'];
         if (array_key_exists('login', $user_account))
             $this->login = $user_account['login'];
         if (array_key_exists('password', $user_account))
@@ -291,6 +322,17 @@ class account
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":log" => $this->login
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $fetch;
+    }
+
+    public function array_user_id()
+    {
+        $query = 'SELECT * FROM user_db WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
         ));
         $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
         return $fetch;
@@ -509,7 +551,7 @@ class account
 
     public function Connect()
     {
-        $stmt = $this->db_con->prepare("SELECT email, valid, password, login, profile FROM user_db WHERE login=:login");
+        $stmt = $this->db_con->prepare("SELECT email, valid, password, login, profile, id FROM user_db WHERE login=:login");
         $stmt->execute(array(
             ":login" => $this->login
         ));
@@ -527,6 +569,7 @@ class account
             return 4;
         } else {
             $_SESSION['loggued_on_user'] = $fetched['login'];
+            $_SESSION['id'] = $fetched['id'];
             return 0;
         }
     }
@@ -599,6 +642,21 @@ class account
             return 1;
         return 0;
     }
+
+    public function select_login($id)
+    {
+        $error_user = 'Compte supprimé';
+        $query = 'SELECT login FROM user_db WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($fetch['login']))
+            return $fetch['login'];
+        else
+            return $error_user;
+    }
 }
 
 class history
@@ -633,12 +691,15 @@ class history
 
     public function get_history()
     {
-        $query = 'SELECT * FROM visit WHERE id_usr_h=:id';
+        $query = 'SELECT id_usr, date FROM visit WHERE id_usr_h=:id ORDER BY id DESC';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":id" => $this->id_usr_h
         ));
-        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        $fetch = [];
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $fetch[] = $data;
+        }
         return $fetch;
     }
 }

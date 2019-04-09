@@ -31,7 +31,7 @@ include('header_alt.php');
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="login" type="text" class="validate" name="login" required>
+                <input id="login" type="text" class="validate" name="login" autofocus required>
                 <label for="login">Nom d'utilisateur</label>
             </div>
             <div class="input-field col s12">
