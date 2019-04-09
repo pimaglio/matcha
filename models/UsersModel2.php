@@ -77,6 +77,27 @@ class infos
         ));
     }
 
+    public function add_data2($arr)
+    {
+        $query = 'SELECT id FROM `data` WHERE id_usr=:id_usr';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id
+        ));
+        if (isset($stmt->fetch(PDO::FETCH_ASSOC)['id']))
+            return;
+        $query = 'INSERT INTO `data` (id_usr, age, sex, location, orientation, bio) VALUES (:id, :age, :sexe, :loc, :ori, :bio)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id,
+            ":age" => $this->age,
+            ":sexe" => $this->sexe,
+            ":loc" => $arr[0],
+            ":ori" => $this->orientation,
+            ":bio" => $this->bio
+        ));
+    }
+
     public function edit_data()
     {
         $query = 'UPDATE data SET age=:age, sex=:sexe, location=:loc, orientation=:ori, bio=:bio WHERE id_usr=:id';

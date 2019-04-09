@@ -142,6 +142,20 @@ CREATE TABLE report (
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
 
+    $sql_create_location_tbl = <<<EOSQL
+CREATE TABLE location (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_usr int(11) NOT NULL,
+  ville varchar(255) NOT NULL,
+  zipcode varchar(255) NOT NULL,
+  lat varchar(255) NOT NULL,
+  `long` varchar(255) NOT NULL,
+  arrondissement varchar(255) not null,
+  PRIMARY KEY (id)
+)
+EOSQL;
+
+
     $sql_create_interest_tbl = <<<EOSQL
 CREATE TABLE interest (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -192,6 +206,7 @@ EOSQL;
         $r = $db->exec($sql_create_report_tbl);
         $r = $db->exec($sql_create_interest_tbl);
         $r = $db->exec($sql_create_visit_tbl);
+        $r = $db->exec($sql_create_location_tbl);
 
         if ($r !== false) {
             $msg = "Tables are created successfully!." . "<br>";

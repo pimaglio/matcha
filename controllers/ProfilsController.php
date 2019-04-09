@@ -330,7 +330,7 @@ function manage_fake_account($arr){
     $db_con->setValid();
     $db_con->setProfile();
     $db = new infos($arr);
-    $db->add_data();
+    $db->add_data2($arr['location']);
     $db->addPP($arr['picture']);
     $db->addpop($arr['popularite']);
     $array['sport'] = rand(0,1);
