@@ -228,6 +228,19 @@ class infos
         return $arr;
     }
 
+    public function all_inter()
+    {
+        $arr = [];
+        $query = 'SELECT * FROM `interest` WHERE NOT id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        return $arr;
+    }
+
     public function array_inter_id()
     {
         $arr = [];
