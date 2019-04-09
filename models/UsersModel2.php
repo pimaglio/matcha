@@ -292,6 +292,18 @@ class infos
         ));
     }
 
+    public function recup_popu_suggest(){
+        $arr = [];
+        $query = 'SELECT id_usr FROM data WHERE popularite>=5000 AND NOT id_usr=:id ORDER BY `popularite` ASC';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+           ":id" => $_SESSION['id']
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        return $arr;
+    }
+
 }
 
 class account
