@@ -78,6 +78,14 @@ if (isset($_GET['id'])) {
         $user = recup_user_id($_GET['id']);
         $data = recup_data_id($_GET['id']);
         $inter = recup_inter_id($_GET['id']);
+        if ($user['statut'] == 1){
+            $icon_statut = 'connected';
+            $statut = 'Connecté';
+        }
+        else{
+            $icon_statut = 'deconnected';
+            $statut = $user['statut'];
+        }
         $sex = '';
         $orientation = '';
         switch ($data['sex']) {
@@ -143,7 +151,7 @@ if (isset($_GET['id'])) {
         $like_btn
         <div class=\"row center score_profil\">
             <div class=\"col s12\">
-                <p><i class=\"fas fa-circle connected\"></i> Connecté</p>
+                <p><i class=\"fas fa-circle $icon_statut\"></i> $statut</p>
             </div>
         </div>
         <div class=\"row center pdrl\">

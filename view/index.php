@@ -21,8 +21,8 @@ include('../controllers/SuggestController.php');
 <div id="background">
 </div>
 
-<div class="container">
-    <div class="row">
+<div class="container_s">
+    <div class="row result">
 
         <div class="col s12 center">
             <ul class="tabs">
@@ -40,6 +40,14 @@ include('../controllers/SuggestController.php');
                 $inter = recup_inter_id($value['id_usr']);
                 $sex = '';
                 $orientation = '';
+                if ($user['statut'] == 1){
+                    $icon_statut = 'connected';
+                    $statut = 'Connecté';
+                }
+                else{
+                    $icon_statut = 'deconnected';
+                    $statut = $user['statut'];
+                }
                 switch ($data['sex']) {
                     case 0:
                         $sex = 'Non binaire';
@@ -83,11 +91,6 @@ include('../controllers/SuggestController.php');
                         $orientation = 'Sapiosexuel';
                         break;
                 }
-                if ($user['statut'] == 1) {
-                    $class_statut = 'connected';
-                }
-                else
-                    $class_statut = 'deconnected';
                 echo "
             <a style='color: inherit !important;' href='profile.php?id=" . $value['id_usr'] . "'><div class=\"col s12 m6 l3 card_profil\">
                 <div class=\"card fade-in two\">
@@ -112,7 +115,7 @@ include('../controllers/SuggestController.php');
                             </div>
                         </div>
                         <div class=\"container center\">
-                            <p><i class=\"fas fa-circle $class_statut\"></i> " . $user['statut'] . "</p>
+                            <p><i class=\"fas fa-circle $icon_statut\"></i> $statut</p>
                         </div>
                     </div>
                 </div>

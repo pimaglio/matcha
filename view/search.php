@@ -22,7 +22,7 @@ include('../controllers/ResearchController.php');
 <div id="background">
 </div>
 
-<div class="container">
+<div class="container_s">
 
     <div class="search_container row">
         <form method="get" action="search.php">
@@ -122,9 +122,19 @@ include('../controllers/ResearchController.php');
                 </div>
                 <div class="row">
                     <div class="col s3">
+
                         <p>
                             <label>
-                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <input name="sort" value="0" class="with-gap pulse" name="group1" type="radio" checked/>
+                                <span>Ne pas trier</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s3">
+
+                        <p>
+                            <label>
+                                <input name="sort" value="1" class="with-gap pulse" name="group1" type="radio"/>
                                 <span>Trier par âge croissant</span>
                             </label>
                         </p>
@@ -132,7 +142,7 @@ include('../controllers/ResearchController.php');
                     <div class="col s3">
                         <p>
                             <label>
-                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <input name="sort" value="2" class="with-gap pulse" name="group1" type="radio"/>
                                 <span>Trier par âge décroissant</span>
                             </label>
                         </p>
@@ -140,7 +150,7 @@ include('../controllers/ResearchController.php');
                     <div class="col s3">
                         <p>
                             <label>
-                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <input name="sort" value="3" class="with-gap pulse" name="group1" type="radio"/>
                                 <span>Trier par popularité croissante</span>
                             </label>
                         </p>
@@ -148,7 +158,7 @@ include('../controllers/ResearchController.php');
                     <div class="col s3">
                         <p>
                             <label>
-                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <input name="sort" value="4" class="with-gap pulse" name="group1" type="radio"/>
                                 <span>Trier par popularité décroissante</span>
                             </label>
                         </p>
@@ -167,7 +177,7 @@ include('../controllers/ResearchController.php');
 <?php if (isset($_GET) && isset($_GET['agemin']) && isset($_GET['agemax']) && isset($_GET['popmin'])
     && isset($_GET['distmax']) && isset($_GET['sort'])) {
     echo '
-<div class="row search_result">
+<div class="row result">
 
     <div style="padding-top: 50px;" id="tab1" class="col s12">';
 
@@ -185,6 +195,14 @@ include('../controllers/ResearchController.php');
         $inter = recup_inter_id($value['id_usr']);
         $sex = '';
         $orientation = '';
+        if ($user['statut'] == 1){
+            $icon_statut = 'connected';
+            $statut = 'Connecté';
+        }
+        else{
+            $icon_statut = 'deconnected';
+            $statut = $user['statut'];
+        }
         switch ($data['sex']) {
             case 0:
                 $sex = 'Non binaire';
@@ -228,10 +246,6 @@ include('../controllers/ResearchController.php');
                 $orientation = 'Sapiosexuel';
                 break;
         }
-        if ($user['statut'] == 1) {
-            $class_statut = 'connected';
-        } else
-            $class_statut = 'deconnected';
         echo "
             <a style='color: inherit !important;' href='profile.php?id=" . $value['id_usr'] . "'><div class=\"col s12 m6 l3 card_search\">
                 <div class=\"card fade-in two\">
@@ -256,7 +270,7 @@ include('../controllers/ResearchController.php');
                             </div>
                         </div>
                         <div class=\"container center\">
-                            <p><i class=\"fas fa-circle $class_statut\"></i> " . $user['statut'] . "</p>
+                            <p><i class=\"fas fa-circle $icon_statut\"></i> $statut</p>
                         </div>
                     </div>
                 </div>

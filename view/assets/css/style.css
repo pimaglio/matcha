@@ -709,18 +709,18 @@ RECHERCHER
     padding: 30px;
 }
 
-.search_result {
+.result {
     width: 70%;
 }
 
 @media screen and (max-width: 600px) {
-    .search_result {
+    .result {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 2050px) {
-    .search_result {
+    .result {
         width: 100% !important;
     }
 }
@@ -861,5 +861,16 @@ SVG ANIMATION
     }
     50% {
         stroke-dasharray: 150;
+    }
+}
+
+.container_s{
+    width: 80%;
+    margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .container_s{
+        width: 100%;
     }
 }
