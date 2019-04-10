@@ -39,8 +39,7 @@ class infos
         if (isset($_SESSION['loggued_on_user']))
             $this->login = $_SESSION['loggued_on_user'];
         $this->db_con = database_connect();
-//        $this->id = $this->find_id();
-        $this->id = 2;
+        $this->id = $this->find_id();
     }
 
     public function find_id()
@@ -312,8 +311,8 @@ class infos
         $stmt->execute(array(
             ":min" => $min,
             ":max" => $max,
-//            ":id" => $_SESSION['id'],
-            ":id" => $this->id,
+            ":id" => $_SESSION['id'],
+//            ":id" => $this->id,
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($arr, $data);

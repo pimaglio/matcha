@@ -190,6 +190,12 @@ EOSQL;
 INSERT INTO user_db (login, nom, password, email, valid, profile)
 VALUES 
   ('root', 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 'root@root.com', '1', '1');
+INSERT INTO data (id_usr, age, sex, location, orientation, bio, popularite) VALUES
+('1', '23', '2', 'Lyon', '1', 'jeune codeur sauvage', '10000');
+INSERT INTO `interest` (id_usr, sport, voyage, vegan, geek, soiree, tattoo, musique, lecture, theatre, religion)
+VALUES ('1', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+INSERT INTO location (id_usr, ville, zipcode, lat, `long`, arrondissement) VALUES
+('1', 'Lyon', '69002', '45.739428', '4.818012', '2');
 EOSQL;
 
     $msg = '';
@@ -200,7 +206,6 @@ EOSQL;
     if ($r !== false) {
 
         $r = $db->exec($sql_create_user_db_tbl);
-        $r = $db->exec($sql_create_user);
         $r = $db->exec($sql_create_likes_tbl);
         $r = $db->exec($sql_create_picture_tbl);
         $r = $db->exec($sql_create_block_tbl);
@@ -208,6 +213,7 @@ EOSQL;
         $r = $db->exec($sql_create_interest_tbl);
         $r = $db->exec($sql_create_visit_tbl);
         $r = $db->exec($sql_create_location_tbl);
+        $r = $db->exec($sql_create_user);
 
         if ($r !== false) {
             $msg = "Tables are created successfully!." . "<br>";
