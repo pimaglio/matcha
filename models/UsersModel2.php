@@ -56,6 +56,16 @@ class infos
         return $array['id'];
     }
 
+    public function find_age($id){
+        $query = 'SELECT age FROM data WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $fetch['age'];
+    }
+
     public function add_data()
     {
         $query = 'SELECT id FROM `data` WHERE id_usr=:id_usr';
@@ -304,9 +314,14 @@ class infos
         return $arr;
     }
 
-    public function research_age($min, $max){
+    public function research_age($min, $max, $i){
         $arr = [];
-        $query = 'SELECT id_usr FROM data WHERE age>=:min AND age<=:max AND id_usr!=:id';
+        if ($i == 1)
+            $query = 'SELECT id_usr FROM data WHERE age>=:min AND age<=:max AND id_usr!=:id ORDER BY age ASC';
+        else if ($i == 2)
+            $query = 'SELECT id_usr FROM data WHERE age>=:min AND age<=:max AND id_usr!=:id ORDER BY age DESC';
+        else
+            $query = 'SELECT id_usr FROM data WHERE age>=:min AND age<=:max AND id_usr!=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":min" => $min,
@@ -318,6 +333,27 @@ class infos
             array_push($arr, $data);
         return $arr;
     }
+
+    public function research_pop($min, $i){
+        $arr = [];
+        if ($i == 3)
+            $query = 'SELECT id_usr FROM data WHERE popularite>=:min AND id_usr!=:id ORDER BY popularite ASC';
+        else if ($i == 4)
+            $query = 'SELECT id_usr FROM data WHERE popularite>=:min AND id_usr!=:id ORDER BY popularite DESC';
+        else
+            $query = 'SELECT id_usr FROM data WHERE popularite>=:min AND id_usr!=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":min" => $min,
+            ":id" => $_SESSION['id'],
+//            ":id" => $this->id,
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $data);
+        return $arr;
+    }
+
+
 
     public function recup_pop($id){
         $query = 'SELECT popularite FROM data WHERE id_usr=:id';

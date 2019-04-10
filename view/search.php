@@ -130,7 +130,8 @@ include('../controllers/ResearchController.php');
     </div>
 
 </div>
-<?php if (isset($_GET) && isset($_GET['agemin']) && isset($_GET['agemax']) && isset($_GET['popmin']) && isset($_GET['distmax'])) {
+<?php if (isset($_GET) && isset($_GET['agemin']) && isset($_GET['agemax']) && isset($_GET['popmin'])
+    && isset($_GET['distmax']) && isset($_GET['sort'])) {
     echo '
 <div class="row search_result">
 
@@ -143,7 +144,7 @@ include('../controllers/ResearchController.php');
             $arr[] = $k;
         }
     }
-    $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], $arr);
+    $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], $arr, $_GET['sort']);
     foreach ($res as $key => $value) {
         $user = recup_user_id($value['id_usr']);
         $data = recup_data_id($value['id_usr']);
