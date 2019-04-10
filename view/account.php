@@ -218,7 +218,7 @@ include('header_connect.php');
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"religion\" value=\"101git \""; if ($interest['religion'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"religion\" value=\"101\""; if ($interest['religion'] == 1) echo 'checked'; echo "/>
                 <span>Religion</span>
             </label>
         </p>
