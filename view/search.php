@@ -120,9 +120,43 @@ include('../controllers/ResearchController.php');
                         </label>
                     </p>
                 </div>
-                <div class="btn_search">
-                    <button class="btn-large waves-effect waves-light pink accent-3 fade-in four">Rechercher
-                        <i class="material-icons right">search</i>
+                <div class="row">
+                    <div class="col s3">
+                        <p>
+                            <label>
+                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <span>Trier par âge croissant</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s3">
+                        <p>
+                            <label>
+                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <span>Trier par âge décroissant</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s3">
+                        <p>
+                            <label>
+                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <span>Trier par popularité croissante</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col s3">
+                        <p>
+                            <label>
+                                <input class="with-gap pulse" name="group1" type="radio"/>
+                                <span>Trier par popularité décroissante</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <div >
+                    <button class=" btn_search btn-large waves-effect waves-light pink accent-3 fade-in two">Rechercher
+                        <i style="position: absolute" class="fab fa-searchengin icon_spacing3"></i>
                     </button>
                 </div>
             </div>

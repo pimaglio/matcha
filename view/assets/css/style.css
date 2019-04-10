@@ -160,7 +160,8 @@ HOMEPAGE
     color: white;
     font-size: 5rem;
 }
-nav .brand-logo i, nav .brand-logo [class^=mdi-], nav .brand-logo [class*=mdi-], nav .brand-logo i.material-icons{
+
+nav .brand-logo i, nav .brand-logo [class^=mdi-], nav .brand-logo [class*=mdi-], nav .brand-logo i.material-icons {
     line-height: 56px;
 }
 
@@ -618,7 +619,7 @@ hr.style14 {
     min-width: 350px !important;
 }
 
-.slogan{
+.slogan {
     font-family: 'Nunito', sans-serif;
     color: white;
 }
@@ -648,44 +649,44 @@ HISTORY
 }
 
 @media screen and (max-width: 600px) {
-    .user_history{
+    .user_history {
         width: 100% !important;
     }
 }
 
-.like-btn{
+.like-btn {
     position: absolute;
     top: 30px;
     right: 0px;
 }
 
-.msg-btn{
+.msg-btn {
     position: absolute;
     top: 15px;
     left: 0px;
 }
 
-.signal{
+.signal {
     position: absolute;
     bottom: -41px;
     left: 20px;
 }
 
-.blocker{
+.blocker {
     position: absolute;
     bottom: -41px;
     right: 20px;
 }
 
-.tabs{
+.tabs {
     background-color: transparent !important;
 }
 
-.pdt{
+.pdt {
     padding-top: 50px;
 }
 
-.card .card-image .card-title{
+.card .card-image .card-title {
     padding: 0 0 0 20px !important;
     width: 100% !important;
     background-color: #0000006e !important;
@@ -708,18 +709,18 @@ RECHERCHER
     padding: 30px;
 }
 
-.search_result{
+.search_result {
     width: 70%;
 }
 
-@media screen and (max-width: 600px){
-    .search_result{
+@media screen and (max-width: 600px) {
+    .search_result {
         width: 100%;
     }
 }
 
-@media screen and (max-width: 2050px){
-    .search_result{
+@media screen and (max-width: 2050px) {
+    .search_result {
         width: 100% !important;
     }
 }
@@ -729,20 +730,22 @@ RECHERCHER
     max-width: 450px !important;
 }
 
-.btn_search{
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.btn_search {
+    width: 100%;
 }
 
-.notif_match{
+.icon_spacing3{
+    margin-left: 15px;
+}
+
+.notif_match {
     position: absolute;
     top: 0;
     width: 100vw;
     height: 100vh;
     background-color: #000000ad;
-/*    filter: blur(8px);
-    -webkit-filter: blur(8px)*/;
+    /*    filter: blur(8px);
+        -webkit-filter: blur(8px)*/;
     z-index: 10;
 }
 
@@ -761,14 +764,14 @@ RECHERCHER
     position: relative;
 }
 
-.btn_close{
+.btn_close {
     position: absolute;
     top: 5px;
     right: 5px;
     cursor: pointer;
 }
 
-.matching_font{
+.matching_font {
     font-family: 'Lobster', cursive;
     color: black;
     font-size: 5rem;
@@ -777,22 +780,41 @@ RECHERCHER
     -webkit-animation: colorchange 10s; /* Chrome and Safari */
 }
 
-@keyframes colorchange
-{
-    0%   {color: red;}
-    25%  {color: yellow;}
-    50%  {color: blue;}
-    75%  {color: green;}
-    100% {color: red;}
+@keyframes colorchange {
+    0% {
+        color: red;
+    }
+    25% {
+        color: yellow;
+    }
+    50% {
+        color: blue;
+    }
+    75% {
+        color: green;
+    }
+    100% {
+        color: red;
+    }
 }
 
 @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
 {
-    0%   {color: red;}
-    25%  {color: yellow;}
-    50%  {color: blue;}
-    75%  {color: green;}
-    100% {color: red;}
+    0% {
+        color: red;
+    }
+    25% {
+        color: yellow;
+    }
+    50% {
+        color: blue;
+    }
+    75% {
+        color: green;
+    }
+    100% {
+        color: red;
+    }
 }
 
 /*
@@ -808,6 +830,7 @@ SVG ANIMATION
     height: 250px;
     margin: auto;
 }
+
 .heart__path {
     -webkit-animation: groove 6s 3000 alternate;
     animation: groove 6s 3000 alternate;
