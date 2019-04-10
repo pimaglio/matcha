@@ -51,7 +51,8 @@ if (!isset($_SESSION)) {
         </div>
     </li>
     <li><a class="subheader">Menu Principal</a></li>
-    <li><a href="index.php"><i class="material-icons">flash_on</i>Matcha now !</a></li>
+    <li><a href="search.php"><i class="material-icons">search</i>Rechercher</a></li>
+    <li><a href="index.php"><i class="material-icons">sort</i>Suggestions</a></li>
     <li><a href="#!"><i class="material-icons">whatshot</i>Mes likes</a></li>
     <li><a href="#!"><i class="material-icons">message</i>Messages</a></li>
     <li><a href="history.php"><i class="material-icons">history</i>Historique des visites</a></li>

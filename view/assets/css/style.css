@@ -690,3 +690,47 @@ HISTORY
     width: 100% !important;
     background-color: #0000006e !important;
 }
+
+
+/*
+RECHERCHER
+*/
+
+.search_container {
+    width: 100%;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    margin: auto;
+    padding: 30px;
+}
+
+.search_result{
+    width: 70%;
+}
+
+@media screen and (max-width: 600px){
+    .search_result{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 2050px){
+    .search_result{
+        width: 100% !important;
+    }
+}
+
+.card_search {
+    min-width: 350px !important;
+    max-width: 450px !important;
+}
+
+.btn_search{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
