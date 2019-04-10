@@ -6,7 +6,6 @@
  * Time: 00:45
  */
 
-
 //if (isset($_POST['research']) && $_POST['research'] === 'ok' && isset($_POST['agemin'])
 //    && isset($_POST['agemax']) && isset($_POST['popmin']) && isset($_POST['distmax'])) {
 //    if (htmlspecialchars($_POST['research']) != $_POST['research'] || htmlspecialchars($_POST['agemin']) != $_POST['agemin']
@@ -48,11 +47,13 @@ function search($agemin, $agemax, $popmin, $distmax, $arr)
     }
     $infos = new infos([]);
     $array = $infos->research_age($agemin, $agemax);
-    foreach ($array as $k => $v) {
-        $pop = $infos->recup_pop($v['id_usr']);
-        if ($pop <= $popmin)
-            unset ($array[$k]);
-    }
+//    if ($popmin != 0) {
+        foreach ($array as $k => $v) {
+            $pop = $infos->recup_pop($v['id_usr']);
+            if ($pop <= $popmin && $popmin != 0)
+                unset ($array[$k]);
+        }
+//    }
     $loc = new location([]);
     $user = $loc->recup_lat_long();
     foreach ($array as $k => $v) {
