@@ -46,7 +46,7 @@ function search($agemin, $agemax, $popmin, $distmax, $arr, $sort)
             exit ();
         }
     }
-    $arr = [];
+    $array = [];
     $infos = new infos([]);
     if ($sort != 3 && $sort != 4) {
         $array = $infos->research_age($agemin, $agemax, $sort);
