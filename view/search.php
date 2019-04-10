@@ -30,7 +30,7 @@ include('../controllers/ResearchController.php');
             <div class="col s3">
                 <p class="fw100"><i class="fas fa-sort-numeric-down icon_spacing2"></i>Âge minimum</p>
                 <p class="range-field">
-                    <input name="agemin" type="range" id="test5" min="18" max="116"/>
+                    <input name="agemin" type="range" id="test5" value="30" min="18" max="116"/>
                 </p>
             </div>
 
@@ -38,7 +38,7 @@ include('../controllers/ResearchController.php');
             <div class="col s3">
                 <p class="fw100"><i class="fas fa-sort-numeric-up icon_spacing2"></i>Âge maximum</p>
                 <p class="range-field">
-                    <input name="agemax" type="range" id="test5" min="18" max="116"/>
+                    <input name="agemax" type="range" id="test5" value="77" min="18" max="116"/>
                 </p>
             </div>
 
@@ -189,6 +189,14 @@ include('../controllers/ResearchController.php');
         }
     }
     $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], $arr, $_GET['sort']);
+    $size = sizeof($res);
+    if ($size == 0)
+        $size = "Aucun profile trouvé";
+    else if ($size == 1)
+        $size = sizeof($res) . " profile trouvé";
+    else
+        $size = sizeof($res) . " profiles trouvés";
+    echo "<h5 class='result_nbr'>Résultat: $size</h5>";
     foreach ($res as $key => $value) {
         $user = recup_user_id($value['id_usr']);
         $data = recup_data_id($value['id_usr']);
