@@ -13,7 +13,7 @@ if (!isset($_SESSION['loggued_on_user']))
     header("Location: ../index.php");
 
 include('header_connect.php');
-include ('../controllers/SuggestController.php');
+include('../controllers/SuggestController.php');
 ?>
 
 <body>
@@ -34,44 +34,94 @@ include ('../controllers/SuggestController.php');
         <div style="padding-top: 50px;" id="tab1" class="col s12">
             <?php
             $res = recup_popularite_arr();
-            htmldump($res);
-            foreach ($res as $key => $value){
-                $value['id_usr'];
+            foreach ($res as $key => $value) {
+                $user = recup_user_id($value['id_usr']);
+                $data = recup_data_id($value['id_usr']);
+                $inter = recup_inter_id($value['id_usr']);
+                $sex = '';
+                $orientation = '';
+                switch ($data['sex']) {
+                    case 0:
+                        $sex = 'Non binaire';
+                        break;
+                    case 1:
+                        $sex = 'Femme';
+                        break;
+                    case 2:
+                        $sex = 'Homme';
+                        break;
+                    case 3:
+                        $sex = 'Transsexuelle';
+                        break;
+                    case 4:
+                        $sex = 'Transsexuel';
+                        break;
+                    case 5:
+                        $sex = 'Intersexuel';
+                        break;
+                }
+                switch ($data['orientation']) {
+                    case 0:
+                        $orientation = 'Bisexuel';
+                        break;
+                    case 1:
+                        $orientation = 'Hétérosexuel';
+                        break;
+                    case 2:
+                        $orientation = 'Homosexuel';
+                        break;
+                    case 3:
+                        $orientation = 'Altersexuel';
+                        break;
+                    case 4:
+                        $orientation = 'Pansexuel';
+                        break;
+                    case 5:
+                        $orientation = 'Asexuel';
+                        break;
+                    case 6:
+                        $orientation = 'Sapiosexuel';
+                        break;
+                }
+                if ($user['statut'] == 1) {
+                    $class_statut = 'connected';
+                }
+                else
+                    $class_statut = 'deconnected';
 
-            }
-
-            echo "
+                echo "
             <div class=\"col s12 m6 l3 card_profil\">
                 <div class=\"card fade-in two\">
                     <div class=\"card-image\">
                         <img src=\"assets/images/fakeuser.jpg\">
-                        <span class=\"card-title\">Sena</span>
+                        <span class=\"card-title\">" . $user['login'] . "</span>
                         <a class=\"btn-floating halfway-fab waves-effect waves-light\"><i class=\"material-icons\">favorite</i></a>
                     </div>
                     <div class=\"card-content\">
                         <h6>
-                            Pierre Tarin, <span class=\"fw100\">26ans</span>
+                            Pierre Tarin, <span class=\"fw100\">" . $data['age'] . " ans</span>
                         </h6>
-                        <p class=\"fw100\">Marseille, France</p>
+                        <p class=\"fw100\">" . $data['location'] . ", France</p>
                         <div class=\"row\">
                             <div class=\"container center\" style=\"margin-top: 20px; margin-bottom: 20px\">
-                                <b class=\"info_sub_profil\"><i class=\"fas fa-star icon_spacing\"></i>456</b>
+                                <b class=\"info_sub_profil\"><i class=\"fas fa-star icon_spacing\"></i>" . $data['popularite'] . "</b>
                                 <p>Popularité</p>
                             </div>
                             <div class=\"col s6 left\">
-                                <p class=\"fw100 left\"><i class=\"fas fa-venus-mars icon_spacing\"></i>Homme</p>
+                                <p class=\"fw100 left\"><i class=\"fas fa-venus-mars icon_spacing\"></i>$sex</p>
                             </div>
                             <div class=\"col s6 right\">
-                                <p class=\"fw100 right\"><i class=\"fas fa-search icon_spacing\"></i>Babtou</p>
+                                <p class=\"fw100 right\"><i class=\"fas fa-search icon_spacing\"></i>$orientation</p>
                             </div>
                         </div>
                         <div class=\"container center\">
-                            <p><i class=\"fas fa-circle connected\"></i> Connecté</p>
+                            <p><i class=\"fas fa-circle $class_statut\"></i> " . $user['statut'] . "</p>
                         </div>
                     </div>
                 </div>
             </div>
             ";
+            }
             ?>
 
         </div>
@@ -83,7 +133,7 @@ include ('../controllers/SuggestController.php');
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.tabs').tabs();
     });
 </script>
