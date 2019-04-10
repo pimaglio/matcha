@@ -115,7 +115,7 @@ include('../controllers/ResearchController.php');
                     </p>
                     <p class="col s4">
                         <label>
-                            <input type="checkbox" name="religion" value="101git "/>
+                            <input type="checkbox" name="religion" value="101"/>
                             <span>Religion</span>
                         </label>
                     </p>
