@@ -36,7 +36,7 @@ function search($agemin, $agemax, $popmin, $distmax, $arr, $sort)
 {
     if (htmlspecialchars($agemin) != $agemin || htmlspecialchars($agemax) != $agemax
         || htmlspecialchars($popmin) != $popmin || htmlspecialchars($distmax) != $distmax
-    || htmlspecialchars($sort) != $sort) {
+        || htmlspecialchars($sort) != $sort) {
         header('Location: ../view/search.php?error=script');
         exit ();
     }
@@ -79,15 +79,14 @@ function search($agemin, $agemax, $popmin, $distmax, $arr, $sort)
                         if ($k1 == $v2)
                             $i = 1;
                     }
-                    if ($i == 0)
-                        unset ($array[$k]);
                 }
+                if ($i == 0)
+                    unset ($array[$k]);
             }
         }
-    }
-    else if ($sort == 3 || $sort == 4){
+    } else if ($sort == 3 || $sort == 4) {
         $array = $infos->research_pop($popmin, $sort);
-        foreach ($array as $k => $v){
+        foreach ($array as $k => $v) {
             $age = $infos->find_age($v['id_usr']);
             if ($age < $agemin || $age > $agemax)
                 unset ($array[$k]);
@@ -116,9 +115,9 @@ function search($agemin, $agemax, $popmin, $distmax, $arr, $sort)
                         if ($k1 == $v2)
                             $i = 1;
                     }
-                    if ($i == 0)
-                        unset ($array[$k]);
                 }
+                if ($i == 0)
+                    unset ($array[$k]);
             }
         }
     }
