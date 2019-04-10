@@ -134,7 +134,7 @@ if (isset($_GET['id'])) {
         $religion = $inter['religion'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-peace icon_spacing2"></i>Religion</p></div></div>' : '';
 
         echo "
-        $itsmatch
+        
         <div class=\"user_profil_image\">
             <img class=\"materialboxed circle\" width=\"180\" height=\"180\" src=\"assets/images/fakeuser.jpg\">
         </div>

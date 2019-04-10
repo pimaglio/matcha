@@ -734,3 +734,109 @@ RECHERCHER
     bottom: 0;
     right: 0;
 }
+
+.notif_match{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000ad;
+/*    filter: blur(8px);
+    -webkit-filter: blur(8px)*/;
+    z-index: 10;
+}
+
+.popup_match {
+    margin-top: 10% !important;
+    width: 450px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    padding: 30px;
+    margin: auto;
+    z-index: 20;
+    text-align: center;
+    position: relative;
+}
+
+.btn_close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.matching_font{
+    font-family: 'Lobster', cursive;
+    color: black;
+    font-size: 5rem;
+    animation: colorchange 10s; /* animation-name followed by duration in seconds*/
+    /* you could also use milliseconds (ms) or something like 2.5s */
+    -webkit-animation: colorchange 10s; /* Chrome and Safari */
+}
+
+@keyframes colorchange
+{
+    0%   {color: red;}
+    25%  {color: yellow;}
+    50%  {color: blue;}
+    75%  {color: green;}
+    100% {color: red;}
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+    0%   {color: red;}
+    25%  {color: yellow;}
+    50%  {color: blue;}
+    75%  {color: green;}
+    100% {color: red;}
+}
+
+/*
+SVG ANIMATION
+*/
+
+:root {
+    --color_heart: #f50057;
+}
+
+.heart {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+.heart__path {
+    -webkit-animation: groove 6s 3000 alternate;
+    animation: groove 6s 3000 alternate;
+    fill: transparent;
+    stroke: var(--color_heart);
+    stroke-dasharray: 0;
+    stroke-width: 10px;
+}
+
+@-webkit-keyframes groove {
+    0%, 100% {
+        stroke-dasharray: 1600;
+    }
+    25%, 75% {
+        stroke-dasharray: 70;
+    }
+    50% {
+        stroke-dasharray: 150;
+    }
+}
+
+@keyframes groove {
+    0%, 100% {
+        stroke-dasharray: 1600;
+    }
+    25%, 75% {
+        stroke-dasharray: 70;
+    }
+    50% {
+        stroke-dasharray: 150;
+    }
+}
