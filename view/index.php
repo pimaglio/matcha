@@ -97,7 +97,7 @@ include('../controllers/SuggestController.php');
                     </div>
                     <div class=\"card-content\">
                         <h6>
-                            " . $user['login'] . ", <span class=\"fw100\">" . $data['age'] . " ans</span>
+                            " . $user['nom'] . ", <span class=\"fw100\">" . $data['age'] . " ans</span>
                         </h6>
                         <p class=\"fw100\">" . $data['location'] . ", France</p>
                         <div class=\"row\">
