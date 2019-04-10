@@ -37,17 +37,18 @@ if (isset($_GET['id'])) {
         $id_usr_l = $_GET['id'];
         $like = is_like($id_usr, $id_usr_l);
         $match = is_match($id_usr, $id_usr_l);
-        if ($match == 1)
-            $itsmatch = 'ITS A MATCH';
-        else
-            $itsmatch = '';
-        $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
-        $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
-        $message = "
+        if ($match == 1){
+            $message = "
         <div class='msg-btn'>
             <button class='waves-effect waves-light btn blue msg-btn' name='like' value='del'><i class=\"material-icons left\">chat_bubble</i>Message</button>
         </div>
         ";
+        }
+        else
+            $message = '';
+        $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
+        $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
+
 
         if ($like == 1) {
             $like_btn = "
