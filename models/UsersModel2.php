@@ -328,6 +328,15 @@ class infos
         $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
         return $fetch['popularite'];
     }
+
+    public function recup_inter_research($id){
+        $query = 'SELECT * FROM interest WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        return $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 
 class account

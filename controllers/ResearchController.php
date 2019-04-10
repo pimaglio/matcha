@@ -64,6 +64,23 @@ function search($agemin, $agemax, $popmin, $distmax, $arr)
             unset ($array[$k]);
         }
     }
-    var_dump($array);
-
+    foreach ($array as $k => $v){
+        $i = 0;
+        $int = $infos->recup_inter_research($v['id_usr']);
+        unset ($int['id']);
+        unset ($int['id_usr']);
+        foreach ($int as $k1 => $v1){
+            if ($v1 == 0)
+                unset ($int[$k1]);
+        }
+        foreach ($int as $k1 => $v1){
+            foreach ($arr as $k2 => $v2){
+                if ($k1 == $v2)
+                    $i = 1;
+            }
+            if ($i == 0)
+                unset ($array[$k]);
+        }
+    }
+    return $array;
 }
