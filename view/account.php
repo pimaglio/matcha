@@ -212,12 +212,6 @@ include('header_connect.php');
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"association\" value=\"101\""; if ($interest['association'] == 1) echo 'checked'; echo "/>
-                <span>Association</span>
-            </label>
-        </p>
-        <p class=\"col s4\">
-            <label>
                 <input type=\"checkbox\" name=\"theatre\" value=\"101\""; if ($interest['theatre'] == 1) echo 'checked'; echo "/>
                 <span>Théâtre</span>
             </label>

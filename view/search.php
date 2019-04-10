@@ -30,7 +30,7 @@ include('../controllers/SuggestController.php');
 
     </div>
 
-    <div style="padding-top: 50px;" id="tab1" class="col s8">
+    <div style="padding-top: 50px;" id="tab1" class="col s3">
         <?php
         $res = recup_popularite_arr();
         foreach ($res as $key => $value) {
