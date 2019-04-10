@@ -7,6 +7,7 @@
  */
 
 require '../models/UsersModel2.php';
+require '../models/LocationModel.php';
 
 if (isset($_POST['research']) && $_POST['research'] === 'ok' && isset($_POST['agemin'])
 && isset($_POST['agemax']) && isset($_POST['popmin']) && isset($_POST['distmax'])){
@@ -22,6 +23,14 @@ if (isset($_POST['research']) && $_POST['research'] === 'ok' && isset($_POST['ag
         if ($pop <= $_POST['popmin'])
             unset ($arr[$k]);
     }
-    var_dump($arr);
     $loc = new location([]);
+    $user = $loc->recup_lat_long();
+    foreach ($arr as $k => $v) {
+        $dist = $loc->recup_lat_long_id($v['id_usr']);
+        if (($meter = location::distance(intval($user['lat']), intval($user['long']),
+                intval($dist['lat']), intval($dist['long']))) > $_POST['distmax']) {
+            unset ($arr[$k]);
+        }
+    }
+    var_dump($arr);
 }
