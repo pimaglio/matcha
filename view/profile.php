@@ -37,6 +37,8 @@ if (isset($_GET['id'])) {
         $id_usr = $_SESSION['id'];
         $id_usr_l = $_GET['id'];
         $like = is_like($id_usr, $id_usr_l);
+        $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
+        $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
         $message = "
         <div class='msg-btn'>
             <button class='waves-effect waves-light btn blue msg-btn' name='like' value='del'><i class=\"material-icons left\">chat_bubble</i>Message</button>
@@ -60,6 +62,12 @@ if (isset($_GET['id'])) {
         <input type='hidden' name='id' value='$id_usr_l'>
         <button class='waves-effect waves-light btn' name='like' value='add'><i class=\"material-icons left\">favorite</i>LIKE</button>
         </form>";
+        }
+        if ($_GET['id'] == $_SESSION['id']){
+            $like_btn = '';
+            $message = '';
+            $signaler = '';
+            $bloquer = '';
         }
 
         $user = recup_user_id($_GET['id']);
@@ -159,12 +167,8 @@ if (isset($_GET['id'])) {
                 <blockquote class=\"ludwig\">" . $data['bio'] . "</blockquote>
             </div>
         </div>
-        <div class=\"signal\">
-            <a style='font-weight: 200;color: black;' href=\"history.php\"><i class=\"material-icons left\">feedback</i>Signaler cet utilisateur</a>
-        </div>
-        <div class=\"blocker\">
-            <a style='font-weight: 200;color: black;' href=\"history.php\"><i class=\"material-icons left\">block</i>Bloquer cet utilisateur</a>
-        </div>
+        $signaler
+        $bloquer
         ";
         ?>
     </div>
