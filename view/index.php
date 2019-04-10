@@ -88,14 +88,12 @@ include('../controllers/SuggestController.php');
                 }
                 else
                     $class_statut = 'deconnected';
-
                 echo "
-            <div class=\"col s12 m6 l3 card_profil\">
+            <a href='profile.php?id=" . $value['id_usr'] . "'><div class=\"col s12 m6 l3 card_profil\">
                 <div class=\"card fade-in two\">
                     <div class=\"card-image\">
                         <img src=\"assets/images/fakeuser.jpg\">
-                        <span class=\"card-title\">" . $user['login'] . "</span>
-                        <a class=\"btn-floating halfway-fab waves-effect waves-light\"><i class=\"material-icons\">favorite</i></a>
+                        <span class=\"card-title\">" . $user['login'] . "</span>                
                     </div>
                     <div class=\"card-content\">
                         <h6>
@@ -105,7 +103,6 @@ include('../controllers/SuggestController.php');
                         <div class=\"row\">
                             <div class=\"container center\" style=\"margin-top: 20px; margin-bottom: 20px\">
                                 <b class=\"info_sub_profil\"><i class=\"fas fa-star icon_spacing\"></i>" . $data['popularite'] . "</b>
-                                <p>Popularité</p>
                             </div>
                             <div class=\"col s6 left\">
                                 <p class=\"fw100 left\"><i class=\"fas fa-venus-mars icon_spacing\"></i>$sex</p>
@@ -119,7 +116,7 @@ include('../controllers/SuggestController.php');
                         </div>
                     </div>
                 </div>
-            </div>
+            </div></a>
             ";
             }
             ?>

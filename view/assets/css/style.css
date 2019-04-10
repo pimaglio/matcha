@@ -536,6 +536,10 @@ PROFILE PAGE
     margin-bottom: 20px !important;
 }
 
+a{
+    color: inherit !important;
+}
+
 .icon_spacing2 {
     margin-right: 10px;
 }
@@ -684,4 +688,10 @@ HISTORY
 
 .pdt{
     padding-top: 50px;
+}
+
+.card .card-image .card-title{
+    padding: 0 0 0 20px !important;
+    width: 100% !important;
+    background-color: #0000006e !important;
 }
