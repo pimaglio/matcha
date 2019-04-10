@@ -9,7 +9,6 @@ Matcha by Pimaglio, Ftreand | Avril 2019
 
 a {
     text-decoration: none;
-    color: inherit;
 }
 
 .link {
@@ -534,10 +533,6 @@ PROFILE PAGE
 .pdtb {
     margin-top: 20px !important;
     margin-bottom: 20px !important;
-}
-
-a{
-    color: inherit !important;
 }
 
 .icon_spacing2 {

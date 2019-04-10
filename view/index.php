@@ -89,7 +89,7 @@ include('../controllers/SuggestController.php');
                 else
                     $class_statut = 'deconnected';
                 echo "
-            <a href='profile.php?id=" . $value['id_usr'] . "'><div class=\"col s12 m6 l3 card_profil\">
+            <a style='color: inherit !important;' href='profile.php?id=" . $value['id_usr'] . "'><div class=\"col s12 m6 l3 card_profil\">
                 <div class=\"card fade-in two\">
                     <div class=\"card-image\">
                         <img src=\"assets/images/fakeuser.jpg\">
