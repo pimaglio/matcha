@@ -53,7 +53,7 @@ function recup_user_id($id)
     $db_con = new account(array(
         'id' => $id
     ));
-    return $db_con->array_user_id();
+    return $db_con->array_user_id($id);
 }
 
 function recup_data_id($id)
@@ -61,7 +61,7 @@ function recup_data_id($id)
     $db_con = new infos(array(
         'id' => $id
     ));
-    return $db_con->array_data_id();
+    return $db_con->array_data_id($id);
 }
 
 function recup_inter_id($id)
@@ -69,7 +69,7 @@ function recup_inter_id($id)
     $db_con = new infos(array(
         'id' => $id
     ));
-    return $db_con->array_inter_id();
+    return $db_con->array_inter_id($id);
 }
 
 /*LIKE*/
@@ -83,13 +83,25 @@ function is_like($id_usr, $id_usr_l){
     return $res;
 }
 
+function is_match($id_usr, $id_usr_l){
+    $db_con = new like(array(
+        'id_usr' => $id_usr,
+        'id_usr_l' => $id_usr_l
+    ));
+    $res = $db_con->if_match();
+    return $res;
+}
+
 
 if (isset($_POST['like']) && $_POST['like'] === 'add'){
     $db_con = new like(array(
         'id_usr' => $_POST['id_usr'],
         'id_usr_l' => $_POST['id_usr_l'],
     ));
-    $db_con->add_like();;
+    $db_con->add_like();
+    $res = is_match($_POST['id_usr'], $_POST['id_usr_l']);
+    if ($res == 1)
+        $_SESSION['match'] = 1;
     header('Location: ../view/profile.php?id=' . $_POST['id']);
 }
 

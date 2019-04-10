@@ -176,13 +176,13 @@ class infos
         }
     }
 
-    public function array_data_id()
+    public function array_data_id($id)
     {
         $arr = [];
         $query = 'SELECT * FROM `data` WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-            ":id" => $this->id
+            ":id" => $id
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($arr, $data);
@@ -241,13 +241,13 @@ class infos
         return $arr;
     }
 
-    public function array_inter_id()
+    public function array_inter_id($id)
     {
         $arr = [];
         $query = 'SELECT * FROM `interest` WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-            ":id" => $this->id
+            ":id" => $id
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($arr, $data);
@@ -385,12 +385,12 @@ class account
         return $fetch;
     }
 
-    public function array_user_id()
+    public function array_user_id($id)
     {
         $query = 'SELECT * FROM user_db WHERE id=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-            ":id" => $this->id
+            ":id" => $id
         ));
         $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
         return $fetch;
@@ -806,6 +806,35 @@ class like
         if (isset($al_like['id'])){
             return 1;
         }
+        else
+            return 0;
+    }
+
+    public function if_match(){
+        $like1 = 0;
+        $like2 = 0;
+        $query= 'SELECT id FROM likes WHERE id_usr=:id_usr AND id_usr_l=:id_usr_l';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+            ":id_usr_l" => $this->id_usr_l
+        ));
+        $al_like = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($al_like['id'])){
+            $like1 = 1;
+        }
+        $query2= 'SELECT id FROM likes WHERE id_usr=:id_usr_l AND id_usr_l=:id_usr';
+        $stmt = $this->db_con->prepare($query2);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+            ":id_usr_l" => $this->id_usr_l
+        ));
+        $al_like2 = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($al_like2['id'])){
+            $like2 = 1;
+        }
+        if ($like1 == 1 && $like2 == 1)
+            return 1;
         else
             return 0;
     }

@@ -149,8 +149,12 @@ if (isset($_SESSION['success'])) {
     ";
     unset($_SESSION['error']);
 }
+if (isset($_SESSION['match'])){
+    echo "";
+    unset($_SESSION['match']);
+}
 ?>
-
+<div class="notif_match"></div>
 <script>
     (function () {
 

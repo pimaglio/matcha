@@ -26,7 +26,6 @@ if (isset($_GET['id'])) {
     }
 }
 
-
 ?>
 
 <body>
@@ -37,6 +36,11 @@ if (isset($_GET['id'])) {
         $id_usr = $_SESSION['id'];
         $id_usr_l = $_GET['id'];
         $like = is_like($id_usr, $id_usr_l);
+        $match = is_match($id_usr, $id_usr_l);
+        if ($match == 1)
+            $itsmatch = 'ITS A MATCH';
+        else
+            $itsmatch = '';
         $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
         $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
         $message = "
@@ -130,6 +134,7 @@ if (isset($_GET['id'])) {
         $religion = $inter['religion'] ? '<div class="col s3 rp"><div class="tag"><p class=""><i class="fas fa-peace icon_spacing2"></i>Religion</p></div></div>' : '';
 
         echo "
+        $itsmatch
         <div class=\"user_profil_image\">
             <img class=\"materialboxed circle\" width=\"180\" height=\"180\" src=\"assets/images/fakeuser.jpg\">
         </div>
