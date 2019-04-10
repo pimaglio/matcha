@@ -6,8 +6,6 @@
  * Time: 00:45
  */
 
-require '../models/UsersModel2.php';
-require '../models/LocationModel.php';
 
 //if (isset($_POST['research']) && $_POST['research'] === 'ok' && isset($_POST['agemin'])
 //    && isset($_POST['agemax']) && isset($_POST['popmin']) && isset($_POST['distmax'])) {

@@ -14,6 +14,7 @@ if (!isset($_SESSION['loggued_on_user']))
 
 include('header_connect.php');
 include('../controllers/SuggestController.php');
+include('../controllers/ResearchController.php');
 ?>
 
 <body>
@@ -29,7 +30,7 @@ include('../controllers/SuggestController.php');
             <div class="col s3">
                 <p class="fw100"><i class="fas fa-sort-numeric-down icon_spacing2"></i>Âge minimum</p>
                 <p class="range-field">
-                    <input name="popularite" type="range" id="test5" min="18" max="116"/>
+                    <input name="agemin" type="range" id="test5" min="18" max="116"/>
                 </p>
             </div>
 
@@ -37,21 +38,21 @@ include('../controllers/SuggestController.php');
             <div class="col s3">
                 <p class="fw100"><i class="fas fa-sort-numeric-up icon_spacing2"></i>Âge maximum</p>
                 <p class="range-field">
-                    <input name="popularite" type="range" id="test5" min="18" max="116"/>
+                    <input name="agemax" type="range" id="test5" min="18" max="116"/>
                 </p>
             </div>
 
             <div class="col s3">
                 <p class="fw100"><i class="fas fa-sort-amount-up icon_spacing2"></i>Popularité minimum</p>
                 <p class="range-field">
-                    <input name="popularite" type="range" id="test5" min="0" max="10000"/>
+                    <input name="popmin" type="range" id="test5" min="0" max="10000"/>
                 </p>
             </div>
 
             <div class="col s3">
                 <p class="fw100"><i class="fas fa-street-view icon_spacing2"></i>Distance maximum (km)</p>
                 <p class="range-field">
-                    <input name="location" type="range" id="test5" min="0" max="100"/>
+                    <input name="distmax" type="range" id="test5" min="0" max="1000"/>
                 </p>
             </div>
 
@@ -129,68 +130,77 @@ include('../controllers/SuggestController.php');
     </div>
 
 </div>
-
+<?php if (isset($_GET) && !empty($_GET['agemin']) && !empty($_GET['agemax']) && !empty($_GET['popmin']) && !empty($_GET['distmax'])) {
+    echo '
 <div class="row search_result">
 
-    <div style="padding-top: 50px;" id="tab1" class="col s12">
+    <div style="padding-top: 50px;" id="tab1" class="col s12">';
 
-        <?php
-        $res = recup_popularite_arr();
-        foreach ($res as $key => $value) {
-            $user = recup_user_id($value['id_usr']);
-            $data = recup_data_id($value['id_usr']);
-            $inter = recup_inter_id($value['id_usr']);
-            $sex = '';
-            $orientation = '';
-            switch ($data['sex']) {
-                case 0:
-                    $sex = 'Non binaire';
-                    break;
-                case 1:
-                    $sex = 'Femme';
-                    break;
-                case 2:
-                    $sex = 'Homme';
-                    break;
-                case 3:
-                    $sex = 'Transsexuelle';
-                    break;
-                case 4:
-                    $sex = 'Transsexuel';
-                    break;
-                case 5:
-                    $sex = 'Intersexuel';
-                    break;
-            }
-            switch ($data['orientation']) {
-                case 0:
-                    $orientation = 'Bisexuel';
-                    break;
-                case 1:
-                    $orientation = 'Hétérosexuel';
-                    break;
-                case 2:
-                    $orientation = 'Homosexuel';
-                    break;
-                case 3:
-                    $orientation = 'Altersexuel';
-                    break;
-                case 4:
-                    $orientation = 'Pansexuel';
-                    break;
-                case 5:
-                    $orientation = 'Asexuel';
-                    break;
-                case 6:
-                    $orientation = 'Sapiosexuel';
-                    break;
-            }
-            if ($user['statut'] == 1) {
-                $class_statut = 'connected';
-            }
-            else
-                $class_statut = 'deconnected';
-            echo "
+
+    $arr = [];
+    foreach ($_GET as $k => $v) {
+        if ($v == 101) {
+            $arr[] = $k;
+        }
+    }
+    if (!empty($arr))
+        $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], $arr);
+    else
+        $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], []);
+    foreach ($res as $key => $value) {
+        $user = recup_user_id($value['id_usr']);
+        $data = recup_data_id($value['id_usr']);
+        $inter = recup_inter_id($value['id_usr']);
+        $sex = '';
+        $orientation = '';
+        switch ($data['sex']) {
+            case 0:
+                $sex = 'Non binaire';
+                break;
+            case 1:
+                $sex = 'Femme';
+                break;
+            case 2:
+                $sex = 'Homme';
+                break;
+            case 3:
+                $sex = 'Transsexuelle';
+                break;
+            case 4:
+                $sex = 'Transsexuel';
+                break;
+            case 5:
+                $sex = 'Intersexuel';
+                break;
+        }
+        switch ($data['orientation']) {
+            case 0:
+                $orientation = 'Bisexuel';
+                break;
+            case 1:
+                $orientation = 'Hétérosexuel';
+                break;
+            case 2:
+                $orientation = 'Homosexuel';
+                break;
+            case 3:
+                $orientation = 'Altersexuel';
+                break;
+            case 4:
+                $orientation = 'Pansexuel';
+                break;
+            case 5:
+                $orientation = 'Asexuel';
+                break;
+            case 6:
+                $orientation = 'Sapiosexuel';
+                break;
+        }
+        if ($user['statut'] == 1) {
+            $class_statut = 'connected';
+        } else
+            $class_statut = 'deconnected';
+        echo "
             <a style='color: inherit !important;' href='profile.php?id=" . $value['id_usr'] . "'><div class=\"col s12 m6 l3 card_search\">
                 <div class=\"card fade-in two\">
                     <div class=\"card-image\">
@@ -220,13 +230,13 @@ include('../controllers/SuggestController.php');
                 </div>
             </div></a>
             ";
-        }
-        ?>
-
+    }
+    echo '
     </div>
 
-</div>
-
+</div>';
+}
+?>
 <script>
     $(document).ready(function () {
         $('.tabs').tabs();
