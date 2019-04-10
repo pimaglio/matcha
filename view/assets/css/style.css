@@ -518,6 +518,10 @@ PROFILE PAGE
     color: #00e676;
 }
 
+.deconnected {
+    color: #f50057;
+}
+
 .fw100 {
     font-weight: 100 !important;
 }
