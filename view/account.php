@@ -31,7 +31,7 @@ include('header_connect.php');
             <div class="photopp">
                 <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_pp" class="img_pp circle" type="file"></canvas>
                 <input class="circle" type="file" id="imagepp" name="pp" size="30000" accept="image">
-                <button class="btn-large btn_up_pp" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                <button class="btn-large btn_up_pp" id="btnpp" onclick="UploadPic()" value="Upload" type="button" disabled><i
                             class="fas fa-save icon_spacing2"></i>Sauvegarder
                 </button>
             </div>
@@ -45,11 +45,11 @@ include('header_connect.php');
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p1" class="img_p1 circle" type="file"></canvas>
                         <input class="circle" type="file" id="imagep1" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                        <button class="btn btn_up_pp1" id="btnp1" onclick="UploadPic1()" value="Upload" type="button" disabled><i
                                     class="fas fa-save icon_spacing2"></i>Sauvegarder
                         </button>
                     </div>
-                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                    <input name="hidden_data" id='hidden_data1' type="hidden"/>
                 </form>
             </div>
             <div class="col_margin col s3">
@@ -58,12 +58,12 @@ include('header_connect.php');
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p2" class="img_p1 circle" type="file"></canvas>
                         <input class="circle" type="file" id="imagep2" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                        <button class="btn btn_up_pp1" id="btnp2" onclick="UploadPic2()" value="Upload" type="button" disabled><i
                                     class="fas fa-save icon_spacing2"></i>Sauvegarder
                         </button>
                     </div>
 
-                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                    <input name="hidden_data" id='hidden_data2' type="hidden"/>
                 </form>
             </div>
             <div class="col_margin col s3">
@@ -72,12 +72,12 @@ include('header_connect.php');
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p3" class="img_p1 circle" type="file"></canvas>
                         <input class="circle" type="file" id="imagep3" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                        <button class="btn btn_up_pp1" id="btnp3" onclick="UploadPic3()" value="Upload" type="button" disabled><i
                                     class="fas fa-save icon_spacing2"></i>Sauvegarder
                         </button>
                     </div>
 
-                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                    <input name="hidden_data" id='hidden_data3' type="hidden"/>
                 </form>
             </div>
             <div class="col_margin col s3">
@@ -86,12 +86,12 @@ include('header_connect.php');
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p4" class="img_p1 circle" type="file"></canvas>
                         <input class="circle" type="file" id="imagep4" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                        <button class="btn btn_up_pp1" id="btnp4" onclick="UploadPic4()" value="Upload" type="button" disabled><i
                                     class="fas fa-save icon_spacing2"></i>Sauvegarder
                         </button>
                     </div>
 
-                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                    <input name="hidden_data" id='hidden_data4' type="hidden"/>
                 </form>
             </div>
         </div>

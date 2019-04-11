@@ -15,6 +15,74 @@ function UploadPic() {
     window.location.reload();
 }
 
+function UploadPic1() {
+    var canvas = document.getElementById('canvas_p1');
+    var dataURL = canvas.toDataURL();
+    document.getElementById('hidden_data1').value = dataURL;
+    var fd = new FormData(document.forms["form1"]);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "../controllers/PhotosController.php");
+
+
+    xhr.send(fd);
+
+    alert('Image ajoutée avec succès :)');
+
+
+    window.location.reload();
+}
+
+function UploadPic2() {
+    var canvas = document.getElementById('canvas_p2');
+    var dataURL = canvas.toDataURL();
+    document.getElementById('hidden_data2').value = dataURL;
+    var fd = new FormData(document.forms["form1"]);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "../controllers/PhotosController.php");
+
+
+    xhr.send(fd);
+
+    alert('Image ajoutée avec succès :)');
+
+
+    window.location.reload();
+}
+
+function UploadPic3() {
+    var canvas = document.getElementById('canvas_p3');
+    var dataURL = canvas.toDataURL();
+    document.getElementById('hidden_data3').value = dataURL;
+    var fd = new FormData(document.forms["form1"]);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "../controllers/PhotosController.php");
+
+
+    xhr.send(fd);
+
+    alert('Image ajoutée avec succès :)');
+
+
+    window.location.reload();
+}
+
+function UploadPic4() {
+    var canvas = document.getElementById('canvas_p4');
+    var dataURL = canvas.toDataURL();
+    document.getElementById('hidden_data4').value = dataURL;
+    var fd = new FormData(document.forms["form1"]);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "../controllers/PhotosController.php");
+
+
+    xhr.send(fd);
+
+    alert('Image ajoutée avec succès :)');
+
+
+    window.location.reload();
+}
+
 document.getElementById('imagepp').onchange = function(e) {
     if (this.files[0] && this.files[0].type.includes('image')) {
         var img = new Image();
@@ -32,6 +100,7 @@ function drawpp() {
     canvas.height = 480;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(this, 0,0, canvas.width, canvas.height);
+    document.getElementById("btnpp").disabled = false;
 }
 
 document.getElementById('imagep1').onchange = function(e) {
@@ -51,6 +120,7 @@ function drawp1() {
     canvas.height = 480;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(this, 0,0, canvas.width, canvas.height);
+    document.getElementById("btnp1").disabled = false;
 }
 
 document.getElementById('imagep2').onchange = function(e) {
@@ -69,7 +139,7 @@ function drawp2() {
     canvas.width = 480;
     canvas.height = 480;
     var ctx = canvas.getContext('2d');
-    ctx.drawImage(this, 0,0, canvas.width, canvas.height);
+    document.getElementById("btnp2").disabled = false;
 }
 
 document.getElementById('imagep3').onchange = function(e) {
@@ -89,6 +159,7 @@ function drawp3() {
     canvas.height = 480;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(this, 0,0, canvas.width, canvas.height);
+    document.getElementById("btnp3").disabled = false;
 }
 
 document.getElementById('imagep4').onchange = function(e) {
@@ -108,6 +179,7 @@ function drawp4() {
     canvas.height = 480;
     var ctx = canvas.getContext('2d');
     ctx.drawImage(this, 0,0, canvas.width, canvas.height);
+    document.getElementById("btnp4").disabled = false;
 }
 
 
