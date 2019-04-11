@@ -85,6 +85,7 @@ class infos
             ":ori" => $this->orientation,
             ":bio" => $this->bio
         ));
+
     }
 
     public function add_data2($arr)
@@ -512,6 +513,12 @@ class account
             ));
             if ($val) {
                 $_SESSION['loggued_but_not_valid'] = $this->login;
+                $query = 'SELECT id FROM user_db WHERE login=:login';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":login" => $this->login
+                ));
+                $_SESSION['id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
                 return 0;
             } else
                 echo "ERROR EXECUTE ADD";
@@ -678,7 +685,8 @@ class account
             return 3;
         if ($fetched['profile'] == 0) {
             $_SESSION['loggued_on_user'] = $fetched['login'];
-//            $_SESSION['loggued_but_not_complet'] = $fetched['login'];
+            $_SESSION['loggued_but_not_complet'] = $fetched['login'];
+            $_SESSION['id'] = $fetched['id'];
             return 4;
         } else {
             $_SESSION['loggued_on_user'] = $fetched['login'];
@@ -689,7 +697,6 @@ class account
 
     public function set_statut($i)
     {
-        echo 'ok';
         $query = 'UPDATE user_db SET statut=:i WHERE login=:log';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(

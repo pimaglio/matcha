@@ -11,7 +11,6 @@ if (!isset($_SESSION))
 	session_start();
 $new = New account(array("empty" => "empty"));
 $res = $new->Activation($_GET['cle'],$_GET['login']);
-echo $res;
 if ($res === 1)
 	$_SESSION['error'] = 8;
 if ($res === 2)

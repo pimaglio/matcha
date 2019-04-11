@@ -8,8 +8,19 @@
 include('../models/UsersModel2.php');
 include ('../models/LocationModel.php');
 require_once "PopulariteController.php";
+require '../vendor/autoload.php';
+use GeoIp2\Database\Reader;
+
 if (!isset($_SESSION)) {
     session_start();
+}
+
+function find_geoip()
+{
+    $ip = $_SERVER['REMOTE_ADDR'];
+    if (!$reader = new Reader('../GeoLite2-City.mmdb')) throw new Exception();
+    else
+        return $record = $reader->city($ip);
 }
 
 function htmldump($variable, $height = "300px")
@@ -303,6 +314,15 @@ if (isset($_POST['createprofile']) && $_POST['createprofile'] === 'ok' && isset(
         $_SESSION['loggued_on_user'] = $_SESSION['loggued_but_not_complet'];
         $db = new account(["login" => $_SESSION['loggued_on_user']]);
         $db->set_statut(1);
+        try {
+            $record = find_geoip();
+            $loc = new location([$record->city->name, $record->postal->code, $record->location->latitude, $record->location->longitude, 0]);
+            $loc->add_loc($_SESSION['id']);
+        }catch (Exception $e) {
+            $loc = new location(['Lyon', '69002', '45.7392364', '4.8174527', 2]);
+            $loc->add_loc($_SESSION['id']);
+            echo $e->getMessage(), " IpAddress probably locale\n";
+        }
         unset($_SESSION['loggued_but_not_complet']);
         header("Location: ../view");
     }

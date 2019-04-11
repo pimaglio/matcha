@@ -74,7 +74,7 @@ class location
     }
 
     /**
-     * Retourne la distance en metre ou kilometre (si $unit = 'k') entre deux latitude et longitude fournit
+     * Retourne la distance en kilometre entre deux latitude et longitude fournit
      */
     public static function distance($lat1, $lng1, $lat2, $lng2) {
         $earth_radius = 6378137;   // Terre = sphère de 6378km de rayon
