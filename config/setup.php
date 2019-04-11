@@ -144,6 +144,16 @@ CREATE TABLE report (
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
 
+    $sql_create_discussion_tbl = <<<EOSQL
+CREATE TABLE discussion (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  id_usr int(11) NOT NULL,
+  id_usr_r int (11) NOT NULL,
+  message varchar(255) NOT NULL,
+  PRIMARY KEY (id)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
+EOSQL;
+
     $sql_create_location_tbl = <<<EOSQL
 CREATE TABLE location (
   id int(11) NOT NULL AUTO_INCREMENT,
@@ -210,6 +220,7 @@ EOSQL;
         $r = $db->exec($sql_create_picture_tbl);
         $r = $db->exec($sql_create_block_tbl);
         $r = $db->exec($sql_create_report_tbl);
+        $r = $db->exec($sql_create_discussion_tbl);
         $r = $db->exec($sql_create_interest_tbl);
         $r = $db->exec($sql_create_visit_tbl);
         $r = $db->exec($sql_create_location_tbl);

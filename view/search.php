@@ -191,11 +191,11 @@ include('../controllers/ResearchController.php');
     $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], $arr, $_GET['sort']);
     $size = sizeof($res);
     if ($size == 0)
-        $size = "Aucun profile trouvé";
+        $size = "Aucun profil trouvé";
     else if ($size == 1)
-        $size = sizeof($res) . " profile trouvé";
+        $size = sizeof($res) . " profil trouvé";
     else
-        $size = sizeof($res) . " profiles trouvés";
+        $size = sizeof($res) . " profils trouvés";
     echo "<h5 class='result_nbr'>Résultat: $size</h5>";
     foreach ($res as $key => $value) {
         $user = recup_user_id($value['id_usr']);
