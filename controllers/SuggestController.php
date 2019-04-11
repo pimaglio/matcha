@@ -17,10 +17,10 @@ function recup_location_arr()
     $return = [];
     $i = 0;
     foreach ($all as $k => $v) {
-        if (($meter = location::distance(intval($user['lat']), intval($user['long']),
-                intval($v['lat']), intval($v['long']))) <= 300) {
+        if (($meter = location::distance($user['lat'], $user['long'],
+                $v['lat'], $v['long'])) <= 300) {
             $return[$i]['id'] = $v['id_usr'];
-            $return[$i]['dist'] = (int)$meter;
+            $return[$i]['dist'] = $meter;
             $i++;
         }
     }

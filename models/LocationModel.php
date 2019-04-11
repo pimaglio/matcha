@@ -47,8 +47,7 @@ class location
         $query = 'SELECT lat, `long` FROM `location` WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-//            ":id" => $_SESSION['id']
-            ":id" => 2
+            ":id" => $_SESSION['id']
         ));
         return $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
     }
