@@ -165,7 +165,7 @@ if (isset($_SESSION['error']) && $_SESSION['error'] == 15)
 if (!isset($_SESSION['img_up']))
     echo "<script src=\"assets/js/camera.js\"></script>";
 ?>
-<script src="assets/js/filter.js"></script>
+<script src="assets/js/photo.js"></script>
 <script src="assets/js/script.js"></script>
 
 </body>

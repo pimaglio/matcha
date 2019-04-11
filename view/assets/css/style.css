@@ -227,13 +227,15 @@ MY PROFIL PAGE
     margin: auto;
 }
 
-.my_profil .my_pic {
+
+.title_account{
+    display: inline-block;
+}
+
+.image_title_account{
+    width: 80px;
+    height: 130px;
     float: left;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/picture_profil.svg');
-    background-size: cover;
-    margin-right: 20px;
 }
 
 .image_slider {
@@ -248,27 +250,12 @@ MY PROFIL PAGE
     font-size: 300 !important;
 }
 
-.icon_profil {
-    float: left;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/createprofil.svg');
-}
-
 .panel_info {
     padding-bottom: 50px !important;
 }
 
 .title_profil_info {
     text-transform: uppercase;
-}
-
-.icon_profil2 {
-    float: left;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/user_info.svg');
-    background-size: cover;
 }
 
 /*
@@ -1064,3 +1051,181 @@ DISCUSSION PAGE
     background-image: url('../images/discussion.svg');
     background-size: cover;
 }
+
+.img_pp{
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+input#imagepp {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    background: red;
+    opacity: 0;
+    left: 0;
+}
+
+input#imagepp:hover {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    padding: -22px 0 0 0;
+    overflow: hidden;
+    background: url('../images/upload.svg') center center no-repeat #000000b8;
+    background-size: 30%;
+    cursor: pointer;
+    opacity: 1;
+    left: 0;
+}
+
+input:focus {
+    outline:none;
+}
+
+.photopp{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+.btn_up_pp{
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+
+.photop1{
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: auto;
+}
+
+.img_p1{
+    background-size: cover;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+input#imagep1 {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    background: red;
+    opacity: 0;
+    left: 0;
+}
+
+input#imagep1:hover {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    padding: -22px 0 0 0;
+    overflow: hidden;
+    background: url('../images/upload.svg') center center no-repeat #000000b8;
+    background-size: 30%;
+    cursor: pointer;
+    opacity: 1;
+    left: 0;
+}
+
+input#imagep2 {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    background: red;
+    opacity: 0;
+    left: 0;
+}
+
+input#imagep2:hover {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    padding: -22px 0 0 0;
+    overflow: hidden;
+    background: url('../images/upload.svg') center center no-repeat #000000b8;
+    background-size: 30%;
+    cursor: pointer;
+    opacity: 1;
+    left: 0;
+}
+
+input#imagep3 {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    background: red;
+    opacity: 0;
+    left: 0;
+}
+
+input#imagep3:hover {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    padding: -22px 0 0 0;
+    overflow: hidden;
+    background: url('../images/upload.svg') center center no-repeat #000000b8;
+    background-size: 30%;
+    cursor: pointer;
+    opacity: 1;
+    left: 0;
+}
+
+input#imagep4 {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    background: red;
+    opacity: 0;
+    left: 0;
+}
+
+input#imagep4:hover {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    top: 0;
+    padding: -22px 0 0 0;
+    overflow: hidden;
+    background: url('../images/upload.svg') center center no-repeat #000000b8;
+    background-size: 30%;
+    cursor: pointer;
+    opacity: 1;
+    left: 0;
+}
+
+.btn_up_pp1{
+    position: absolute;
+    bottom: -43px;
+    left: 8px;
+}
+
+.col_margin{
+    margin-bottom: 65px;
+}
+
+

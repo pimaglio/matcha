@@ -24,14 +24,3 @@ if (isset($_POST['hidden_data'])) {
     echo "ok";
 }
 
-if (isset($_POST['addPostButton']) || isset($_FILES['image'])) {
-
-    $imageName = date('Y-m-d_g:i:s');
-    $imageDirectory = '../view/assets/upload/' . date('Y-m-d_g:i:s') . ".png";
-
-    if (!move_uploaded_file($_FILES['image']['tmp_name'], $imageDirectory)) {
-        $_SESSION['ErrorMessage'] = 'File is invalid!';
-    } else {
-        echo $_POST['image'];
-    }
-}

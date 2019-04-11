@@ -7,7 +7,7 @@
  */
 
 if (isset($_SESSION['loggued_on_user']))
-    header("Location: home.php");
+    header("Location: ../index.php");
 session_start();
 include('header_connect.php');
 
@@ -21,52 +21,89 @@ include('header_connect.php');
 <main class="my_profil row">
 
     <div class="col s6">
-        <div class="my_pic"></div>
-        <h2 class="title-form-alt">Mes <br><span class="title-form">Photos</span></h2>
-        <div class="container_slider">
-            <div class="carousel carousel-slider">
-                <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
-                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
-            </div>
+        <div class="title_account">
+            <img class="image_title_account" src="assets/images/picture_profil.svg">
+            <h2 style="margin-left: 100px;" class="title-form-alt">Mes <br><span class="title-form">Photos</span></h2>
         </div>
 
-        <div class="file-field input-field">
-            <!--<div class="btn">
-                <span>Choisir</span>
-                <form method="post" accept-charset="utf-8" name="form1">
+        <form method="POST" name="form1" enctype="multipart/form-data"
+              action="../controllers/PhotosController.php">
+            <div class="photopp">
+                <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_pp" class="img_pp circle" type="file"></canvas>
+                <input class="circle" type="file" id="imagepp" name="pp" size="30000" accept="image">
+                <button class="btn-large btn_up_pp" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                            class="fas fa-save icon_spacing2"></i>Sauvegarder
+                </button>
+            </div>
+            <input name="hidden_data" id='hidden_data' type="hidden"/>
+        </form>
+
+        <div style="margin-top: 30px" class="row">
+            <div class="col_margin col s3">
+                <form method="POST" name="form1" enctype="multipart/form-data"
+                      action="../controllers/PhotosController.php">
+                    <div class="photop1">
+                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p1" class="img_p1 circle" type="file"></canvas>
+                        <input class="circle" type="file" id="imagep1" name="fichier" size="30000" accept="image">
+                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
+                        </button>
+                    </div>
                     <input name="hidden_data" id='hidden_data' type="hidden"/>
-                    <input type="file" id="fichier" name="fichier">
                 </form>
             </div>
-            <div class="file-path-wrapper">
-
-                <input class="file-path validate" type="text" accept="image"
-                       placeholder="Uploader une photo">
-
-            </div>-->
-
-            <form action="../controllers/PhotosController.php" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="file-field input-field">
-                        <div class="btn green">
-                            <span>File</span>
-                            <input type="file" name="image">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input type="text" class="file-path" placeholder="Choose an image">
-                        </div>
+            <div class="col_margin col s3">
+                <form method="POST" name="form1" enctype="multipart/form-data"
+                      action="../controllers/PhotosController.php">
+                    <div class="photop1">
+                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p2" class="img_p1 circle" type="file"></canvas>
+                        <input class="circle" type="file" id="imagep2" name="fichier" size="30000" accept="image">
+                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
+                        </button>
                     </div>
-                </div>
-                <button>ok</button>
-            </form>
 
+                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                </form>
+            </div>
+            <div class="col_margin col s3">
+                <form method="POST" name="form1" enctype="multipart/form-data"
+                      action="../controllers/PhotosController.php">
+                    <div class="photop1">
+                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p3" class="img_p1 circle" type="file"></canvas>
+                        <input class="circle" type="file" id="imagep3" name="fichier" size="30000" accept="image">
+                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
+                        </button>
+                    </div>
+
+                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                </form>
+            </div>
+            <div class="col_margin col s3">
+                <form method="POST" name="form1" enctype="multipart/form-data"
+                      action="../controllers/PhotosController.php">
+                    <div class="photop1">
+                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p4" class="img_p1 circle" type="file"></canvas>
+                        <input class="circle" type="file" id="imagep4" name="fichier" size="30000" accept="image">
+                        <button class="btn btn_up_pp1" id="btn-save" onclick="UploadPic()" value="Upload" type="button"><i
+                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
+                        </button>
+                    </div>
+
+                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                </form>
+            </div>
         </div>
+
+
     </div>
     <div class="col s6 panel_info">
-        <div class="icon_profil"></div>
-        <h2 class="title-form-alt">Informations<br><span class="title-form">Générales</span></h2>
+        <div class="title_account">
+            <img class="image_title_account" src="assets/images/createprofil.svg">
+            <h2 style="margin-left: 100px;" class="title-form-alt">Informations<br><span
+                        class="title-form">Générales</span></h2>
+        </div>
     </div>
     <div class="row">
         <?php
@@ -136,8 +173,11 @@ include('header_connect.php');
 <main class="my_profil row">
 
     <div class="col s12 panel_info">
-        <div class="icon_profil2"></div>
-        <h2 class="title-form-alt">Mes données<br><span class="title-form">personelles</span></h2>
+        <div class="title_account">
+            <img class="image_title_account" src="assets/images/user_info.svg">
+            <h2 style="margin-left: 100px;" class="title-form-alt">Mes données<br><span
+                        class="title-form">personelles</span></h2>
+        </div>
     </div>
     <?php
     $data = recup_data();
@@ -305,6 +345,7 @@ include('header_connect.php');
 </main>
 
 <script src="assets/js/materialize.js"></script>
+<script src="assets/js/photo.js"></script>
 
 <script>
     $('.carousel.carousel-slider').carousel({
