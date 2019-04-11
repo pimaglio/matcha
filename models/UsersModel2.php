@@ -373,6 +373,25 @@ class infos
         ));
         return $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function find_pop($id){
+        $query = 'SELECT popularite FROM data WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        return ($fetch['popularite']);
+    }
+
+    public function modif_pop($pop, $id){
+        $query = 'UPDATE data SET popularite=:pop WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":pop" => $pop,
+            ":id" => $id
+        ));
+    }
 }
 
 class account
