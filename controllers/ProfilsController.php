@@ -92,6 +92,14 @@ function is_match($id_usr, $id_usr_l){
     return $res;
 }
 
+function get_like($id){
+    $db_con = new like(array(
+        'id_usr' => $id
+    ));
+    $res = $db_con->fetch_my_like();
+    return $res;
+}
+
 
 if (isset($_POST['like']) && $_POST['like'] === 'add'){
     $db_con = new like(array(
@@ -111,7 +119,10 @@ if (isset($_POST['like']) && $_POST['like'] === 'del'){
         'id_usr_l' => $_POST['id_usr_l'],
     ));
     $db_con->del_like();
-    header('Location: ../view/profile.php?id=' . $_POST['id']);
+    if (isset($_POST['likepage']))
+        header('Location: ../view/like.php');
+    else
+        header('Location: ../view/profile.php?id=' . $_POST['id']);
 }
 
 // MODIF USER
