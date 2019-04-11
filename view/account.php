@@ -33,13 +33,35 @@ include('header_connect.php');
         </div>
 
         <div class="file-field input-field">
-            <div class="btn">
+            <!--<div class="btn">
                 <span>Choisir</span>
-                <input type="file" multiple>
+                <form method="post" accept-charset="utf-8" name="form1">
+                    <input name="hidden_data" id='hidden_data' type="hidden"/>
+                    <input type="file" id="fichier" name="fichier">
+                </form>
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Uploader une photo">
-            </div>
+
+                <input class="file-path validate" type="text" accept="image"
+                       placeholder="Uploader une photo">
+
+            </div>-->
+
+            <form action="../controllers/PhotosController.php" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn green">
+                            <span>File</span>
+                            <input type="file" name="image">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="text" class="file-path" placeholder="Choose an image">
+                        </div>
+                    </div>
+                </div>
+                <button>ok</button>
+            </form>
+
         </div>
     </div>
     <div class="col s6 panel_info">
@@ -137,24 +159,50 @@ include('header_connect.php');
         <div class=\"col s3\">
             <p class=\"title-form2\">Genre</p>
             <select name=\"sexe\">
-                <option class=\"red\" value=\"0\""; if ($data['sex'] == 0) echo 'selected'; echo ">Non binaire</option>
-                <option value=\"1\""; if ($data['sex'] == 1) echo 'selected'; echo ">Femme</option>
-                <option value=\"2\""; if ($data['sex'] == 2) echo 'selected'; echo ">Homme</option>
-                <option value=\"3\""; if ($data['sex'] == 3) echo 'selected'; echo ">Transsexuelle</option>
-                <option value=\"4\""; if ($data['sex'] == 4) echo 'selected'; echo ">Transsexuel</option>
-                <option value=\"5\""; if ($data['sex'] == 5) echo 'selected'; echo ">Intersexuel</option>
+                <option class=\"red\" value=\"0\"";
+    if ($data['sex'] == 0) echo 'selected';
+    echo ">Non binaire</option>
+                <option value=\"1\"";
+    if ($data['sex'] == 1) echo 'selected';
+    echo ">Femme</option>
+                <option value=\"2\"";
+    if ($data['sex'] == 2) echo 'selected';
+    echo ">Homme</option>
+                <option value=\"3\"";
+    if ($data['sex'] == 3) echo 'selected';
+    echo ">Transsexuelle</option>
+                <option value=\"4\"";
+    if ($data['sex'] == 4) echo 'selected';
+    echo ">Transsexuel</option>
+                <option value=\"5\"";
+    if ($data['sex'] == 5) echo 'selected';
+    echo ">Intersexuel</option>
             </select>
         </div>
         <div class=\"col s3\">
             <p class=\"title-form2\">Orientation Sexuelle</p>
             <select id=\"orientation\" name=\"orientation\">
-                <option value=\"0\""; if ($data['orientation'] == 0) echo 'selected'; echo ">Bisexuelle</option>
-                <option value=\"1\""; if ($data['orientation'] == 1) echo 'selected'; echo ">Hétérosexuelle</option>
-                <option value=\"2\""; if ($data['orientation'] == 2) echo 'selected'; echo ">Homosexuelle</option>
-                <option value=\"3\""; if ($data['orientation'] == 3) echo 'selected'; echo ">Altersexuelle</option>
-                <option value=\"4\""; if ($data['orientation'] == 4) echo 'selected'; echo ">Pansexuelle</option>
-                <option value=\"5\""; if ($data['orientation'] == 5) echo 'selected'; echo ">Asexuelle</option>
-                <option value=\"6\""; if ($data['orientation'] == 6) echo 'selected'; echo ">Sapiosexuelle</option>
+                <option value=\"0\"";
+    if ($data['orientation'] == 0) echo 'selected';
+    echo ">Bisexuelle</option>
+                <option value=\"1\"";
+    if ($data['orientation'] == 1) echo 'selected';
+    echo ">Hétérosexuelle</option>
+                <option value=\"2\"";
+    if ($data['orientation'] == 2) echo 'selected';
+    echo ">Homosexuelle</option>
+                <option value=\"3\"";
+    if ($data['orientation'] == 3) echo 'selected';
+    echo ">Altersexuelle</option>
+                <option value=\"4\"";
+    if ($data['orientation'] == 4) echo 'selected';
+    echo ">Pansexuelle</option>
+                <option value=\"5\"";
+    if ($data['orientation'] == 5) echo 'selected';
+    echo ">Asexuelle</option>
+                <option value=\"6\"";
+    if ($data['orientation'] == 6) echo 'selected';
+    echo ">Sapiosexuelle</option>
             </select>
         </div>
         <div class=\"col s12\">
@@ -164,61 +212,81 @@ include('header_connect.php');
         </div>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"sport\" value=\"101\""; if ($interest['sport'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"sport\" value=\"101\"";
+    if ($interest['sport'] == 1) echo 'checked';
+    echo "/>
                 <span>Sport</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"voyage\" value=\"101\""; if ($interest['voyage'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"voyage\" value=\"101\"";
+    if ($interest['voyage'] == 1) echo 'checked';
+    echo "/>
                 <span>Voyage</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"vegan\" value=\"101\""; if ($interest['vegan'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"vegan\" value=\"101\"";
+    if ($interest['vegan'] == 1) echo 'checked';
+    echo "/>
                 <span>Vegan</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"geek\" value=\"101\""; if ($interest['geek'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"geek\" value=\"101\"";
+    if ($interest['geek'] == 1) echo 'checked';
+    echo "/>
                 <span>Geek</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"soiree\" value=\"101\""; if ($interest['soiree'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"soiree\" value=\"101\"";
+    if ($interest['soiree'] == 1) echo 'checked';
+    echo "/>
                 <span>Soiree</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"tattoo\" value=\"101\""; if ($interest['tattoo'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"tattoo\" value=\"101\"";
+    if ($interest['tattoo'] == 1) echo 'checked';
+    echo "/>
                 <span>Tattoo</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"musique\" value=\"101\""; if ($interest['musique'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"musique\" value=\"101\"";
+    if ($interest['musique'] == 1) echo 'checked';
+    echo "/>
                 <span>Musique</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"lecture\" value=\"101\""; if ($interest['lecture'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"lecture\" value=\"101\"";
+    if ($interest['lecture'] == 1) echo 'checked';
+    echo "/>
                 <span>Lecture</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"theatre\" value=\"101\""; if ($interest['theatre'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"theatre\" value=\"101\"";
+    if ($interest['theatre'] == 1) echo 'checked';
+    echo "/>
                 <span>Théâtre</span>
             </label>
         </p>
         <p class=\"col s4\">
             <label>
-                <input type=\"checkbox\" name=\"religion\" value=\"101\""; if ($interest['religion'] == 1) echo 'checked'; echo "/>
+                <input type=\"checkbox\" name=\"religion\" value=\"101\"";
+    if ($interest['religion'] == 1) echo 'checked';
+    echo "/>
                 <span>Religion</span>
             </label>
         </p>
@@ -237,6 +305,7 @@ include('header_connect.php');
 </main>
 
 <script src="assets/js/materialize.js"></script>
+
 <script>
     $('.carousel.carousel-slider').carousel({
         fullWidth: true,
@@ -250,8 +319,8 @@ include('header_connect.php');
     var password = document.getElementById("password")
         , confirm_password = document.getElementById("password2");
 
-    function validatePassword(){
-        if(password.value !== confirm_password.value) {
+    function validatePassword() {
+        if (password.value !== confirm_password.value) {
             confirm_password.setCustomValidity("Les mots de passe ne correspondent pas");
         } else {
             confirm_password.setCustomValidity('');

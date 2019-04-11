@@ -221,6 +221,7 @@ if (isset($_GET['id'])) {
 
 
 <script src="assets/js/materialize.js"></script>
+
 <script>
     $(document).ready(function () {
         $('.carousel').carousel();
