@@ -133,6 +133,16 @@ class infos
         ));
     }
 
+    public function add_picture($pic, $collage){
+        $query = 'UPDATE photo SET :pic=:collage WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":pic" => $pic,
+            ":collage" => $collage,
+            ":id" => $_SESSION['id']
+        ));
+    }
+
     public function add_interest($arr)
     {
         $query = 'SELECT id_usr FROM `interest` WHERE id_usr=:id_usr';
@@ -328,7 +338,6 @@ class infos
             ":min" => $min,
             ":max" => $max,
             ":id" => $_SESSION['id'],
-//            ":id" => $this->id,
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($arr, $data);
@@ -347,14 +356,11 @@ class infos
         $stmt->execute(array(
             ":min" => $min,
             ":id" => $_SESSION['id'],
-//            ":id" => $this->id,
         ));
         while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
             array_push($arr, $data);
         return $arr;
     }
-
-
 
     public function recup_pop($id){
         $query = 'SELECT popularite FROM data WHERE id_usr=:id';
@@ -410,6 +416,105 @@ class infos
             ":id" => $id
         ));
         return $fetch = $stmt->fetch(PDO::FETCH_ASSOC)['sex'];
+    }
+
+    // REPORT
+
+    public function report($id){
+        $query = 'SELECT id_usr FROM report WHERE id_reporter=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $_SESSION['id']
+        ));
+        if (!$fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $pop = $this->find_pop($_GET['id']);
+            $this->modif_pop($pop - 55, $_GET['id']);
+            $query = 'INSERT INTO report (id_usr, id_reporter) VALUES (:id, :report)';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id" => $id,
+                ":report" => $_SESSION['id']
+            ));
+        }
+    }
+
+    public function block($id){
+        $query = 'SELECT id_usr FROM block WHERE id_blocker=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $_SESSION['id']
+        ));
+        if (!$fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $pop = $this->find_pop($_GET['id']);
+            $this->modif_pop($pop - 105, $_GET['id']);
+            $query = 'INSERT INTO block (id_usr, id_blocker) VALUES (:id, :blocker)';
+            $stmt = $this->db_con->prepare($query);
+            $stmt->execute(array(
+                ":id" => $id,
+                ":blocker" => $_SESSION['id']
+            ));
+        }
+    }
+
+    public function nbr_report($id){
+        $arr = [];
+        $query = 'SELECT id FROM report WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        while ($fetch = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($arr, $fetch);
+        return sizeof($arr);
+    }
+
+    public function drop($id){
+        $query = 'DELETE FROM `user_db` WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `report` WHERE id_usr=:id OR id_reporter=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `location` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `likes` WHERE id_usr=:id OR id_usr_l=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `interest` WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `discussion` WHERE id_usr=:id OR id_usr_l=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `block` WHERE id_usr=:id OR id_usr_b=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM `visit` WHERE id_usr=:id OR id_usr_h=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM data WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        header('Location: index.php');
     }
 }
 
@@ -531,12 +636,14 @@ class account
             ));
             if ($val) {
                 $_SESSION['loggued_but_not_valid'] = $this->login;
-                $query = 'SELECT id FROM user_db WHERE login=:login';
-                $stmt = $this->db_con->prepare($query);
-                $stmt->execute(array(
-                    ":login" => $this->login
-                ));
-                $_SESSION['id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+                if (!isset($_SESSION['loggued_on_user'])) {
+                    $query = 'SELECT id FROM user_db WHERE login=:login';
+                    $stmt = $this->db_con->prepare($query);
+                    $stmt->execute(array(
+                        ":login" => $this->login
+                    ));
+                    $_SESSION['id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+                }
                 return 0;
             } else
                 echo "ERROR EXECUTE ADD";

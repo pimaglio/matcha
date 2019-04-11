@@ -13,23 +13,30 @@ if (!isset($_GET['id']))
 
 if (isset($_GET['id'])) {
     $db_con = new account([]);
-    if (empty($_GET['id'])){
+    $infos = new infos([]);
+    if (empty($_GET['id'])) {
         $_SESSION['error'] = 11;
         header('Location: .');
     }
-    if ($db_con->select_id($_GET['id']) == 0){
+    if ($db_con->select_id($_GET['id']) == 0) {
         $_SESSION['error'] = 11;
         header('Location: .');
     }
-    if (isset($_GET['report']) && $_GET['report'] == 1){
-
+    if (isset($_GET['report']) && $_GET['report'] == 1) {
+        $infos->report($_GET['id']);
+        if (($count = $infos->nbr_report($_GET['id'])) == 10)
+            $infos->drop($_GET['id']);
+        header('Location: profile.php?id=' . $_GET['id'] . '');
     }
-    else {
+    if (isset($_GET['block']) && $_GET['block'] == 1) {
+        $infos->block($_GET['id']);
+        header('Location: index.php');
+    } else {
         $db = new history(array(
             'id_usr' => $_SESSION['id'],
             'id_usr_h' => $_GET['id']
         ));
-        if ($_SESSION['id'] != $_GET['id']){
+        if ($_SESSION['id'] != $_GET['id']) {
             $db->add_history();
             add_popularite($_GET['id'], 5);
         }
@@ -41,13 +48,12 @@ if (isset($_GET['id'])) {
 <body>
 <div class="container_profil">
     <?php
-    if (is_like_user($_SESSION['id'], $_GET['id']) == 1){
+    if (is_like_user($_SESSION['id'], $_GET['id']) == 1) {
         if (is_match($_SESSION['id'], $_GET['id']) == 1)
             $var = '<h1 style="color: #f50057 !important;" class=\'helikeu fade-in five\'>You Matcha !</h1>';
         else
             $var = '<h1 class=\'helikeu fade-in seven\'>This profile like u</h1>';
-    }
-    else
+    } else
         $var = '';
     echo $var;
     ?>
@@ -59,14 +65,13 @@ if (isset($_GET['id'])) {
         $id_usr_l = $_GET['id'];
         $like = is_like($id_usr, $id_usr_l);
         $match = is_match($id_usr, $id_usr_l);
-        if ($match == 1){
+        if ($match == 1) {
             $message = "
         <div class='msg-btn'>
             <a href='message.php?id=$id_usr_l'><button class='waves-effect waves-light btn blue msg-btn' name='like' value='del'><i class=\"material-icons left\">chat_bubble</i>Message</button></a>
         </div>
         ";
-        }
-        else
+        } else
             $message = '';
         $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="profile.php?id=' . $id_usr_l . '&report=1"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
         $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href=profile.php?id=' . $id_usr_l . '&block=1><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
@@ -80,8 +85,7 @@ if (isset($_GET['id'])) {
         <input type='hidden' name='id' value='$id_usr_l'>
         <button class='waves-effect waves-light btn' name='like' value='del'><i class=\"fas fa-heart-broken left\"></i>DISLIKE</button>
         </form>";
-        }
-        else {
+        } else {
             $like_btn = "
         <form class='like-btn' method='post' action='../controllers/ProfilsController.php'>
         <input type='hidden' name='id_usr' value='$id_usr'>
@@ -90,7 +94,7 @@ if (isset($_GET['id'])) {
         <button class='waves-effect waves-light btn' name='like' value='add'><i class=\"material-icons left\">favorite</i>LIKE</button>
         </form>";
         }
-        if ($_GET['id'] == $_SESSION['id']){
+        if ($_GET['id'] == $_SESSION['id']) {
             $like_btn = '';
             $message = '';
             $signaler = '';
@@ -100,11 +104,10 @@ if (isset($_GET['id'])) {
         $user = recup_user_id($_GET['id']);
         $data = recup_data_id($_GET['id']);
         $inter = recup_inter_id($_GET['id']);
-        if ($user['statut'] == 1){
+        if ($user['statut'] == 1) {
             $icon_statut = 'connected';
             $statut = 'Connecté';
-        }
-        else{
+        } else {
             $icon_statut = 'deconnected';
             $statut = $user['statut'];
         }

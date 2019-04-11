@@ -477,7 +477,6 @@ function delete_account(){
 //FAKE ACCOUNT
 
 function manage_fake_account($arr){
-//    $loc = new location($arr['location']);
     echo $meter = location::distance(43.123331, 5.930767,47.377760, 0.675022);
 
     $db_con = new account($arr);

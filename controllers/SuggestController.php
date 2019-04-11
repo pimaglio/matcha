@@ -83,6 +83,43 @@ function orientation_usr($arr)
     return $arr;
 }
 
+function orientation_int($arr)
+{
+    $infos = new infos([]);
+    $inf = $infos->recup_sex_ori();
+    if ($inf['orientation'] == 0 || $inf['orientation'] == 3 || $inf['orientation'] == 4
+        || $inf['orientation'] == 5 || $inf['orientation'] == 6 || $inf['sex'] == 0 || $inf['sex'] == 5)
+        return $arr;
+    else if ($inf['orientation'] == 1) {
+        if ($inf['sex'] == 2 || $inf['sex'] == 4) {
+            foreach ($arr as $k => $v) {
+                if (($sex = $infos->recup_sex($v)) == 2 || ($sex = $infos->recup_sex($v)) == 4)
+                    unset ($arr[$k]);
+            }
+            return ($arr);
+        } else if ($inf['sex'] == 1 || $inf['sex'] == 3)
+            foreach ($arr as $k => $v) {
+                if (($sex = $infos->recup_sex($v)) == 1 || ($sex = $infos->recup_sex($v)) == 3)
+                    unset ($arr[$k]);
+            }
+        return ($arr);
+    } else if ($inf['orientation'] = 2) {
+        if ($inf['sex'] == 2 || $inf['sex'] == 4) {
+            foreach ($arr as $k => $v) {
+                if (($sex = $infos->recup_sex($v)) == 1 || ($sex = $infos->recup_sex($v)) == 3)
+                    unset ($arr[$k]);
+            }
+            return ($arr);
+        } else if ($inf['sex'] == 1 || $inf['sex'] == 3)
+            foreach ($arr as $k => $v) {
+                if (($sex = $infos->recup_sex($v)) == 2 || ($sex = $infos->recup_sex($v)) == 4)
+                    unset ($arr[$k]);
+            }
+        return ($arr);
+    }
+    return $arr;
+}
+
 function recup_location_arr()
 {
     $loc = new location([]);
@@ -134,7 +171,7 @@ function recup_interest_arr()
         if ($int >= 3)
             $return[] = $all[$k]['id_usr'];
     }
-    $return = orientation($return);
+    $return = orientation_int($return);
     return $return;
 }
 
