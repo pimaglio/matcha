@@ -24,7 +24,7 @@ include('../controllers/SuggestController.php');
 <div class="container_s">
     <div class="row result">
 
-        <div class="col s12 center">
+        <div class="col s12 center fade-in two">
             <ul class="tabs">
                 <li class="tab col s4"><a class="active" href="#tab1">Autour de moi</a></li>
                 <li class="tab col s4"><a href="#tab2">Hobbie</a></li>

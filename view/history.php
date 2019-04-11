@@ -52,6 +52,7 @@ include('header_connect.php');
                     echo  "
                     <tr>
                     <td>Aucune visite.</td>
+                    <td></td>
                     </tr>
                     ";
                 ?>

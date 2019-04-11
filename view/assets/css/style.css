@@ -912,3 +912,143 @@ LIKE PAGE
 .pbb{
     margin-bottom: 10px;
 }
+
+/*
+MESSAGE PAGE
+*/
+
+.user_send_message {
+    width: 550px;
+    min-width: 430px;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    padding: 30px;
+    max-height: 550px;
+}
+
+.user_message {
+    width: 50%;
+    min-width: 730px;
+    display: grid;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    margin: auto;
+    padding: 30px;
+    overflow: scroll;
+    max-height: 1000px;
+    scrollbar-width: none;
+}
+
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.icon_chat {
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/chat.svg');
+    background-size: cover;
+}
+
+.btn_msg_page{
+    width: 50%;
+}
+
+.msg_bubble_bleu{
+    display: block;
+    background: #2196f30f;
+    padding: 50px;
+    width: 70%;
+    float: right;
+    border-radius: 8px;
+    position: relative;
+
+}
+
+.msg_bubble_rose{
+    display: block;
+    background: #f500570a;
+    padding: 50px;
+    width: 70%;
+    float: left;
+    border-radius: 8px;
+    position: relative;
+}
+
+.msg_bubble_rose_main{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.msg_bubble_bleu_main{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.date_left{
+    position: absolute;
+    top: 50px;
+    left: 20px;
+}
+
+.date_right{
+    position: absolute;
+    top: 50px;
+    right: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .user_message{
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .msg_bubble_bleu{
+        width: 90%;
+    }
+
+    .msg_bubble_rose{
+        width: 90%;
+    }
+
+    .date_left{
+        position: absolute;
+        top: -5px;
+        left: 50px;
+    }
+
+    .date_right{
+        position: absolute;
+        top: -5px;
+        right: 50px;
+    }
+}
+
+.container_message {
+    padding-top: 2%;
+    width: 60%;
+    margin: auto;
+    display: flex;
+}
+
+.helikeu{
+    position: absolute;
+    font-family: 'Lobster', cursive;
+    color: #2196F3;
+    font-size: 5rem;
+    right: 500px;
+}

@@ -1,5 +1,6 @@
 <?php
 require_once "../controllers/ProfilsController.php";
+require_once "../controllers/PopulariteController.php";
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -35,7 +36,7 @@ if (!isset($_SESSION)) {
 <ul id="slide-out" class="sidenav fixed">
     <li>
         <div class="user-view background_sidenav">
-            <a href="#user"><img class="circle image_profil_sidenav" src="assets/images/fakeuser.jpg"></a>
+            <a href="profile.php?id=<?php echo $_SESSION['id']?>"><img class="circle image_profil_sidenav" src="assets/images/fakeuser.jpg"></a>
             <?php
             $data = recup_user();
             $name = $data['nom'];
@@ -143,6 +144,14 @@ if (isset($_SESSION['success'])) {
             $icon = 'fas fa-exclamation-triangle';
             $message = 'Vous devez activer votre compte.';
             break;
+        case 10:
+            $icon = 'fas fa-exclamation-triangle';
+            $message = 'Tu n\'as pas matcher avec cette personne.';
+            break;
+        case 11:
+            $icon = 'fas fa-bomb';
+            $message = 'Toi tu veux tout casser petit malin...';
+            break;
     }
     echo "
     <div class=\"quotes alert_notif\"><a class=\"error\"><i class=\"$icon icon_spacing\"></i>$message</a></div>
@@ -177,7 +186,7 @@ if (isset($_SESSION['match'])) {
             ++quoteIndex;
             quotes.eq(quoteIndex % quotes.length)
                 .fadeIn(1000)
-                .delay(2000)
+                .delay(3000)
                 .fadeOut(1000);
         }
 

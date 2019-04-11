@@ -148,8 +148,9 @@ EOSQL;
 CREATE TABLE discussion (
   id int(11) NOT NULL AUTO_INCREMENT,
   id_usr int(11) NOT NULL,
-  id_usr_r int (11) NOT NULL,
+  id_usr_l int (11) NOT NULL,
   message varchar(255) NOT NULL,
+  date varchar(255) NOT NULL,
   PRIMARY KEY (id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;

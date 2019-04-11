@@ -880,6 +880,21 @@ class like
             return 0;
     }
 
+    public function if_like_user(){
+        $query= 'SELECT id FROM likes WHERE id_usr=:id_usr_l AND id_usr_l=:id_usr';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+            ":id_usr_l" => $this->id_usr_l
+        ));
+        $al_like = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (isset($al_like['id'])){
+            return 1;
+        }
+        else
+            return 0;
+    }
+
     public function if_match(){
         $like1 = 0;
         $like2 = 0;
@@ -931,4 +946,54 @@ class like
         }
         return $fetch;
     }
+}
+
+class discussion
+{
+    private $id_usr;
+    private $id_usr_l;
+    private $message;
+    private $date;
+
+    private $db_con;
+    public $error;
+
+    public function __construct(array $user_discussion)
+    {
+        if (array_key_exists('id_usr', $user_discussion))
+            $this->id_usr = $user_discussion['id_usr'];
+        if (array_key_exists('id_usr_l', $user_discussion))
+            $this->id_usr_l = $user_discussion['id_usr_l'];
+        if (array_key_exists('message', $user_discussion))
+            $this->message = $user_discussion['message'];
+        $this->date = date('Y-m-d H:i:s');
+        $this->db_con = database_connect();
+    }
+
+    public function add_message()
+    {
+        $query = 'INSERT INTO `discussion` (id_usr, id_usr_l, message, date) VALUE (:id_usr, :id_usr_l, :message, :date)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+            ":id_usr_l" => $this->id_usr_l,
+            ":message" => $this->message,
+            ":date" => $this->date
+        ));
+    }
+
+    public function fetch_message(){
+        $query= 'SELECT id_usr, id_usr_l, message, date FROM discussion WHERE id_usr=:id_usr AND id_usr_l=:id_usr_l OR id_usr=:id_usr_l AND id_usr_l=:id_usr';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+            ":id_usr_l" => $this->id_usr_l,
+        ));
+        $fetch = [];
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $fetch[] = $data;
+        }
+        return $fetch;
+    }
+
 }

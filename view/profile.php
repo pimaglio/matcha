@@ -13,16 +13,24 @@ if (!isset($_GET['id']))
 
 if (isset($_GET['id'])) {
     $db_con = new account([]);
-    if (empty($_GET['id']))
+    if (empty($_GET['id'])){
+        $_SESSION['error'] = 11;
         header('Location: .');
-    if ($db_con->select_id($_GET['id']) == 0)
+    }
+    if ($db_con->select_id($_GET['id']) == 0){
+        $_SESSION['error'] = 11;
         header('Location: .');
+    }
     else {
         $db = new history(array(
             'id_usr' => $_SESSION['id'],
             'id_usr_h' => $_GET['id']
         ));
-        $db->add_history();
+        if ($_SESSION['id'] != $_GET['id']){
+            $db->add_history();
+            add_popularite($_GET['id'], 5);
+        }
+
     }
 }
 
@@ -30,9 +38,21 @@ if (isset($_GET['id'])) {
 
 <body>
 <div class="container_profil">
+    <?php
+    if (is_like_user($_SESSION['id'], $_GET['id']) == 1){
+        if (is_match($_SESSION['id'], $_GET['id']) == 1)
+            $var = '<h1 style="color: #f50057 !important;" class=\'helikeu fade-in five\'>You Matcha !</h1>';
+        else
+            $var = '<h1 class=\'helikeu fade-in seven\'>This profile like u</h1>';
+    }
+    else
+        $var = '';
+    echo $var;
+    ?>
 
     <div style="position: relative" class="user_profil">
         <?php
+
         $id_usr = $_SESSION['id'];
         $id_usr_l = $_GET['id'];
         $like = is_like($id_usr, $id_usr_l);
@@ -40,7 +60,7 @@ if (isset($_GET['id'])) {
         if ($match == 1){
             $message = "
         <div class='msg-btn'>
-            <button class='waves-effect waves-light btn blue msg-btn' name='like' value='del'><i class=\"material-icons left\">chat_bubble</i>Message</button>
+            <a href='message.php?id=$id_usr_l'><button class='waves-effect waves-light btn blue msg-btn' name='like' value='del'><i class=\"material-icons left\">chat_bubble</i>Message</button></a>
         </div>
         ";
         }

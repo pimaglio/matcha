@@ -7,6 +7,7 @@
  */
 include('../models/UsersModel2.php');
 include ('../models/LocationModel.php');
+require_once "PopulariteController.php";
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -83,6 +84,15 @@ function is_like($id_usr, $id_usr_l){
     return $res;
 }
 
+function is_like_user($id_usr, $id_usr_l){
+    $db_con = new like(array(
+        'id_usr' => $id_usr,
+        'id_usr_l' => $id_usr_l
+    ));
+    $res = $db_con->if_like_user();
+    return $res;
+}
+
 function is_match($id_usr, $id_usr_l){
     $db_con = new like(array(
         'id_usr' => $id_usr,
@@ -107,9 +117,14 @@ if (isset($_POST['like']) && $_POST['like'] === 'add'){
         'id_usr_l' => $_POST['id_usr_l'],
     ));
     $db_con->add_like();
+    add_popularite($_POST['id_usr_l'], 100);
     $res = is_match($_POST['id_usr'], $_POST['id_usr_l']);
-    if ($res == 1)
+    if ($res == 1){
         $_SESSION['match'] = 1;
+        add_popularite($_POST['id_usr_l'], 200);
+        add_popularite($_POST['id_usr'], 200);
+    }
+
     header('Location: ../view/profile.php?id=' . $_POST['id']);
 }
 
@@ -119,11 +134,41 @@ if (isset($_POST['like']) && $_POST['like'] === 'del'){
         'id_usr_l' => $_POST['id_usr_l'],
     ));
     $db_con->del_like();
+    add_popularite($_POST['id_usr_l'], -100);
     if (isset($_POST['likepage']))
         header('Location: ../view/like.php');
     else
         header('Location: ../view/profile.php?id=' . $_POST['id']);
 }
+
+/*MESSAGE*/
+
+if (isset($_POST['send']) && $_POST['send'] === 'ok'){
+    $message = $_POST['message'];
+    if ($message != htmlspecialchars($_POST['message'])){
+        $_SESSION['error'] = 5;
+        header('Location: ../view/message.php?id=' . $_POST['id_usr_l']);
+        exit;
+    }
+    $db_con = new discussion(array(
+        'id_usr' => $_POST['id_usr'],
+        'id_usr_l' => $_POST['id_usr_l'],
+        'message' => htmlspecialchars($_POST['message'])
+    ));
+    $db_con->add_message();
+    header('Location: ../view/message.php?id=' . $_POST['id_usr_l']);
+}
+
+function get_message($id_usr, $id_usr_l){
+    $db_con = new discussion(array(
+        'id_usr' => $id_usr,
+        'id_usr_l' => $id_usr_l
+    ));
+    $res = $db_con->fetch_message();
+    return $res;
+}
+
+
 
 // MODIF USER
 

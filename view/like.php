@@ -40,10 +40,14 @@ include('header_connect.php');
                     $id_usr = $_SESSION['id'];
                     $id_usr_l = $value['id_usr_l'];
                     $match = is_match($_SESSION['id'], $id_usr_l);
-                    if ($match == 1)
+                    if ($match == 1){
+                        $style_match = 'color: #f50057';
                         $match = 'You Match !';
-                    else
+                    }
+                    else{
                         $match = 'You haven\'t match yet';
+                        $style_match = '';
+                    }
                     $nom = $db_con->select_nom($value['id_usr_l']);
                     $login = $db_con->select_login($value['id_usr_l']);
                     $profil_btn = "<a href='profile.php?id=$id_usr_l'><button class='btn_like_page waves-effect waves-light btn blue' name='profil'><i class=\"fas fa-user left\"></i>PROFIL</button></a>";
@@ -58,7 +62,7 @@ include('header_connect.php');
                     echo "
                     <tr class='fade-in three'>
                     <td>$nom ($login)</td>
-                    <td>$match</td>
+                    <td style='$style_match'>$match</td>
                     <td>$like_btn $profil_btn</td>
                     </tr>
                     ";
@@ -66,7 +70,9 @@ include('header_connect.php');
             } else
                 echo "
                     <tr>
-                    <td>Aucune visite.</td>
+                    <td></td>
+                    <td>Aucun like.</td>
+                    <td></td>
                     </tr>
                     ";
             ?>
