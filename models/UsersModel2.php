@@ -393,6 +393,24 @@ class infos
             ":id" => $id
         ));
     }
+
+    public function recup_sex_ori(){
+        $query = 'SELECT sex, orientation FROM data WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $_SESSION['id']
+        ));
+        return $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function recup_sex($id){
+        $query = 'SELECT sex FROM data WHERE id=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        return $fetch = $stmt->fetch(PDO::FETCH_ASSOC)['sex'];
+    }
 }
 
 class account
