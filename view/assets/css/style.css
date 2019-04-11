@@ -1052,3 +1052,15 @@ MESSAGE PAGE
     font-size: 5rem;
     right: 500px;
 }
+
+/*
+DISCUSSION PAGE
+*/
+
+.icon_discussion {
+    float: left;
+    width: 150px;
+    height: 150px;
+    background-image: url('../images/discussion.svg');
+    background-size: cover;
+}

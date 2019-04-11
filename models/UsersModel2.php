@@ -996,4 +996,19 @@ class discussion
         return $fetch;
     }
 
+    public function fetch_all_message(){
+        $query= 'SELECT * FROM (SELECT id_usr, id_usr_l, date FROM `discussion` WHERE id_usr=:id_usr ORDER BY date DESC) AS T GROUP BY id_usr_l';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id_usr" => $this->id_usr,
+        ));
+        $fetch = [];
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $fetch[] = $data;
+        }
+        return $fetch;
+
+
+    }
+
 }

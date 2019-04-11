@@ -168,6 +168,14 @@ function get_message($id_usr, $id_usr_l){
     return $res;
 }
 
+function get_all_message($id_usr){
+    $db_con = new discussion(array(
+        'id_usr' => $id_usr,
+    ));
+    $res = $db_con->fetch_all_message();
+    return $res;
+}
+
 
 
 // MODIF USER
