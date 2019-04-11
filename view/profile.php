@@ -21,6 +21,9 @@ if (isset($_GET['id'])) {
         $_SESSION['error'] = 11;
         header('Location: .');
     }
+    if (isset($_GET['report']) && $_GET['report'] == 1){
+
+    }
     else {
         $db = new history(array(
             'id_usr' => $_SESSION['id'],
@@ -30,7 +33,6 @@ if (isset($_GET['id'])) {
             $db->add_history();
             add_popularite($_GET['id'], 5);
         }
-
     }
 }
 
@@ -66,8 +68,8 @@ if (isset($_GET['id'])) {
         }
         else
             $message = '';
-        $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
-        $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href="history.php"><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
+        $signaler = '<div class="signal"><a style=\'font-weight: 200;color: black;\' href="profile.php?id=' . $id_usr_l . '&report=1"><i class="material-icons left">feedback</i>Signaler cet utilisateur</a></div>';
+        $bloquer = '<div class="blocker"><a style=\'font-weight: 200;color: black;\' href=profile.php?id=' . $id_usr_l . '&block=1><i class="material-icons left">block</i>Bloquer cet utilisateur</a></div>';
 
 
         if ($like == 1) {
