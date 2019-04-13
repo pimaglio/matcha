@@ -133,16 +133,6 @@ class infos
         ));
     }
 
-    public function add_picture($pic, $collage){
-        $query = 'UPDATE photo SET :pic=:collage WHERE id_usr=:id';
-        $stmt = $this->db_con->prepare($query);
-        $stmt->execute(array(
-            ":pic" => $pic,
-            ":collage" => $collage,
-            ":id" => $_SESSION['id']
-        ));
-    }
-
     public function add_interest($arr)
     {
         $query = 'SELECT id_usr FROM `interest` WHERE id_usr=:id_usr';
@@ -1144,3 +1134,34 @@ class discussion
     }
 
 }
+
+class photos
+{
+    private $pic;
+    private $collage;
+    private $db_con;
+    private $id;
+
+    public function __construct(array $user_image)
+    {
+        if (array_key_exists('pic', $user_image))
+            $this->pic = $user_image['pic'];
+        if (array_key_exists('collage', $user_image))
+            $this->collage = $user_image['collage'];
+        if (array_key_exists('id', $user_image))
+            $this->id = $user_image['id'];
+
+        $this->db_con = database_connect();
+    }
+
+    public function add_picture(){
+        $query = 'UPDATE photo SET :pic=:collage WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":pic" => $this->pic,
+            ":collage" => $this->collage,
+            ":id" => $this->id
+        ));
+    }
+}
+

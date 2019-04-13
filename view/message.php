@@ -34,9 +34,9 @@ if (isset($_GET['id'])) {
 <div class="container_message">
 
     <div style="position: relative" class="user_send_message row">
-        <div class="col s12 panel_info">
-            <div class="icon_chat icon_spacing2"></div>
-            <h2 class="title-form-alt">Envoyer un<br><span class="title-form">message</span></h2>
+        <div class="title_account">
+            <img class="image_title_account" src="assets/images/chat.svg">
+            <h2 style="margin-left: 10px; text-align: left;" class="title-form-alt title-form-alt2">Envoyer <br><span class="title-form">un message</span></h2>
         </div>
         <div class="col s12 panel_info">
             <form method="post" action="../controllers/ProfilsController.php">

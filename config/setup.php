@@ -117,11 +117,11 @@ EOSQL;
 CREATE TABLE photo (
   id int (11) NOT NULL AUTO_INCREMENT,
   id_usr int(11) NOT NULL,
-  pp VARCHAR(255) NOT NULL,
-  p1 VARCHAR(255) NOT NULL,
-  p2 VARCHAR(255) NOT NULL,
-  p3 VARCHAR(255) NOT NULL,
-  p4 VARCHAR(255) NOT NULL,
+  pp VARCHAR(255) NOT NULL default 'no-images.png',
+  p1 VARCHAR(255) NOT NULL default 'no-images.png',
+  p2 VARCHAR(255) NOT NULL default 'no-images.png',
+  p3 VARCHAR(255) NOT NULL default 'no-images.png',
+  p4 VARCHAR(255) NOT NULL default 'no-images.png',
   PRIMARY KEY (id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
@@ -207,6 +207,8 @@ INSERT INTO `interest` (id_usr, sport, voyage, vegan, geek, soiree, tattoo, musi
 VALUES ('1', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
 INSERT INTO location (id_usr, ville, zipcode, lat, `long`, arrondissement) VALUES
 ('1', 'Lyon', '69002', '45.739428', '4.818012', '2');
+INSERT INTO photo (id_usr) VALUES
+('1');
 EOSQL;
 
     $msg = '';

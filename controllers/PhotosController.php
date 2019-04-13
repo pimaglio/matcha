@@ -5,6 +5,13 @@
  * Date: 2019-04-11
  * Time: 18:03
  */
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+include '../models/UsersModel2.php';
+
 if (isset($_POST['hidden_data'])) {
     $upload_dir = "../view/assets/upload/";
     $img = $_POST['hidden_data'];
@@ -14,12 +21,15 @@ if (isset($_POST['hidden_data'])) {
     $file = $upload_dir . date('Y-m-d_g:i:s') . ".png";
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
-    // METTRE LA PHOTO DANS LA DB  (COLLAGE)//
+
     $pic = 'pp';
-    $infos = new infos();
-    $infos->add_picture($pic, $collage);
-    unset($_POST['hidden_data']);
-    echo "ok";
+    $req = new photos(array(
+        'pic' => 'pp',
+        'collage' => $collage,
+        'id' => $_SESSION['id']
+    ));
+    $req->add_picture();
+
 }
 
 if (isset($_POST['hidden_data1'])) {

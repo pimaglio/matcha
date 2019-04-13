@@ -9,10 +9,10 @@ function UploadPic() {
 
     xhr.send(fd);
 
-    alert('Image ajoutée avec succès :)');
+/*    alert('Image ajoutée avec succès :)');
 
 
-    window.location.reload();
+    window.location.reload();*/
 }
 
 function UploadPic1() {

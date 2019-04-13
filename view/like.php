@@ -16,9 +16,9 @@ include('header_connect.php');
 <div class="container fade-in two">
     <div class="user_like">
         <div class="row">
-            <div class="col s12 panel_info">
-                <div class="icon_like icon_spacing2"></div>
-                <h2 class="title-form-alt">Mes<br><span class="title-form">Likes</span></h2>
+            <div class="title_account2">
+                <img class="image_title_account" src="assets/images/heart.svg">
+                <h2 style="margin-left: 10px; text-align: left;" class="title-form-alt title-form-alt2">Mes <br><span class="title-form">Likes</span></h2>
             </div>
         </div>
         <table class="striped">

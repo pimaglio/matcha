@@ -185,9 +185,11 @@ nav .brand-logo i, nav .brand-logo [class^=mdi-], nav .brand-logo [class*=mdi-],
 MY PROFIL PAGE
 */
 
+
 @media screen and (max-width: 1450px) {
     .my_profil {
         width: 80% !important;
+        min-width: 100% !important;
         padding: 50px 50px !important;
     }
 
@@ -218,6 +220,7 @@ MY PROFIL PAGE
 .my_profil {
     position: relative;
     width: 80%;
+    min-width: 1600px;
     background-color: #ffffff;
     padding: 50px;
     border-radius: 8px;
@@ -616,7 +619,7 @@ HISTORY
 */
 
 .user_history {
-    width: 550px;
+    width: 750px;
     display: block;
     background-color: #ffffff;
     border-radius: 8px;
@@ -905,7 +908,7 @@ MESSAGE PAGE
 */
 
 .user_send_message {
-    width: 550px;
+    width: 750px;
     min-width: 430px;
     display: block;
     background-color: #ffffff;
@@ -914,7 +917,7 @@ MESSAGE PAGE
     transition: all .3s;
     animation: fadeIn 1s;
     padding: 30px;
-    max-height: 550px;
+    max-height: 500px;
 }
 
 .user_message {
@@ -929,8 +932,7 @@ MESSAGE PAGE
     margin: auto;
     padding: 30px;
     overflow: scroll;
-    max-height: 1000px;
-    scrollbar-width: none;
+    max-height: 900px;
 }
 
 
@@ -1044,13 +1046,7 @@ MESSAGE PAGE
 DISCUSSION PAGE
 */
 
-.icon_discussion {
-    float: left;
-    width: 150px;
-    height: 150px;
-    background-image: url('../images/discussion.svg');
-    background-size: cover;
-}
+
 
 .img_pp{
     background-size: cover;
@@ -1228,4 +1224,60 @@ input#imagep4:hover {
     margin-bottom: 65px;
 }
 
+.title_account2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.title_account2:before,
+.title_account2:after {
+    content: '';
+    border-top: 3px solid;
+    margin: 0 50px 0 0;
+    flex: 1 0 20px;
+}
 
+.title_account2:after {
+    margin: 0 0 0 50px;
+}
+
+.title-form-alt2 {
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+.title-form-alt {
+    text-align: left;
+    margin-left: 10px !important;
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+.title_account {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title_account_alt {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title_account:after {
+    content: '';
+    border-top: 3px solid;
+    margin: 0 50px 0 0;
+    flex: 1 0 20px;
+}
+
+.title_account:after {
+    margin: 0 0 0 50px;
+}

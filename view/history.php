@@ -16,9 +16,9 @@ include('header_connect.php');
 <div class="container fade-in three">
     <div class="user_history">
         <div class="row">
-            <div class="col s12 panel_info">
-                <div class="icon_history"></div>
-                <h2 class="title-form-alt">Historique<br><span class="title-form">des visites</span></h2>
+            <div class="title_account2">
+                <img class="image_title_account" src="assets/images/history.svg">
+                <h2 style="margin-left: 10px; text-align: left;" class="title-form-alt title-form-alt2">Historique <br><span class="title-form">des visites</span></h2>
             </div>
         </div>
         <table class="striped">
@@ -31,7 +31,6 @@ include('header_connect.php');
 
             <tbody>
                 <?php
-         /*       $db2 = new infos([]);*/
                 $db = new history(array(
                     'id_usr_h' => $_SESSION['id']
                 ));
