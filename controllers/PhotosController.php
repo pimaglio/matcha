@@ -13,7 +13,7 @@ if (!isset($_SESSION)) {
 include '../models/UsersModel2.php';
 
 if (isset($_POST['hidden_data'])) {
-    $upload_dir = "../view/assets/upload/";
+    $upload_dir = "../upload/";
     $img = $_POST['hidden_data'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -21,19 +21,13 @@ if (isset($_POST['hidden_data'])) {
     $file = $upload_dir . date('Y-m-d_g:i:s') . ".png";
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
-
-    $pic = 'pp';
-    $req = new photos(array(
-        'pic' => 'pp',
-        'collage' => $collage,
-        'id' => $_SESSION['id']
-    ));
-    $req->add_picture();
-
+    $_SESSION['nbr'] = 'pp';
+    $_SESSION['photo'] = '../upload/' . $collage;
+    unset($_POST['hidden_data']);
 }
 
 if (isset($_POST['hidden_data1'])) {
-    $upload_dir = "../view/assets/upload/";
+    $upload_dir = "../upload/";
     $img = $_POST['hidden_data1'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -41,16 +35,13 @@ if (isset($_POST['hidden_data1'])) {
     $file = $upload_dir . date('Y-m-d_g:i:s') . ".png";
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
-    // METTRE LA PHOTO DANS LA DB  (COLLAGE)//
-    $pic = 'p1';
-    $infos = new infos();
-    $infos->add_picture($pic, $collage);
-    unset($_POST['hidden_data']);
-    echo "ok";
+    $_SESSION['nbr'] = 'p1';
+    $_SESSION['photo'] = '../upload/' . $collage;
+    unset($_POST['hidden_data1']);
 }
 
 if (isset($_POST['hidden_data2'])) {
-    $upload_dir = "../view/assets/upload/";
+    $upload_dir = "../upload/";
     $img = $_POST['hidden_data2'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -58,16 +49,13 @@ if (isset($_POST['hidden_data2'])) {
     $file = $upload_dir . date('Y-m-d_g:i:s') . ".png";
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
-    // METTRE LA PHOTO DANS LA DB  (COLLAGE)//
-    $pic = 'p2';
-    $infos = new infos();
-    $infos->add_picture($pic, $collage);
-    unset($_POST['hidden_data']);
-    echo "ok";
+    $_SESSION['nbr'] = 'p2';
+    $_SESSION['photo'] = '../upload/' . $collage;
+    unset($_POST['hidden_data2']);
 }
 
 if (isset($_POST['hidden_data3'])) {
-    $upload_dir = "../view/assets/upload/";
+    $upload_dir = "../upload/";
     $img = $_POST['hidden_data3'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -75,16 +63,13 @@ if (isset($_POST['hidden_data3'])) {
     $file = $upload_dir . date('Y-m-d_g:i:s') . ".png";
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
-    // METTRE LA PHOTO DANS LA DB  (COLLAGE)//
-    $pic = 'p3';
-    $infos = new infos();
-    $infos->add_picture($pic, $collage);
-    unset($_POST['hidden_data']);
-    echo "ok";
+    $_SESSION['nbr'] = 'p3';
+    $_SESSION['photo'] = '../upload/' . $collage;
+    unset($_POST['hidden_data3']);
 }
 
 if (isset($_POST['hidden_data4'])) {
-    $upload_dir = "../view/assets/upload/";
+    $upload_dir = "../upload/";
     $img = $_POST['hidden_data4'];
     $img = str_replace('data:image/png;base64,', '', $img);
     $img = str_replace(' ', '+', $img);
@@ -92,11 +77,8 @@ if (isset($_POST['hidden_data4'])) {
     $file = $upload_dir . date('Y-m-d_g:i:s') . ".png";
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
-    // METTRE LA PHOTO DANS LA DB  (COLLAGE)//
-    $pic = 'p4';
-    $infos = new infos();
-    $infos->add_picture($pic, $collage);
-    unset($_POST['hidden_data']);
-    echo "ok";
+    $_SESSION['nbr'] = 'p4';
+    $_SESSION['photo'] = '../upload/' . $collage;
+    unset($_POST['hidden_data4']);
 }
 

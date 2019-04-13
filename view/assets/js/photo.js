@@ -9,17 +9,17 @@ function UploadPic() {
 
     xhr.send(fd);
 
-/*    alert('Image ajoutée avec succès :)');
+   alert('Image ajoutée avec succès :)');
 
 
-    window.location.reload();*/
+    window.location.reload();
 }
 
 function UploadPic1() {
     var canvas = document.getElementById('canvas_p1');
     var dataURL = canvas.toDataURL();
     document.getElementById('hidden_data1').value = dataURL;
-    var fd = new FormData(document.forms["form1"]);
+    var fd = new FormData(document.forms["form2"]);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "../controllers/PhotosController.php");
 
@@ -36,7 +36,7 @@ function UploadPic2() {
     var canvas = document.getElementById('canvas_p2');
     var dataURL = canvas.toDataURL();
     document.getElementById('hidden_data2').value = dataURL;
-    var fd = new FormData(document.forms["form1"]);
+    var fd = new FormData(document.forms["form3"]);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "../controllers/PhotosController.php");
 
@@ -53,7 +53,7 @@ function UploadPic3() {
     var canvas = document.getElementById('canvas_p3');
     var dataURL = canvas.toDataURL();
     document.getElementById('hidden_data3').value = dataURL;
-    var fd = new FormData(document.forms["form1"]);
+    var fd = new FormData(document.forms["form4"]);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "../controllers/PhotosController.php");
 
@@ -70,7 +70,7 @@ function UploadPic4() {
     var canvas = document.getElementById('canvas_p4');
     var dataURL = canvas.toDataURL();
     document.getElementById('hidden_data4').value = dataURL;
-    var fd = new FormData(document.forms["form1"]);
+    var fd = new FormData(document.forms["form5"]);
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "../controllers/PhotosController.php");
 
@@ -139,6 +139,7 @@ function drawp2() {
     canvas.width = 480;
     canvas.height = 480;
     var ctx = canvas.getContext('2d');
+    ctx.drawImage(this, 0,0, canvas.width, canvas.height);
     document.getElementById("btnp2").disabled = false;
 }
 

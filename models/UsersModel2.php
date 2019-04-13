@@ -1137,31 +1137,72 @@ class discussion
 
 class photos
 {
-    private $pic;
     private $collage;
     private $db_con;
     private $id;
 
     public function __construct(array $user_image)
     {
-        if (array_key_exists('pic', $user_image))
-            $this->pic = $user_image['pic'];
         if (array_key_exists('collage', $user_image))
             $this->collage = $user_image['collage'];
-        if (array_key_exists('id', $user_image))
-            $this->id = $user_image['id'];
-
+        $this->id = $_SESSION['id'];
         $this->db_con = database_connect();
     }
 
-    public function add_picture(){
-        $query = 'UPDATE photo SET :pic=:collage WHERE id_usr=:id';
+    public function add_pic(){
+        switch ($_SESSION['nbr']){
+            case (0):
+                $query = 'UPDATE photo SET pp=:collage WHERE id_usr=:id';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":collage" => $_SESSION['photo'],
+                    ":id" => $this->id
+                ));
+                break ;
+            case (1):
+                $query = 'UPDATE photo SET p1=:collage WHERE id_usr=:id';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":collage" => $_SESSION['photo'],
+                    ":id" => $this->id
+                ));
+                break ;
+            case (2):
+                $query = 'UPDATE photo SET p2=:collage WHERE id_usr=:id';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":collage" => $_SESSION['photo'],
+                    ":id" => $this->id
+                ));
+                break ;
+            case (3):
+                $query = 'UPDATE photo SET p3=:collage WHERE id_usr=:id';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":collage" => $_SESSION['photo'],
+                    ":id" => $this->id
+                ));
+                break ;
+            case (4):
+                $query = 'UPDATE photo SET p4=:collage WHERE id_usr=:id';
+                $stmt = $this->db_con->prepare($query);
+                $stmt->execute(array(
+                    ":collage" => $_SESSION['photo'],
+                    ":id" => $this->id
+                ));
+                break ;
+        }
+    }
+
+    public function array_pic(){
+        $query = 'SELECT * FROM photo WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-            ":pic" => $this->pic,
-            ":collage" => $this->collage,
             ":id" => $this->id
         ));
+        $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
+        unset ($fetch['id']);
+        unset ($fetch['id_usr']);
+        return $fetch;
     }
 }
-

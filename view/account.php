@@ -11,11 +11,19 @@ if (isset($_SESSION['loggued_on_user']))
 session_start();
 include('header_connect.php');
 
+if (isset($_SESSION['nbr']) && isset($_SESSION['photo'])){
+    htmldump($_SESSION);
+    $photo = new photos(['collage' => $_SESSION['photo']]);
+    $photo->add_pic();
+    unset($_SESSION['nbr']);
+    unset($_SESSION['photo']);
+}
 ?>
 
 <body>
 <?php
-
+$photo = new photos([]);
+$array_pic = $photo->array_pic();
 ?>
 
 <main class="my_profil row">
@@ -40,7 +48,7 @@ include('header_connect.php');
 
         <div style="margin-top: 30px" class="row">
             <div class="col_margin col s3">
-                <form method="POST" name="form1" enctype="multipart/form-data"
+                <form method="POST" name="form2" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p1" class="img_p1 circle" type="file"></canvas>
@@ -49,11 +57,11 @@ include('header_connect.php');
                                     class="fas fa-save icon_spacing2"></i>Sauvegarder
                         </button>
                     </div>
-                    <input name="hidden_data" id='hidden_data1' type="hidden"/>
+                    <input name="hidden_data1" id='hidden_data1' type="hidden"/>
                 </form>
             </div>
             <div class="col_margin col s3">
-                <form method="POST" name="form1" enctype="multipart/form-data"
+                <form method="POST" name="form3" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p2" class="img_p1 circle" type="file"></canvas>
@@ -63,11 +71,11 @@ include('header_connect.php');
                         </button>
                     </div>
 
-                    <input name="hidden_data" id='hidden_data2' type="hidden"/>
+                    <input name="hidden_data2" id='hidden_data2' type="hidden"/>
                 </form>
             </div>
             <div class="col_margin col s3">
-                <form method="POST" name="form1" enctype="multipart/form-data"
+                <form method="POST" name="form4" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p3" class="img_p1 circle" type="file"></canvas>
@@ -77,11 +85,11 @@ include('header_connect.php');
                         </button>
                     </div>
 
-                    <input name="hidden_data" id='hidden_data3' type="hidden"/>
+                    <input name="hidden_data3" id='hidden_data3' type="hidden"/>
                 </form>
             </div>
             <div class="col_margin col s3">
-                <form method="POST" name="form1" enctype="multipart/form-data"
+                <form method="POST" name="form5" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
                         <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p4" class="img_p1 circle" type="file"></canvas>
@@ -91,7 +99,7 @@ include('header_connect.php');
                         </button>
                     </div>
 
-                    <input name="hidden_data" id='hidden_data4' type="hidden"/>
+                    <input name="hidden_data4" id='hidden_data4' type="hidden"/>
                 </form>
             </div>
         </div>
