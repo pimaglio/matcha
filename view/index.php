@@ -35,6 +35,7 @@ include('../controllers/SuggestController.php');
         <div style="padding-top: 50px;" id="tab1" class="col s12">
             <?php
             $res = recup_location_arr();
+            $res = limit_block($res);
             foreach ($res as $key => $value) {
                 $user = recup_user_id($value['id']);
                 $data = recup_data_id($value['id']);
@@ -134,6 +135,7 @@ include('../controllers/SuggestController.php');
         <div style="padding-top: 50px;" id="tab2" class="col s12">
             <?php
             $res = recup_interest_arr();
+            $res = limit_block_inter($res);
             foreach ($res as $key => $value) {
                 $user = recup_user_id($value);
                 $data = recup_data_id($value);
@@ -228,6 +230,7 @@ include('../controllers/SuggestController.php');
         <div style="padding-top: 50px;" id="tab3" class="col s12">
             <?php
             $res = recup_popularite_arr();
+            $res = limit_block_popu($res);
             foreach ($res as $key => $value) {
                 $user = recup_user_id($value['id_usr']);
                 $data = recup_data_id($value['id_usr']);

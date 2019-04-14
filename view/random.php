@@ -5,7 +5,7 @@ require '../controllers/SuggestController.php';
 
 $faker = Faker\Factory::create('fr_FR');
 $login = $_SESSION['loggued_on_user'];
-for ($i = 0; $i < 25; $i++) {
+for ($i = 0; $i < 500; $i++) {
     $city = [
         ["Paris", "75001", "48.84495494047618", "2.376084880952381", "1"],
         ["Saint-Ay", "45130", "47.860911", "1.752895", "0"],

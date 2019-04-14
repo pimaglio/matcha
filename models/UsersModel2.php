@@ -411,39 +411,49 @@ class infos
     // REPORT
 
     public function report($id){
+        $fetch = [];
         $query = 'SELECT id_usr FROM report WHERE id_reporter=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":id" => $_SESSION['id']
         ));
-        if (!$fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $pop = $this->find_pop($_GET['id']);
-            $this->modif_pop($pop - 55, $_GET['id']);
-            $query = 'INSERT INTO report (id_usr, id_reporter) VALUES (:id, :report)';
-            $stmt = $this->db_con->prepare($query);
-            $stmt->execute(array(
-                ":id" => $id,
-                ":report" => $_SESSION['id']
-            ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($fetch, $data);
+        foreach ($fetch as $k => $v) {
+            if ($id == $v['id_usr'])
+                return ;
         }
+        $pop = $this->find_pop($id);
+        $this->modif_pop($pop - 55, $id);
+        $query = 'INSERT INTO report (id_usr, id_reporter) VALUES (:id, :report)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id,
+            ":report" => $_SESSION['id']
+        ));
     }
 
     public function block($id){
+        $fetch = [];
         $query = 'SELECT id_usr FROM block WHERE id_blocker=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":id" => $_SESSION['id']
         ));
-        if (!$fetch = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $pop = $this->find_pop($_GET['id']);
-            $this->modif_pop($pop - 105, $_GET['id']);
-            $query = 'INSERT INTO block (id_usr, id_blocker) VALUES (:id, :blocker)';
-            $stmt = $this->db_con->prepare($query);
-            $stmt->execute(array(
-                ":id" => $id,
-                ":blocker" => $_SESSION['id']
-            ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($fetch, $data);
+        foreach ($fetch as $k => $v) {
+            if ($id == $v['id_usr'])
+                return ;
         }
+        $pop = $this->find_pop($$id);
+        $this->modif_pop($pop - 105, $id);
+        $query = 'INSERT INTO block (id_usr, id_blocker) VALUES (:id, :blocker)';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id,
+            ":blocker" => $_SESSION['id']
+        ));
     }
 
     public function nbr_report($id){
@@ -505,6 +515,18 @@ class infos
             ":id" => $id
         ));
         header('Location: index.php');
+    }
+
+    public function recup_block(){
+        $fetch = [];
+        $query = 'SELECT id_usr FROM `block` WHERE id_blocker=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $this->id
+        ));
+        while ($data = $stmt->fetch(PDO::FETCH_ASSOC))
+            array_push($fetch, $data);
+        return ($fetch);
     }
 }
 

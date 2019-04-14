@@ -182,3 +182,38 @@ function recup_popularite_arr()
     $arr = orientation_usr($arr);
     return $arr;
 }
+
+function limit_block($res){
+    $block = new infos([]);
+    $arr = $block->recup_block();
+    foreach ($res as $k => $v){
+        foreach ($arr as $k1 => $v1)
+        if ($v['id'] == $v1['id_usr'])
+            unset($res[$k]);
+    }
+    return $res;
+}
+
+function limit_block_inter($res){
+    $block = new infos([]);
+    $arr = $block->recup_block();
+    foreach ($res as $k => $v){
+        foreach ($arr as $k1 => $v1) {
+            if ($v == $v1['id_usr'])
+                unset($res[$k]);
+        }
+    }
+    return $res;
+}
+
+function limit_block_popu($res){
+    $block = new infos([]);
+    $arr = $block->recup_block();
+    foreach ($res as $k => $v){
+        foreach ($arr as $k1 => $v1) {
+            if ($v['id_usr'] == $v1['id_usr'])
+                unset($res[$k]);
+        }
+    }
+    return $res;
+}

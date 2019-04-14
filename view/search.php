@@ -189,6 +189,7 @@ include('../controllers/ResearchController.php');
         }
     }
     $res = search($_GET['agemin'], $_GET['agemax'], $_GET['popmin'], $_GET['distmax'], $arr, $_GET['sort']);
+    $res = limit_block_popu($res);
     $size = sizeof($res);
     if ($size == 0)
         $size = "Aucun profil trouvé";

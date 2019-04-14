@@ -26,11 +26,11 @@ if (isset($_GET['id'])) {
         $infos->report($_GET['id']);
         if (($count = $infos->nbr_report($_GET['id'])) == 10)
             $infos->drop($_GET['id']);
-        header('Location: profile.php?id=' . $_GET['id'] . '');
+        header('Location: ../view');
     }
     if (isset($_GET['block']) && $_GET['block'] == 1) {
         $infos->block($_GET['id']);
-        header('Location: index.php');
+        header('Location: ../view');
     } else {
         $db = new history(array(
             'id_usr' => $_SESSION['id'],
