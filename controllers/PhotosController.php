@@ -22,7 +22,7 @@ if (isset($_POST['hidden_data'])) {
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
     $_SESSION['nbr'] = 'pp';
-    $_SESSION['photo'] = '../upload/' . $collage;
+    $_SESSION['photo'] = '../upload/' . $collage . '.png';
     unset($_POST['hidden_data']);
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['hidden_data1'])) {
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
     $_SESSION['nbr'] = 'p1';
-    $_SESSION['photo'] = '../upload/' . $collage;
+    $_SESSION['photo'] = '../upload/' . $collage . '.png';
     unset($_POST['hidden_data1']);
 }
 
@@ -50,7 +50,7 @@ if (isset($_POST['hidden_data2'])) {
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
     $_SESSION['nbr'] = 'p2';
-    $_SESSION['photo'] = '../upload/' . $collage;
+    $_SESSION['photo'] = '../upload/' . $collage . '.png';
     unset($_POST['hidden_data2']);
 }
 
@@ -64,7 +64,7 @@ if (isset($_POST['hidden_data3'])) {
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
     $_SESSION['nbr'] = 'p3';
-    $_SESSION['photo'] = '../upload/' . $collage;
+    $_SESSION['photo'] = '../upload/' . $collage . '.png';
     unset($_POST['hidden_data3']);
 }
 
@@ -78,7 +78,7 @@ if (isset($_POST['hidden_data4'])) {
     $collage = date('Y-m-d_g:i:s');
     $success = file_put_contents($file, $data);
     $_SESSION['nbr'] = 'p4';
-    $_SESSION['photo'] = '../upload/' . $collage;
+    $_SESSION['photo'] = '../upload/' . $collage . '.png';
     unset($_POST['hidden_data4']);
 }
 

@@ -39,6 +39,11 @@ include('../controllers/SuggestController.php');
                 $user = recup_user_id($value['id']);
                 $data = recup_data_id($value['id']);
                 $inter = recup_inter_id($value['id']);
+                $photo = new photos(array(
+                        'id2' => $value['id']
+                ));
+                $array_pic = $photo->array_pic();
+                $pp = $array_pic['pp'];
                 $sex = '';
                 $orientation = '';
                 if ($user['statut'] == 1){
@@ -96,7 +101,7 @@ include('../controllers/SuggestController.php');
             <a style='color: inherit !important;' href='profile.php?id=" . $value['id'] . "'><div class=\"col s12 m6 l3 card_profil\">
                 <div class=\"card fade-in two\">
                     <div class=\"card-image\">
-                        <img src=\"assets/images/fakeuser.jpg\">
+                        <img src=\"$pp\">
                         <span class=\"card-title\">" . $user['login'] . "</span>                
                     </div>
                     <div class=\"card-content\">

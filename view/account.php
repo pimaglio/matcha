@@ -11,7 +11,7 @@ if (isset($_SESSION['loggued_on_user']))
 session_start();
 include('header_connect.php');
 
-if (isset($_SESSION['nbr']) && isset($_SESSION['photo'])){
+if (isset($_SESSION['nbr']) && isset($_SESSION['photo'])) {
     htmldump($_SESSION);
     $photo = new photos(['collage' => $_SESSION['photo']]);
     $photo->add_pic();
@@ -21,10 +21,6 @@ if (isset($_SESSION['nbr']) && isset($_SESSION['photo'])){
 ?>
 
 <body>
-<?php
-$photo = new photos([]);
-$array_pic = $photo->array_pic();
-?>
 
 <main class="my_profil row">
 
@@ -33,13 +29,21 @@ $array_pic = $photo->array_pic();
             <img class="image_title_account" src="assets/images/picture_profil.svg">
             <h2 style="margin-left: 100px;" class="title-form-alt">Mes <br><span class="title-form">Photos</span></h2>
         </div>
-
         <form method="POST" name="form1" enctype="multipart/form-data"
               action="../controllers/PhotosController.php">
             <div class="photopp">
-                <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_pp" class="img_pp circle" type="file"></canvas>
+                <?php
+                $photo = new photos([]);
+                $array_pic = $photo->array_pic();
+                $pp = $array_pic['pp'];
+                echo "
+                <canvas style=\"background-image: url('$pp')\" id=\"canvas_pp\" class=\"img_pp circle\" type=\"file\"></canvas>
+                ";
+                ?>
+
                 <input class="circle" type="file" id="imagepp" name="pp" size="30000" accept="image">
-                <button class="btn-large btn_up_pp" id="btnpp" onclick="UploadPic()" value="Upload" type="button" disabled><i
+                <button class="btn-large btn_up_pp" id="btnpp" onclick="UploadPic()" value="Upload" type="button"
+                        disabled><i
                             class="fas fa-save icon_spacing2"></i>Sauvegarder
                 </button>
             </div>
@@ -51,11 +55,16 @@ $array_pic = $photo->array_pic();
                 <form method="POST" name="form2" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
-                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p1" class="img_p1 circle" type="file"></canvas>
+                        <?php
+                        $photo = new photos([]);
+                        $array_pic = $photo->array_pic();
+                        $p1 = $array_pic['p1'];
+                        echo "
+                        <canvas style=\"background-image: url('$p1')\" id=\"canvas_p1\" class=\"img_p1 circle\" type=\"file\"></canvas>
+                        ";
+                        ?>
                         <input class="circle" type="file" id="imagep1" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btnp1" onclick="UploadPic1()" value="Upload" type="button" disabled><i
-                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
-                        </button>
+                        <button class="btn btn_up_pp1" id="btnp1" onclick="UploadPic1()" value="Upload" type="button" disabled><i class="fas fa-save icon_spacing2"></i>Sauvegarder</button>
                     </div>
                     <input name="hidden_data1" id='hidden_data1' type="hidden"/>
                 </form>
@@ -64,11 +73,16 @@ $array_pic = $photo->array_pic();
                 <form method="POST" name="form3" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
-                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p2" class="img_p1 circle" type="file"></canvas>
+                        <?php
+                        $photo = new photos([]);
+                        $array_pic = $photo->array_pic();
+                        $p2 = $array_pic['p2'];
+                        echo "
+                        <canvas style=\"background-image: url('$p2')\" id=\"canvas_p2\" class=\"img_p1 circle\" type=\"file\"></canvas>
+                        ";
+                        ?>
                         <input class="circle" type="file" id="imagep2" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btnp2" onclick="UploadPic2()" value="Upload" type="button" disabled><i
-                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
-                        </button>
+                        <button class="btn btn_up_pp1" id="btnp2" onclick="UploadPic2()" value="Upload" type="button" disabled><i class="fas fa-save icon_spacing2"></i>Sauvegarder</button>
                     </div>
 
                     <input name="hidden_data2" id='hidden_data2' type="hidden"/>
@@ -78,13 +92,17 @@ $array_pic = $photo->array_pic();
                 <form method="POST" name="form4" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
-                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p3" class="img_p1 circle" type="file"></canvas>
+                        <?php
+                        $photo = new photos([]);
+                        $array_pic = $photo->array_pic();
+                        $p3 = $array_pic['p3'];
+                        echo "
+                        <canvas style=\"background-image: url('$p3')\" id=\"canvas_p3\" class=\"img_p1 circle\" type=\"file\"></canvas>
+                        ";
+                        ?>
                         <input class="circle" type="file" id="imagep3" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btnp3" onclick="UploadPic3()" value="Upload" type="button" disabled><i
-                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
-                        </button>
+                        <button class="btn btn_up_pp1" id="btnp3" onclick="UploadPic3()" value="Upload" type="button" disabled><i class="fas fa-save icon_spacing2"></i>Sauvegarder</button>
                     </div>
-
                     <input name="hidden_data3" id='hidden_data3' type="hidden"/>
                 </form>
             </div>
@@ -92,13 +110,17 @@ $array_pic = $photo->array_pic();
                 <form method="POST" name="form5" enctype="multipart/form-data"
                       action="../controllers/PhotosController.php">
                     <div class="photop1">
-                        <canvas style="background-image: url('assets/images/fakeuser.jpg')" id="canvas_p4" class="img_p1 circle" type="file"></canvas>
+                        <?php
+                        $photo = new photos([]);
+                        $array_pic = $photo->array_pic();
+                        $p4 = $array_pic['p4'];
+                        echo "
+                        <canvas style=\"background-image: url('$p4')\" id=\"canvas_p4\" class=\"img_p1 circle\" type=\"file\"></canvas>
+                        ";
+                        ?>
                         <input class="circle" type="file" id="imagep4" name="fichier" size="30000" accept="image">
-                        <button class="btn btn_up_pp1" id="btnp4" onclick="UploadPic4()" value="Upload" type="button" disabled><i
-                                    class="fas fa-save icon_spacing2"></i>Sauvegarder
-                        </button>
+                        <button class="btn btn_up_pp1" id="btnp4" onclick="UploadPic4()" value="Upload" type="button" disabled><i class="fas fa-save icon_spacing2"></i>Sauvegarder </button>
                     </div>
-
                     <input name="hidden_data4" id='hidden_data4' type="hidden"/>
                 </form>
             </div>

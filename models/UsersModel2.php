@@ -1140,11 +1140,14 @@ class photos
     private $collage;
     private $db_con;
     private $id;
+    private $id2;
 
     public function __construct(array $user_image)
     {
         if (array_key_exists('collage', $user_image))
             $this->collage = $user_image['collage'];
+        if (array_key_exists('id2', $user_image))
+            $this->id2 = $user_image['id2'];
         $this->id = $_SESSION['id'];
         $this->db_con = database_connect();
     }
@@ -1198,7 +1201,7 @@ class photos
         $query = 'SELECT * FROM photo WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
-            ":id" => $this->id
+            ":id" => $this->id2
         ));
         $fetch = $stmt->fetch(PDO::FETCH_ASSOC);
         unset ($fetch['id']);

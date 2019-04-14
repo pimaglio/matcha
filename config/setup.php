@@ -117,11 +117,11 @@ EOSQL;
 CREATE TABLE photo (
   id int (11) NOT NULL AUTO_INCREMENT,
   id_usr int(11) NOT NULL,
-  pp VARCHAR(255) NOT NULL default 'no-images.png',
-  p1 VARCHAR(255) NOT NULL default 'no-images.png',
-  p2 VARCHAR(255) NOT NULL default 'no-images.png',
-  p3 VARCHAR(255) NOT NULL default 'no-images.png',
-  p4 VARCHAR(255) NOT NULL default 'no-images.png',
+  pp VARCHAR(255) NOT NULL default '../upload/no-image.png',
+  p1 VARCHAR(255) NOT NULL default '../upload/no-image.png',
+  p2 VARCHAR(255) NOT NULL default '../upload/no-image.png',
+  p3 VARCHAR(255) NOT NULL default '../upload/no-image.png',
+  p4 VARCHAR(255) NOT NULL default '../upload/no-image.png',
   PRIMARY KEY (id)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE=utf8_unicode_ci
 EOSQL;
