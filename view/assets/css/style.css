@@ -481,6 +481,19 @@ PROFILE PAGE
     margin: auto;
 }
 
+.slider-container{
+    min-width: 60%;
+    max-width: 1000px;
+    height: 450px;
+    display: block;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 15px rgba(125, 147, 178, .25);
+    transition: all .3s;
+    animation: fadeIn 1s;
+    margin: auto;
+}
+
 .user_profil_gallery {
     width: 30%;
     display: block;

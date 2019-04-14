@@ -104,6 +104,13 @@ if (isset($_GET['id'])) {
         $user = recup_user_id($_GET['id']);
         $data = recup_data_id($_GET['id']);
         $inter = recup_inter_id($_GET['id']);
+        $photo = new photos([]);
+        $array_pic = $photo->array_pic();
+        $photo = new photos(array(
+            'id2' => $_GET['id']
+        ));
+        $array_pic = $photo->array_pic();
+        $pp = $array_pic['pp'];
         if ($user['statut'] == 1) {
             $icon_statut = 'connected';
             $statut = 'Connecté';
@@ -170,7 +177,7 @@ if (isset($_GET['id'])) {
         echo "
         
         <div class=\"user_profil_image\">
-            <img class=\"materialboxed circle\" width=\"180\" height=\"180\" src=\"assets/images/fakeuser.jpg\">
+            <img class=\"materialboxed circle\" width=\"180\" height=\"180\" src=\"$pp\">
         </div>
         $message
         $like_btn
@@ -212,13 +219,40 @@ if (isset($_GET['id'])) {
         ?>
     </div>
 
-    <div class="user_profil_gallery">
-        <div class="carousel">
-            <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-            <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-            <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-            <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-            <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+    <div class="slider-container">
+        <div class="slider">
+            <ul style="border-top-left-radius: 8px !important;border-top-right-radius: 8px !important" class="slides">
+                <?php
+                $photo = new photos([]);
+                $array_pic = $photo->array_pic();
+                $photo = new photos(array(
+                    'id2' => $_GET['id']
+                ));
+                $array_pic = $photo->array_pic();
+                echo "
+                <li>
+                    <img src=\" " . $array_pic['p1'] . " \"> <!-- random image -->
+                    <div class=\"caption center-align\">
+                    </div>
+                </li>
+                <li>
+                    <img src=\"" . $array_pic['p2'] . "\"> <!-- random image -->
+                    <div class=\"caption center-align\">
+                    </div>
+                </li>
+                <li>
+                    <img src=\"" . $array_pic['p3'] . "\"> <!-- random image -->
+                    <div class=\"caption center-align\">
+                    </div>
+                </li>
+                <li>
+                    <img src=\"" . $array_pic['p4'] . "\"> <!-- random image -->
+                    <div class=\"caption center-align\">
+                    </div>
+                </li>
+                ";
+                ?>
+            </ul>
         </div>
     </div>
 
@@ -228,8 +262,8 @@ if (isset($_GET['id'])) {
 <script src="assets/js/materialize.js"></script>
 
 <script>
-    $(document).ready(function () {
-        $('.carousel').carousel();
+    $(document).ready(function(){
+        $('.slider').slider();
     });
     $(document).ready(function () {
         $('.materialboxed').materialbox();
