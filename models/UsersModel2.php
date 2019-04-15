@@ -499,7 +499,7 @@ class infos
         $stmt->execute(array(
             ":id" => $id
         ));
-        $query = 'DELETE FROM `block` WHERE id_usr=:id OR id_usr_b=:id';
+        $query = 'DELETE FROM `block` WHERE id_usr=:id OR id_blocker=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":id" => $id
@@ -510,6 +510,11 @@ class infos
             ":id" => $id
         ));
         $query = 'DELETE FROM data WHERE id_usr=:id';
+        $stmt = $this->db_con->prepare($query);
+        $stmt->execute(array(
+            ":id" => $id
+        ));
+        $query = 'DELETE FROM photo WHERE id_usr=:id';
         $stmt = $this->db_con->prepare($query);
         $stmt->execute(array(
             ":id" => $id

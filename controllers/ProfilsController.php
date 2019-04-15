@@ -466,12 +466,7 @@ function unlog(){
 
 function delete_account(){
     $db_con = new infos([]);
-    $db_con->del_user_db();
-    $db_con->del_data();
-    $db_con->del_interest();
-//    $db_con->del_user_db();
-//    $db_con->del_user_db();
-//    $db_con->del_user_db();
+    $db_con->drop($_SESSION['id']);
 }
 
 //FAKE ACCOUNT
