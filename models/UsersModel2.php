@@ -433,6 +433,8 @@ class infos
         ));
     }
 
+    // BLOCK
+
     public function block($id){
         $fetch = [];
         $query = 'SELECT id_usr FROM block WHERE id_blocker=:id';
